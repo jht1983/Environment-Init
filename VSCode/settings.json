@@ -132,7 +132,18 @@
     "telemetry.enableTelemetry": false,
 
     // 启用要发送给 Microsoft 的故障报表。
-	// 此选项需重启才可生效。
-    "telemetry.enableCrashReporter": false
+    // 此选项需重启才可生效。
+    "telemetry.enableCrashReporter": false,
+
+// markdownlint configuration
+
+    // markdownlint config object
+    "markdownlint.config": {
+        "default": true,
+        "MD007": { "indent": 4 },
+        "MD009": { "br_spaces": 2 },
+        "MD013": false,
+        "MD036": false
+    }
 
 }
