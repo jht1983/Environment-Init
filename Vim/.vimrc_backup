@@ -1,0 +1,76 @@
+
+Plugin 'Vim-Script-Updater'
+
+Plugin 'kien/ctrlp.vim'
+Plugin 'tacahiroy/ctrlp-funky'
+Plugin 'ctrlp-modified.vim'
+
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-rails.git'
+Plugin 'tpope/vim-surround'
+
+Plugin 'L9'
+
+Plugin 'FuzzyFinder'
+Plugin 'Auto-Pairs'
+Plugin 'python-imports.vim'
+Plugin 'vim-scripts/YankRing.vim'
+
+Plugin 'rking/ag.vim'
+Plugin 'junegunn/vim-easy-align'
+Plugin 'mattn/emmet-vim'
+Plugin 'ervandew/supertab'
+
+Plugin 'Raimondi/delimitMate'
+
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'groenewege/vim-less'
+Plugin 'ap/vim-css-color'
+Plugin 'matchit.zip'
+Plugin 'CaptureClipboard'
+Plugin 'last_edit_marker.vim'
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+Plugin 'synmark.vim'
+Plugin 'SQLComplete.vim'
+Plugin 'wincent/command-t.git'
+
+"checksyntax 一个通用的语法检查插件, 支持c, js, 等等
+
+" ctrlp设置
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+let g:ctrlp_custom_ignore = '\v\.(exe|so|dll)$'
+let g:ctrlp_extensions = ['funky']
+
+" python补全
+let g:pydiction_location = '~/.vim/after/complete-dict'
+let g:pydiction_menu_height = 20
+
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1  = "inc"
+
+" markdown配置
+autocmd BufRead,BufNewFile *.{md,mdown,mkd,mkdn,markdown,mdwn}   set filetype=mkd
+autocmd BufRead,BufNewFile *.{go}   set filetype=go
+autocmd BufRead,BufNewFile *.{js}   set filetype=javascript
+" markdown to HTML
+nmap md :!~/.vim/markdown.pl % > %.html <CR><CR>
+nmap fi :!firefox %.html & <CR><CR>
+nmap \ \cc
+vmap \ \cc
+
+" syntastic setting
+let syntastic_stl_format = '[Syntax: %E{line:%fe }%W{#W:%w}%B{ }%E{#E:%e}]'
+
+"dont load csapprox if we no gui support - silences an annoying warning
+if !has("gui")
+    let g:CSApprox_loaded = 1
+endif
+
+" a.vim useage
+":A	在新Buffer中切换到c/h文件
+":AS 横向分割窗口并打开c/h文件
+":AV 纵向分割窗口并打开c/h文件
+":AT 新建一个标签页并打开c/h文件
+" 按F12时在一个新的buffer中打开c/h文件
+"nnoremap <silent> <F12> :A<CR>

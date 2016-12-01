@@ -1,0 +1,35 @@
+#!/bin/bash
+
+#sudo apt-get install xclip
+#sudo easy_install -ZU autopep8
+cd ~
+echo "Ljc 正在为您安装配套程序" > Ljc
+sudo apt-get install vim-gtk ctags cscope astyle git subversion
+
+# backup
+rm -rf ~/vim_ljc ~/.vim_old
+mv -f ~/.vimrc ~/.vimrc_old
+mv -f ~/.vim ~/.vim_old
+
+# new files
+echo "请耐心等待" > Ljc
+#wget -q https://sourceforge.net/projects/vimcdoc/files/vimcdoc/vimcdoc-1.9.0.tar.gz
+svn checkout https://github.com/Will-Grindelwald/Linux-Configuration/trunk/Vim ~/vim_ljc > Ljc
+mv -f ~/vim_ljc/.vimrc ~/.vimrc
+mv -f ~/vim_ljc ~/.vim
+tar zxf .vim/vimcdoc-1.9.0.tar.gz
+
+# Plugin
+echo "正在安装插件, 花费时间取决于你的网速" > Ljc
+git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo "安装完毕将自动退出" >> Ljc
+echo "请耐心等待" >> Ljc
+vim Ljc -c "PluginInstall" -c "qa"
+rm -rf ~/.vim/.svn ~/.vim/doc/.VIMConfigure ~/.vim/README.md ~/.vim/setup ~/.vim/.vimrc_backup ~/.vim/vimcdoc-1.9.0.tar.gz
+vim -c "helptags ~/.vim/doc" -c "qa"
+cd - && cd ~/vimcdoc-1.9.0
+echo "正在安装中文文档" >> ~/Ljc
+./vimcdoc.sh -i >> ~/Ljc
+echo "安装完成" >> ~/Ljc
+cd -
+rm -rf  ~/vimcdoc-1.9.0 ~/Ljc setup

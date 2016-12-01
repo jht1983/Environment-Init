@@ -1,0 +1,138 @@
+// 将设置放入此文件中以覆盖默认设置
+{
+
+// 编辑器
+
+    // 控制字体系列。
+    // "editor.fontFamily": "Consolas, 'Courier New', monospace",
+
+    // 控制字体大小。
+    "editor.fontSize": 16,
+
+    // 一个制表符等于的空格数。该设置在 `editor.detectIndentation` 启用时根据文件内容进行重写。
+    // "editor.tabSize": 4,
+
+    // 按 "Tab" 时插入空格。该设置在 `editor.detectIndentation` 启用时根据文件内容进行重写。
+    // "editor.insertSpaces": true,
+
+    // 控制在多少个字符后编辑器会自动换到下一行。将其设置为 0 则将打开视区宽度换行(自动换行)。将其设置为 -1 则将强制编辑器始终不换行。
+    "editor.wrappingColumn": 0,
+
+    // 通过使用鼠标滚轮同时按住 Ctrl 可缩放编辑器的字体
+    "editor.mouseWheelZoom": true,
+
+    // 控制编辑器中呈现空白字符的方式，可能为“无”、“边界”和“全部”。“边界”选项不会在单词之间呈现单空格。
+    "editor.renderWhitespace": "boundary",
+
+    // 控制编辑器是否应呈现缩进参考线
+    "editor.renderIndentGuides": true,
+
+    // 控制差异编辑器是否将对前导空格或尾随空格的更改显示为差异
+    "diffEditor.ignoreTrimWhitespace": false,
+
+// 文件
+
+    // 配置 glob 模式以排除文件和文件夹。
+    // "files.exclude": {
+    //     "**/.git": true,
+    //     "**/.svn": true,
+    //     "**/.hg": true,
+    //     "**/.DS_Store": true
+    // },
+
+    // 配置语言的文件关联(如: "*.extension": "html")。这些关联的优先级高于已安装语言的默认关联。
+    // "files.associations": {},
+
+    // 读取和编写文件时将使用的默认字符集编码。
+    // "files.encoding": "utf8",
+
+    // 默认行尾字符。
+    // "files.eol": "\r\n",
+
+    // 启用后，将在保存文件时剪裁尾随空格。
+    // "files.trimTrailingWhitespace": false,
+
+    // 控制是否自动保存更新后的文件。接受的值:“off”、“afterDelay”、“onFocusChange”(编辑器失去焦点)、“onWindowChange”(窗口失去焦点)。如果设置为“afterDelay”，则可在 "files.autoSaveDelay" 中配置延迟。
+    // "files.autoSave": "off",
+
+    // 控制延迟(以秒为单位)，在该延迟后将自动保存更新后的文件。仅在 "files.autoSave" 设置为“afterDelay”时适用。
+    // "files.autoSaveDelay": 1000,
+
+    // 配置文件路径的 glob 模式以从文件监视排除。更改此设置要求重启。如果在启动时遇到 Code 消耗大量 CPU 时间，则可以排除大型文件夹以减少初始加载。
+    // "files.watcherExclude": {
+    //     "**/.git/objects/**": true
+    // },
+
+    // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
+    // "editor.formatOnSave": false,
+
+// 搜索
+
+    // 配置 glob 模式以在搜索中排除文件和文件夹。从 files.exclude 设置中继承所有 glob 模式。
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true
+    },
+
+    // 配置为在 Quick Open 文件结果中包括全局符号搜索的结果。
+    "search.quickOpen.includeSymbols": false,
+
+// GIT
+
+    // 是否启用了 GIT
+    // "git.enabled": true,
+
+    // 可执行 GIT 的路径
+    // "git.path": null,
+
+    // 是否已启用自动刷新
+    // "git.autorefresh": true,
+
+    // 是否启用了自动提取。
+    // "git.autofetch": true,
+
+// Markdown
+
+    // A list of URLs or local paths to CSS style sheets to use from the markdown preview. Relative paths are interpreted relative to the folder open in the explorer. If there is no open folder, they are interpreted relative to the location of the markdown file. All '\' need to be written as '\\'.
+    "markdown.styles": [],
+
+// 扩展
+
+    // 自动更新扩展
+    // "extensions.autoUpdate": false,
+
+// 集成终端
+
+    // 终端在 Linux 上使用的 shell 的路径。
+    // "terminal.integrated.shell.linux": "sh",
+
+    // 在 Linux 终端上时要使用的命令行参数。
+    // "terminal.integrated.shellArgs.linux": [],
+
+    // 终端在 OS X 上使用的 shell 的路径。
+    // "terminal.integrated.shell.osx": "sh",
+
+    // 在 OS X 终端上时要使用的命令行参数。
+    // "terminal.integrated.shellArgs.osx": [],
+
+    // 终端在 Windows 上使用的 shell 的路径。使用随 Windows 一起提供的 shell 时(cmd、PowerShell 或 Ubuntu 上的 Bash)，相对 C:WindowsSystem32，首选 C:Windowssysnative 以使用 64 位版本。
+    // "terminal.integrated.shell.windows": "C:\\Windows\\system32\\cmd.exe",
+
+    // 控制终端游标是否闪烁。
+    // "terminal.integrated.cursorBlinking": false,
+
+// 问题预览
+
+    // 控制问题预览是否应在打开文件时自动显示它们。
+    // "problems.autoReveal": true,
+
+// 遥测
+
+    // 启用要发送给 Microsoft 的使用情况数据和错误。
+    "telemetry.enableTelemetry": false,
+
+    // 启用要发送给 Microsoft 的故障报表。
+	// 此选项需重启才可生效。
+    "telemetry.enableCrashReporter": false
+
+}

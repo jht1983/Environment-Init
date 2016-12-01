@@ -1,0 +1,160 @@
+*Ljc_Help_You*
+
+            这是 Ljc 的 Vim 秘籍
+            一般人我不告诉他
+
+==============================================================================
+CONTENTS                                               *Ljc_Help_You_Contents*
+
+    1. .vimrc 文件的补充...........................|AppendOfVimrc|
+    2. 快捷键......................................|ShortcutKey|
+
+==============================================================================
+ 1. .vimrc 文件的补充                                        *AppendOfVimrc*
+                                                   返回|Ljc_Help_You_Contents|
+------------------------------------------------------------------------------
+" 1. Vundle related { //未添加的插件
+
+" 1.4.2 python:
+"pyflakes 提供实时检查python代码语法的功能
+"pydoc 在vim中查找python文档
+"jedi-vim 提供很好的python代码提示, 以及shift+k 提供 __doc__ 展示功能
+"Plugin 'Python-mode-klen'
+
+" 1.4.3 Markdown
+"Plugin 'suan/vim-instant-markdown'   " 很强, 调用firefox实时渲染, github.com/yangyangwithgnu/use_vim_as_ide#8.4
+"Plugin 'hallison/vim-markdown'       " 提供markdown着色功能, 顺便也提供了snippet
+
+" 1.4.4 js
+"Plugin 'jsbeautify'                  " 优化js代码, 并不是简单的缩进, 而是整个优化
+"Plugin 'Javascript-OmniCompletion-with-YUI-and-j'
+"Plugin 'JavaScript-Indent'
+"Plugin 'Better-Javascript-Indentation'
+"Plugin 'jslint.vim'
+"Plugin 'pangloss/vim-javascript'
+
+" 1.4.5 html/xml
+"matchit 使%不仅能够匹配简单的<>(), 还能匹配<html></html>之类标签的功能
+"xml.vim 提供快速编写xml/html的能力, 如标签自动闭合等
+
+"DoxygenToolkit.vim                  "添加doxygen注释
+
+"} // end of 1. Vundle related
+
+" 5. Plugin setting {
+" 5.0 Vundle
+" see more :h vundle
+" :PluginList          - list configured plugins
+" :PluginInstall(!)    - install (update) plugins
+" :PluginSearch(!) foo - search (or refresh cache first) for foo
+" :PluginClean(!)      - confirm (or auto-approve) removal of unused plugins
+" "$ vim +PluginInstall +qall" to install plugins from command line
+
+" 5.1 ctags setting
+" useage: 为源码建立一个 tag 数据库, cd 到项目根目录下 $ ctags -R *, 更全的命令参数见 map
+" 按下 F6 重新生成 tag & cscope 文件, 并更新 taglist
+"--c++-kinds=+p+l+x  : 为 C++ 文件增加函数原型的标签, p、l、x 默认不产生标签
+"--fields=+liaS      : 在标签文件中加入继承信息(i), 类成员的访问控制信息(a), 以及函数的指纹(S), (l)是YCM插件要求的
+"--extra=+q          : 为标签增加类修饰符, 如果没有此选项将不能对类成员补全
+
+" 5.2 TagList setting
+" see more :h taglist.txt
+
+" 5.3 Tagbar setting
+" see more :help tagbar.txt
+" 公有成员(+)、私有成员(-)、保护成员(#)
+
+" 5.4 NERDTree setting
+" see more :help NERD_tree.txt
+
+" 5.5 NERDTree-git-plugin setting
+
+" 5.6 minibufexpl setting
+" 关于 vim 缓冲区(buffer)和窗口的概念(详见:help windows)
+" 缓冲区: 一个文件对应一个缓冲区
+" 窗口: 用来查看缓冲区里的内容; 你可以用多个窗口观察同一个缓冲区, 也可以用多个窗口观察不同的缓冲区
+" 屏幕: Vim 所用的整个工作区域, 可以是一个终端模拟窗口, 也被叫做 "Vim 窗口"
+"       一个屏幕包含一个或多个窗口, 被状态行和屏幕底部的命令行分割。
+" * 表示当前有 window 的 buffer, 即有 * 的 buffer 是可见的; ! 表示当前正在编辑的 buffer/window
+" <Enter> 在打开光标所在的buffer, d 删除光标所在的buffer
+" 在某个 buffer 上键入 s 将该 buffer 对应 window 与先前 window 上下排列, 键入 v 则左右排列
+" MBEbn下一个next; MBEbp前一个previous; MBEbf之前一个forward; MBEbb之后一个backward
+" MBEbd[!] [N1] [N2] ... delete指定的buffer; 只输入:MBEbd, 关闭当前buffer; = MBEbw = MBEbun
+
+" 5.7 indentLine setting
+
+" 5.8 ultisnips setting
+
+" 5.9 syntastic setting
+
+" 5.10 cscope setting
+" see more :help if_cscop
+" cscope的主要功能是通过其"find"子命令来实现的
+" useage: cs find c|d|e|f|g|i|s|t name
+" 0 或 s  查找这个 C 符号(可以跳过注释)
+" 1 或 g  查找这个定义
+" 2 或 d  查找这个函数调用的函数
+" 3 或 c  查找调用过这个函数的函数
+" 4 或 t  查找这个字符串
+" 6 或 e  查找这个 egrep 模式
+" 7 或 f  查找这个文件
+" 8 或 i  查找包含这个文件的文件
+" useage:
+" <1>、为源码建立一个cscope数据库, cd到项目根目录下
+" $ cscope -Rbq
+" $ ls cscope.*
+" cscope.in.out  cscope.out  cscope.po.out
+" <2>、用vim打开某个源码文件, 末行模式下, 输入":cs add cscope.out", 添加cscope数据库到vim。因为我们已将vim配置为启动时, 自动添加当前目录下的cscope数据库, 所以你再添加该cscope数据库时, vim会提示"重复cscope数据库 未被加入"
+" <3>、完成前两步后, 现在就可以用"cs find c"等Cscope查找命令查找关键字了。我们已在.vimrc中将"cs find c"等Cscope查找命令映射为<C-\>c等快捷键（按法是先按Ctrl+\, 然后很快按下c）
+" 注意: 帮助文档if_cscop中, 快捷键映射nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>是有误的！#####
+" 比如光标在"header.h"上按下<C-\>i, 也就是查找包含"header.h"的文件。但是按照这个映射规则, 则是将<C-\>i映射为cs find i ^header.h$, 也就是查找包含"^header.h$"的文件, 这显然不是我们想要的结果。该映射规则应该改成nmap <C-\>i :cs find i <C-R>=expand("<cfile>")<CR><CR>
+
+" 5.11 NERDComComment setting
+
+" 5.12 vim-cpp-enhanced-highlight setting
+
+" 5.13 Omnicppcomplete setting
+" see more :help omnicppcomplete
+" Ctrl+P 向前切换成员
+" Ctrl+N 向后切换成员
+" Ctrl+E 表示退出下拉窗口, 并退回到原来录入的文字
+" Ctrl+Y 表示退出下拉窗口, 并接受当前选项
+" Ctrl+X Ctrl+O
+" Ctrl+X Ctrl+I  根据头文件内关键字补全
+" Ctrl+X Ctrl+L  整行补全
+" Ctrl+X Ctrl+N  根据当前文件里关键字补全
+"} // end of 5. Plugin setting
+
+==============================================================================
+ 2. 快捷键                                                      *ShortcutKey*
+                                                   返回|Ljc_Help_You_Contents|
+------------------------------------------------------------------------------
+
+mapleader = "\\"
+imap <C-e> <ESC>
+nmap lA    0
+nmap lE    $
+nmap qq    %    " 跳到匹配的结对符处
+" 输入括号、引号自动匹配
+" Ctrl + a, x, c, v, z, y  实现的很好, 几乎与 windows 一样
+" PS: 选择文本块时, 要注意: 光标随后的字符也被选上了, 但并不高亮。比较好的方法: 双击要选的词
+" 上下移行 Alt + Up/Down
+" tT: 按自己定义的缩进规则重新缩进, 即:retab
+" cS: clear trailing spaces
+" cM: clear trailing symbol of ^M
+" cL: clear blank lines
+" space: normal 模式下切换光标所在行的折叠与否
+" F2: diff mode     " 我没设置, 见vimrc
+" F3: Taglist
+" F4: Tagbar
+" F5: 编译运行, 支持C/C++、Java、shell、python、html、mkd
+" F6: 重新生成 tag & cscope 文件, 并更新
+" F7: 仅编译, Only for C/C++
+" F9: NERDTree
+" F11: 全屏开/关, Only for gvim, 终端自带, "其实也没设, 见vimrc"
+" F12: 代码格式化
+" Alt + F12: 添加文件头, 可以到 .vimrc 中自己改
+" 自动更新 Last Update Time
+
+==============================================================================
+ vim: tw=78 ts=8 sw=4 sts=4 et ft=help
