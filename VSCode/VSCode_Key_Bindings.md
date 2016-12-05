@@ -121,15 +121,16 @@
 
 | ItemName | Introduction |
 | -------- | ------------ |
-| beautify            | Beautify javascript, JSON, CSS, and HTML code |
-| cpptools            | C/C++ 支持(code-editing, debugging) |
-| debugger-for-chrome | Debug your JavaScript code in the Chrome browser, or any other target that supports the Chrome Debugger protocol |
-| vscode-eslint       | Integrates ESLint into VS Code |
-| githistory          | View git log, file or line history |
-| vscode-markdownlint | Markdown linting and style checking for Visual Studio Code |
-| python              | Linting, Debugging (multi-threaded, remote), Intellisense, auto-completion, code formatting, snippets, and more |
-| tslint              | TSLint for Visual Studio Code |
-| vscode-icons        | icons for VSCode |
+| beautify            | Beautify javascript, JSON, CSS, Sass, and HTML in Visual Studio Code. |
+| C/C++               | Complete C/C++ language support including code-editing and debugging. |
+| Debugger for Chrome | Debug your JavaScript code in the Chrome browser, or any other target that supports the Chrome Debugger protocol. |
+| ESLint              | Integrates ESLint into VS Code. |
+| Git History         | View git log, file or line History |
+| Language Support for Java(TM) by Red Hat | Language Support for Java(TM) for Visual Studio Code provided by Red Hat |
+| markdownlint        | Markdown linting and style checking for Visual Studio Code |
+| Python              | Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, Data Science (with Jupyter), PySpark and more. |
+| TSLint              | TSLint for Visual Studio Code |
+| vscode-icons        | Icons for Visual Studio Code |
 
 备选
 
@@ -139,9 +140,8 @@
 | vim                 | Vim 模拟 |
 | latex               | LaTeX - colorizer, grammar and snippets |
 | cmake               | CMake 语法支持 |
-| Spell               | Detect mistakes as you type and suggest fixes - great for Markdown or any text file |
 | xml                 | XML Formatting, XQuery, and XPath Tools for Visual Studio Code |
-| markdown-pdf        | convert Markdown file to pdf, html, png or jpeg file. |
+| Markdown PDF        | convert Markdown file to pdf, html, png or jpeg file. |
 | markdown-toc        | Generate TOC (table of contents) of headlines from parsed markdown file |
 | vscode-todo         | Lists todo |
 | Align               | align text like the atom-alignment package |
