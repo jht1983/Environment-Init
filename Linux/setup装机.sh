@@ -27,10 +27,10 @@ sudo apt-get install vim-gtk ctags cscope astyle
 wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Vim/setup && sh -x setup
 
 # echo "zsh"
-# sudo apt-get install zsh
+#sudo apt-get install zsh
 
 # echo "protocol-buffer"
-# sudo apt-get install protobuf-compiler
+#sudo apt-get install protobuf-compiler
 
 ##################################
 # For Ubuntu
@@ -44,8 +44,8 @@ sudo apt-get install unity-tweak-tool
 # echo "配置 '点击应用程序 Launcher 图标即可最小化'"
 gsettings set org.compiz.unityshell:/org/compiz/profiles/unity/plugins/unityshell/ launcher-minimize-window true
 
-# echo "installing 'gksu'"                # 使GUI程序使用sudo
-# sudo apt-get install gksu
+# echo "installing 'gksu'"                # 使 GUI 程序使用 sudo
+#sudo apt-get install gksu
 
 # echo "installing 'open-in-terminal''"
-# sudo apt-get install nautilus-open-terminal
+#sudo apt-get install nautilus-open-terminal
