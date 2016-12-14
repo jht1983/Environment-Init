@@ -24,7 +24,7 @@ ssh localhost                                    # 验证, 第一次要输入 'y
 tar xzf hadoop-2.6.0.tar.gz -C /usr/local
 ```
 
-#### 1.4 把下面的加到 ~/.bashrc 中, 要尽量放到前面(见 1.8 note)
+#### 1.4 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
 ```bash
 export JAVA_HOME=/usr/local/java/jdk1.8.0_77
@@ -154,7 +154,7 @@ mvn eclipse:eclipse -DskipTests
 tar xzf hbase-0.98.11-hadoop2-bin.tar.gz -C /usr/local
 ```
 
-### 2 把下面的加到 ~/.bashrc 中, 要尽量放到前面(见 1.8 note)
+### 2 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
 ```bash
 export HBASE_HOME=/usr/local/hbase-0.98.11-hadoop2

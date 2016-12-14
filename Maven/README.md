@@ -4,16 +4,16 @@
 
 **PS**: windows & linux 一样
 
-1. 首先要安装有 Java
-2. 下载->解压
-3. 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
+* 首先要安装有 Java
+* 下载->解压
+* 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
 ```bash
 export M2_HOME=/usr/local/apache-maven-3.3.9
 export PATH=$PATH:$M2_HOME/bin
 ```
 
-4. 验证
+* 验证
 
 ```bash
 mvn -v
