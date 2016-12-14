@@ -14,14 +14,14 @@
 * 解压: `tar xJf node-v6.9.1-linux-x64.tar.xz`
 * 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
-```
+```bash
 export NODE_HOME=/usr/local/node-v6.9.1-linux-x64
 export PATH=$NODE_HOME/bin:$PATH
 ```
 
 * 验证:
 
-```
+```bash
 $ node -v
 v6.9.1
 ```

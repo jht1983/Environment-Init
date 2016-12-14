@@ -4,19 +4,19 @@
 
 * `JAVA_HOME`: 指明 JDK 安装路径, 此路径下包括 lib, bin, jre 等文件夹
 
-```
+```bash
 C:\Program Files\Java\jdk1.8.0_60
 ```
 
 * `Path`: 使得系统可以在任何路径下识别 java 命令
 
-```
+```bash
 ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 ```
 
 * `CLASSPATH`: java 加载类(class or lib)路径, 只有类在 classpath 中, java 才能找到
 
-```
+```bash
 .;%JAVA_HOME%\bin;%JAVA_HOME%\lib
 (要加.表示当前路径)
 ```

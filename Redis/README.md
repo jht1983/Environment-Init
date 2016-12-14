@@ -8,32 +8,32 @@ Redis 是一个开源的可基于内存亦可持久化的日志型、Key-Value �
 
 本教程使用的最新文档版本为 3.2.5, 下载并安装:
 
-```
-$ wget http://download.redis.io/releases/redis-3.2.5.tar.gz
-$ tar xzf redis-3.2.5.tar.gz
-$ cd redis-3.2.5
-$ make
+```bash
+wget http://download.redis.io/releases/redis-3.2.5.tar.gz
+tar xzf redis-3.2.5.tar.gz
+cd redis-3.2.5
+make
 ```
 
 make 完, redis-3.2.5/src 目录下会出现编译后的 redis 服务程序 redis-server, 还有客户端程序 redis-cli
 
 下面启动 redis 服务.
 
-```
-$ ./src/redis-server
+```bash
+./src/redis-server
 ```
 
 注意这种方式启动 redis 使用的是默认配置. 也可以通过启动参数告诉 redis 使用指定配置文件使用下面命令启动.
 
-```
-$ ./src/redis-server ./redis.conf
+```bash
+./src/redis-server ./redis.conf
 ```
 
 redis.conf 是一个默认的配置文件. 我们可以根据需要使用自己的配置文件.
 
 启动 redis 服务进程后, 就可以使用客户端程序 redis-cli 和 redis server 交互了. 比如:
 
-```
+```bash
 $ ./src/redis-cli    # or ./src/redis-cli -h 127.0.0.1 -p 6379
 redis 127.0.0.1:6379> ping
 PONG
@@ -49,13 +49,13 @@ Redis 的配置文件位于 Redis 安装目录下, 文件名为 redis.conf.
 
 **CONFIG GET** 命令基本语法:
 
-```
+```bash
 redis 127.0.0.1:6379> CONFIG GET CONFIG_SETTING_NAME
 ```
 
 例如
 
-```
+```bash
 redis 127.0.0.1:6379> CONFIG GET loglevel
 1) "loglevel"
 2) "notice"
@@ -63,7 +63,7 @@ redis 127.0.0.1:6379> CONFIG GET loglevel
 
 使用 `*` 号获取所有配置项:
 
-```
+```bash
 redis 127.0.0.1:6379> CONFIG GET *
 1) "dbfilename"
 2) "dump.rdb"
@@ -80,23 +80,23 @@ redis 127.0.0.1:6379> CONFIG GET *
 
 **CONFIG SET** 命令基本语法:
 
-```
+```bash
 redis 127.0.0.1:6379> CONFIG SET CONFIG_SETTING_NAME NEW_CONFIG_VALUE
 ```
 
 例如
 
-```
+```bash
 redis 127.0.0.1:6379> CONFIG SET loglevel "notice"
 OK
-redis 127.0.0.1:6379> CONFIG GET loglevel 
+redis 127.0.0.1:6379> CONFIG GET loglevel
 1) "loglevel"
 2) "notice"
 ```
 
 ### 2.3 常用配置
 
-```
+```bash
 daemonize yes
 bind 0.0.0.0
 port 6379
