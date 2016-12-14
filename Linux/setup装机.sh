@@ -20,7 +20,7 @@ echo "开始安装 Vim 套装"     # 作为主力 终端界面的 编辑器, 保
 sudo apt-get install vim-gtk ctags cscope astyle
 # install vimdoc@cn from vimcdoc.sourceforge.net
 # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-wget -q https://raw.githubusercontent.com/Will-Grindelwald/Linux-Configuration/master/Vim/setup && sh -x setup
+wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Vim/setup && sh -x setup
 
 # echo "zsh"
 # sudo apt-get install zsh

@@ -14,7 +14,7 @@ mv -f ~/.vim ~/.vim_old
 # new files
 echo "请耐心等待" > Ljc
 #wget -q https://sourceforge.net/projects/vimcdoc/files/vimcdoc/vimcdoc-1.9.0.tar.gz
-svn checkout https://github.com/Will-Grindelwald/Linux-Configuration/trunk/Vim ~/vim_ljc > Ljc
+svn checkout https://github.com/Will-Grindelwald/Environment-Init/trunk/Vim ~/vim_ljc > Ljc
 mv -f ~/vim_ljc/.vimrc ~/.vimrc
 mv -f ~/vim_ljc ~/.vim
 tar zxf .vim/vimcdoc-1.9.0.tar.gz
