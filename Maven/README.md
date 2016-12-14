@@ -1,4 +1,4 @@
-# 环境配置
+# Maven
 
 官网: https://maven.apache.org/
 

@@ -1,4 +1,4 @@
-# 环境配置
+# Node
 
 简单的说: Node.js 就是运行在服务端的 JavaScript, Node.js 是一个基于 Chrome JavaScript V8引擎建立的一个平台.
 

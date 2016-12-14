@@ -1,4 +1,4 @@
-# REAMDE
+# Cygwin
 
 官网: https://cygwin.com/
 
