@@ -1,7 +1,14 @@
 // 将键绑定放入此文件中以覆盖默认值
 [
-{ "key": "ctrl+d",          "command": "editor.action.deleteLines",
-                                     "when": "editorTextFocus" },
-{ "key": "ctrl+e",          "command": "workbench.action.reopenClosedEditor" }
+{ "key": "ctrl+d",                "command": "editor.action.deleteLines",
+                                     "when": "editorTextFocus && !editorReadonly" },
+{ "key": "ctrl+e",                "command": "workbench.action.reopenClosedEditor" },
+{ "key": "ctrl+l",                "command": "workbench.action.terminal.clear",
+                                     "when": "terminalFocus" },
+{ "key": "alt+/",                 "command": "editor.action.quickFix",
+                                     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly" },
+{ "key": "ctrl+shift+/",          "command": "editor.action.blockComment",
+                                     "when": "editorTextFocus && !editorReadonly" },
+{ "key": "shift+alt+z",           "command": "workbench.action.toggleZenMode" }
 // 最后一个没有末尾逗号
 ]
