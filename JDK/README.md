@@ -23,6 +23,8 @@ C:\Program Files\Java\jdk1.8.0_60
 
 ## Linux
 
+### 安装 JDK
+
 * 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
 ```bash
@@ -41,4 +43,27 @@ sudo update-alternatives --install /usr/bin/javac javac $JAVA_HOME/bin/javac 300
 sudo update-alternatives --install /usr/bin/javah javah $JAVA_HOME/bin/javah 300
 sudo update-alternatives --install /usr/bin/javap javap $JAVA_HOME/bin/javap 300
 sudo update-alternatives --config java
+```
+
+### 卸载 JDK
+
+* 先查找安装的 JDK 在哪个目录
+
+```bash
+$ sudo which java
+/usr/local/java
+```
+
+* 删除解压的 JDK 文件
+
+```bash
+sudo rm -rf /usr/local/java/jdk1.8.0_102
+```
+
+* 修改环境变量: 删除 /etc/profile 中关于 JDK 的环境变量设定
+
+* 更新 profile 配置文件
+
+```bash
+source /etc/profile  
 ```
