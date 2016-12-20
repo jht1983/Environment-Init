@@ -23,7 +23,9 @@ C:\Program Files\Java\jdk1.8.0_60
 
 ## Linux
 
-### 安装 JDK
+### 1 安装 JDK
+
+#### 1.1 用 tar.gz 包安装
 
 * 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
@@ -45,14 +47,25 @@ sudo update-alternatives --install /usr/bin/javap javap $JAVA_HOME/bin/javap 300
 sudo update-alternatives --config java
 ```
 
-### 卸载 JDK
-
-* 先查找安装的 JDK 在哪个目录
+#### 1.2 用 yum, apt-get 命令安装
 
 ```bash
-$ sudo which java
-/usr/local/java
+sudo yum install java-1.8.0-openjdk-devel.x86_64
+echo "export JAVA_HOME=/usr/lib/jvm/java" >> ~/.bashrc
 ```
+
+### 2 卸载 JDK
+
+先查找安装的 JDK 在哪个目录
+
+```bash
+echo $JAVA_HOME
+which java
+```
+
+#### 2.1 用 tar.gz 包安装的
+
+用 tar.gz 包安装的一般可以通过 `$echo JAVA_HOME` 找到安装路径
 
 * 删除解压的 JDK 文件
 
@@ -66,4 +79,12 @@ sudo rm -rf /usr/local/java/jdk1.8.0_102
 
 ```bash
 source /etc/profile  
+```
+
+#### 2.2 用 rpm, deb 包 或用 yum, apt-get 命令安装的
+
+用 rpm, deb 包 或用 yum, apt-get 命令安装的一般可以通过 `which java` 找到安装路径, 一般是 `/usr/lib/jvm/java` 所链接的位置(CentOS下)
+
+```bash
+sudo yum remove java-1.8.0-openjdk-devel.x86_64
 ```
