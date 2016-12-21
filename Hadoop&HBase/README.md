@@ -57,8 +57,8 @@ sudo chown -R will:will $HADOOP_HOME
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://localhost:19100</value>
-        <description>配置 NameNode 的 URI, 位置为主机的 19100 端口</description>
+        <value>hdfs://localhost:9000</value>
+        <description>配置 NameNode 的 URI, 位置为主机的 9000 端口</description>
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
@@ -170,7 +170,7 @@ cp mapred-site.xml.template mapred-site.xml
 start-yarn.sh
 ```
 
-然后打开页面验证 yarn 安装成功: http://localhost:8088/cluster
+然后打开页面验证 yarn 安装成功: http://localhost:8088/
 
 ## 2 分布式部署
 
@@ -255,8 +255,8 @@ export JAVA_HOME=/usr/lib/jvm/java
 <configuration>
     <property>
         <name>fs.defaultFS</name>
-        <value>hdfs://master:19100</value>
-        <description>配置 NameNode 的 URI, 位置为主机的 19100 端口</description>
+        <value>hdfs://master:9000</value>
+        <description>配置 NameNode 的 URI, 位置为主机的 9000 端口</description>
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
@@ -303,7 +303,7 @@ slave3
 
 ##### 2.5.1.2 hdfs init
 
-在 shell 中执行: `hdfs namenode -format`
+第一次启动HDFS时, 必须格式化, 在 shell 中执行: `hdfs namenode -format`
 
 ##### 2.5.1.3 启动与关闭
 
@@ -383,12 +383,35 @@ cp mapred-site.xml.template mapred-site.xml
 start-yarn.sh
 ```
 
-然后打开页面验证 yarn 安装成功: http://localhost:8088/cluster
+然后打开页面验证 yarn 安装成功: http://localhost:8088/
 
 ## 3 Tips
 
+* 在 master/slave 机器上执行 `jps` 命令可以看到后台运行的 java 程序
+
+```bash
+[bigdata@master ~]$ jps
+43206 NameNode
+43398 SecondaryNameNode
+43551 ResourceManager
+43950 Jps
+```
+
+```bash
+[bigdata@slave ~]$ jps
+32019 DataNode
+32658 NodeManager
+33267 Jps
+```
+
+* hadoop 组件的 web-ui
+    * NameNode                    http://master_hostname:50070
+    * ResourceManager             http://master_hostname:8088
+    * MapReduce JobHistory 服务器 http://master_hostname:19888  (这个的话, 要先开启 `mr-jobhistory-daemon.sh start historyserver`, 关闭 `mr-jobhistory-daemon.sh stop historyserver`)
+* 先开 hdfs, 再开 yarn; 先关 yarn, 再关 hdfs
+* [hdfs shell 常用命令](hdfs)
 * 遇到问题时, 先查看 logs, 很有帮助
-* start-balancer.sh，可以使 DataNode 节点上选择策略重新平衡 DataNode 上的数据块的分布
+* start-balancer.sh, 可以使 DataNode 节点上选择策略重新平衡 DataNode 上的数据块的分布
 * 添加节点:
     * 建立 ssh 无密访问
     * 在 master 机器的 $HADOOP_HOME/etc/hadoop/slave 文件中添加新机器的 hostname
@@ -443,7 +466,7 @@ sudo chown -R will:will $HBASE_HOME
     </property>
     <property>
         <name>hbase.rootdir</name>
-        <value>hdfs://localhost:19100/hbase</value>
+        <value>hdfs://localhost:9000/hbase</value>
     </property>
     <property>
         <name>hbase.zookeeper.property.dataDir</name>
