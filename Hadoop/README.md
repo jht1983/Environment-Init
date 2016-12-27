@@ -1,4 +1,4 @@
-# Hadoop (附: HBase)
+# Hadoop
 
 ## 1 伪分布式部署
 
@@ -14,7 +14,7 @@ sudo apt-get install ssh                         # 安装 ssh
 /etc/init.d/ssh start                            # 启动 ssh
 
 cd ~                                             # 最好在要配置的用户的家目录下
-ssh-keygen -t rsa -P ""                          # 生成 rsa 密钥对, 也可以选 dsa
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa         # 生成 rsa 密钥对, 也可以选 dsa
 cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys  # id_rsa.pub 是公钥, id_rsa 是私钥
 chmod 644 ~/.ssh/authorized_keys                 # 修改权限
 ssh localhost                                    # 验证, 第一次要输入 'yes' 确认加入 the list of known hosts
@@ -31,7 +31,7 @@ tar xzf hadoop-2.7.3.tar.gz -C /home/bigdata
 ### 1.3 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
 
 ```bash
-export HADOOP_HOME=/usr/local/hadoop-2.7.3
+export HADOOP_HOME=/home/bigdata/hadoop-2.7.3
 export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin
 
 export CLASSPATH=$CLASSPATH:`$HADOOP_HOME/bin/hadoop classpath --glob`
@@ -39,7 +39,7 @@ export CLASSPATH=$CLASSPATH:`$HADOOP_HOME/bin/hadoop classpath --glob`
 
 ### 1.4 更改所属权
 
-因为是安装到 `/usr/local` 目录下, 所以要对用户账户赋予所属权, 若是安装到用户目录下则不用
+若是安装到 `/usr/local` 目录下, 要对用户账户赋予所属权
 
 ```bash
 sudo chown -R will:will $HADOOP_HOME
@@ -47,9 +47,7 @@ sudo chown -R will:will $HADOOP_HOME
 
 ### 1.5 配置 Hadoop
 
-#### 1.5.1 HDFS
-
-##### 1.5.1.1 配置文件
+#### 1.5.1 HDFS 配置文件
 
 * `$HADOOP_HOME/etc/hadoop/core-site.xml`
 
@@ -94,29 +92,7 @@ sudo chown -R will:will $HADOOP_HOME
 * dfs.namenode.name.dir 在本地文件系统上, NameNode 永久存储命名空间和事务日志的路径. 如果这是以逗号分隔的目录列表, 那么将在所有目录中复制名称表, 以实现冗余.
 * dfs.datanode.data.dir 在本地文件系统上, DataNode 存储文件块的路径. 如果这是以逗号分隔的目录列表, 则数据将存储在所有命名目录中, 通常在不同的设备上.
 
-##### 1.5.1.2 hdfs init
-
-在 shell 中执行: `hdfs namenode -format`
-
-##### 1.5.1.3 启动与关闭
-
-* 启动
-
-```bash
-start-dfs.sh
-```
-
-然后打开页面验证 hdfs 安装成功: http://localhost:50070/
-
-* 关闭
-
-```bash
-stop-dfs.sh
-```
-
-#### 1.5.2 Yarn
-
-##### 1.5.2.1 配置文件
+#### 1.5.2 Yarn 配置文件
 
 * `$HADOOP_HOME/etc/hadoop/yarn-site.xml`
 
@@ -129,6 +105,7 @@ stop-dfs.sh
     <property>
         <name>yarn.resourcemanager.webapp.address</name>
         <value>localhost:8088</value>
+        <description>yarn 的 web UI</description>
     </property>
     <property>
         <name>yarn.resourcemanager.hostname</name>
@@ -158,13 +135,32 @@ cp mapred-site.xml.template mapred-site.xml
     <property>
         <name>mapreduce.jobhistory.webapp.address</name>
         <value>localhost:19888</value>
+        <description>jobhistory 的 web UI</description>
     </property>
 </configuration>
 ```
 
-##### 1.5.2.2 检查
+#### 1.5.3 hdfs init
 
-启动 yarn
+第一次启动 HDFS 时, 必须格式化, 在 shell 中执行: `hdfs namenode -format`
+
+#### 1.5.4 启动与关闭
+
+* hdfs 启动
+
+```bash
+start-dfs.sh
+```
+
+然后打开页面验证 hdfs 安装成功: http://localhost:50070/
+
+* hdfs 关闭
+
+```bash
+stop-dfs.sh
+```
+
+* yarn 启动
 
 ```bash
 start-yarn.sh
@@ -172,9 +168,15 @@ start-yarn.sh
 
 然后打开页面验证 yarn 安装成功: http://localhost:8088/
 
+* yarn 关闭
+
+```bash
+stop-yarn.sh
+```
+
 ## 2 分布式部署
 
-1 台 master, 2 台 slave
+1 台 master, 3 台 slave
 
 | 机器名 | IP 地址 | 作用 |
 |--------|---------------|----------------------|
@@ -193,7 +195,7 @@ start-yarn.sh
 
 ```bash
 cd ~                                                # 最好在要配置的用户的家目录下
-ssh-keygen -t rsa -P ""                             # 生成 rsa 密钥对, 也可以选 dsa
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa            # 生成 rsa 密钥对, 也可以选 dsa
 
 scp ~/.ssh/id_rsa.pub username@slave1:~/master.pub  # 将 master 机公钥文件 id_rsa.pub 传送到两个从机
 scp ~/.ssh/id_rsa.pub username@slave2:~/master.pub
@@ -237,11 +239,9 @@ sudo chown -R will:will $HADOOP_HOME
 
 ### 2.5 配置 Hadoop
 
-四台机器的配置完全一样, 只需配置完一台, 再复制到其余三台机器上就行
+**四台机器的配置完全一样, 只需配置完一台, 再复制到其余三台机器上就行**
 
-#### 2.5.1 HDFS
-
-##### 2.5.1.1 配置文件
+#### 2.5.1 HDFS 配置文件
 
 * `$HADOOP_HOME/etc/hadoop/hadoop-env.sh` hadoop 运行环境配置, 修改如下位置
 
@@ -289,8 +289,8 @@ export JAVA_HOME=/usr/lib/jvm/java
 
 PS: 还可以配置下面两个属性
 
-* dfs.namenode.name.dir 在本地文件系统上, NameNode 永久存储命名空间和事务日志的路径. 如果这是以逗号分隔的目录列表, 那么将在所有目录中复制名称表, 以实现冗余.
-* dfs.datanode.data.dir 在本地文件系统上, DataNode 存储文件块的路径. 如果这是以逗号分隔的目录列表, 则数据将存储在所有命名目录中, 通常在不同的设备上.
+    * dfs.namenode.name.dir 在本地文件系统上, NameNode 永久存储命名空间和事务日志的路径. 如果这是以逗号分隔的目录列表, 那么将在所有目录中复制名称表, 以实现冗余.
+    * dfs.datanode.data.dir 在本地文件系统上, DataNode 存储文件块的路径. 如果这是以逗号分隔的目录列表, 则数据将存储在所有命名目录中, 通常在不同的设备上.
 
 * `$HADOOP_HOME/etc/hadoop/slaves`
 
@@ -301,29 +301,7 @@ slave2
 slave3
 ```
 
-##### 2.5.1.2 hdfs init
-
-第一次启动HDFS时, 必须格式化, 在 shell 中执行: `hdfs namenode -format`
-
-##### 2.5.1.3 启动与关闭
-
-* 启动
-
-```bash
-start-dfs.sh
-```
-
-然后打开页面验证 hdfs 安装成功: http://localhost:50070/
-
-* 关闭
-
-```bash
-stop-dfs.sh
-```
-
-#### 2.5.2 Yarn
-
-##### 2.5.2.1 配置文件
+#### 2.5.2 Yarn 配置文件
 
 * `$HADOOP_HOME/etc/hadoop/yarn-env.sh` yarn 运行环境配置, 修改如下位置
 
@@ -342,6 +320,7 @@ export JAVA_HOME=/usr/lib/jvm/java
     <property>
         <name>yarn.resourcemanager.webapp.address</name>
         <value>master:8088</value>
+        <description>yarn 的 web UI</description>
     </property>
     <property>
         <name>yarn.resourcemanager.hostname</name>
@@ -371,19 +350,52 @@ cp mapred-site.xml.template mapred-site.xml
     <property>
         <name>mapreduce.jobhistory.webapp.address</name>
         <value>master:19888</value>
+        <description>jobhistory 的 web UI</description>
     </property>
 </configuration>
 ```
 
-##### 2.5.2.2 检查
+#### 2.5.3 用 scp 拷贝 slave 机上
 
-启动 yarn
+```bash
+scp -r ~/hadoop-2.7.3 username@slave1:~
+scp -r ~/hadoop-2.7.3 username@slave2:~
+scp -r ~/hadoop-2.7.3 username@slave3:~
+```
+
+#### 2.5.4 hdfs init
+
+第一次启动 HDFS 时, 必须格式化, 在 shell 中执行: `hdfs namenode -format`
+
+#### 2.5.5 启动与关闭
+
+* hdfs 启动
+
+```bash
+start-dfs.sh
+```
+
+然后打开页面验证 hdfs 安装成功: http://master_hostname:50070/
+
+* hdfs 关闭
+
+```bash
+stop-dfs.sh
+```
+
+* yarn 启动
 
 ```bash
 start-yarn.sh
 ```
 
-然后打开页面验证 yarn 安装成功: http://localhost:8088/
+然后打开页面验证 yarn 安装成功: http://master_hostname:8088/
+
+* yarn 关闭
+
+```bash
+stop-yarn.sh
+```
 
 ## 3 Tips
 
@@ -398,16 +410,16 @@ start-yarn.sh
 ```
 
 ```bash
-[bigdata@slave ~]$ jps
+[bigdata@slave1 ~]$ jps
 32019 DataNode
 32658 NodeManager
 33267 Jps
 ```
 
 * hadoop 组件的 web-ui
-    * NameNode                    http://master_hostname:50070
-    * ResourceManager             http://master_hostname:8088
-    * MapReduce JobHistory 服务器 http://master_hostname:19888  (这个的话, 要先开启 `mr-jobhistory-daemon.sh start historyserver`, 关闭 `mr-jobhistory-daemon.sh stop historyserver`)
+    * NameNode http://master_hostname:50070
+    * ResourceManager http://master_hostname:8088
+    * MapReduce JobHistory 服务器 http://master_hostname:19888  (这个的话, 要先启动 `mr-jobhistory-daemon.sh start historyserver`, 关闭命令是 `mr-jobhistory-daemon.sh stop historyserver`)
 * 先开 hdfs, 再开 yarn; 先关 yarn, 再关 hdfs
 * [hdfs shell 常用命令](hdfs)
 * 遇到问题时, 先查看 logs, 很有帮助
@@ -429,64 +441,4 @@ cd ./hadoop-maven-plugins
 mvn install
 cd ../** 你想构建的项目目录
 mvn eclipse:eclipse -DskipTests
-```
-
-## 附: HBase
-
-### 1 unpackage
-
-```bash
-tar xzf hbase-0.98.11-hadoop2-bin.tar.gz -C /usr/local
-```
-
-### 2 配置环境变量: 在 /etc/profile (or ~/.bashrc) 添加如下内容, 然后 重新登陆 或 source /etc/profile (or ~/.bashrc)
-
-```bash
-export HBASE_HOME=/usr/local/hbase-0.98.11-hadoop2
-export PATH=$PATH:$HBASE_HOME/bin
-```
-
-### 3 更改所属权
-
-因为是安装到 `/usr/local` 目录下, 所以要对用户账户赋予所属权, 若是安装到用户目录下则不用
-
-```bash
-sudo chown -R will:will $HBASE_HOME
-```
-
-### 4 修改配置文件
-
-* $HBASE_HOME/conf/hbase-site.xml
-
-```bash
-<configuration>
-    <property>
-        <name>hbase.cluster.distributed</name>
-        <value>true</value>
-    </property>
-    <property>
-        <name>hbase.rootdir</name>
-        <value>hdfs://localhost:9000/hbase</value>
-    </property>
-    <property>
-        <name>hbase.zookeeper.property.dataDir</name>
-        <value>/home/bigdata/work/hbase-zookeeper</value>    -------------自己设!
-    </property>
-</configuration>
-```
-
-hbase.rootdir 要是 hadoop 配置中 fs.default.name 的下级目录
-
-### 5 启动与关闭
-
-* 启动
-
-```bash
-start-hbase.sh
-```
-
-* 关闭
-
-```bash
-stop-hbase.sh
 ```

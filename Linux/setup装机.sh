@@ -13,7 +13,7 @@ sudo yum install git openssh cmake tree htop man-pages-zh
 
 # 配置 ssh
 /etc/init.d/ssh start       # 启动 ssh
-cd ~; ssh-keygen -t rsa -P ""; cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys; chmod 644 ~/.ssh/authorized_keys; ssh localhost # 无密码登录 ssh
+ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa; cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys; chmod 644 ~/.ssh/authorized_keys; ssh localhost # 无密码登录 ssh
 
 # 配置 `t` 为 tree 的快捷命令
 echo "alias t='tree -ah --du'" >> ~/.bashrc
