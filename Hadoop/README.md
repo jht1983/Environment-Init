@@ -179,11 +179,19 @@ stop-yarn.sh
 1 台 master, 3 台 slave
 
 | 机器名 | IP 地址 | 作用 |
-|--------|---------------|----------------------|
-| master | 192.168.1.170 | NameNode, JobTracker |
-| slave1 | 192.168.1.171 | DataNode, TaskTracker |
-| slave2 | 192.168.1.172 | DataNode, TaskTracker |
-| slave3 | 192.168.1.173 | DataNode, TaskTracker |
+| ------ | ------------- | --------------------- |
+| master | 192.168.1.170 | NameNode, ResourceManager                |
+| slave1 | 192.168.1.171 | DataNode, NodeManager, SecondaryNameNode |
+| slave2 | 192.168.1.172 | DataNode, NodeManager                    |
+| slave3 | 192.168.1.173 | DataNode, NodeManager                    |
+
+* 建议直接在 firewall 中配置这些机器之间的互访不做端口过滤. 使用 rich rule: 对指定的 IP 不做拦截. 例如要设置来自 192.168.1.1 的访问不做端口过滤, 命令如下
+
+```bash
+sudo firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.1' accept"
+```
+
+* 而对外开放的端口有: master 机上的 8088(Yarn) 19888(JobHistory) 50070(HDFS NameNode), slave1 机上的 50090(HDFS SecondaryNameNode)
 
 ### 2.1 前置
 
@@ -277,7 +285,8 @@ export JAVA_HOME=/usr/lib/jvm/java
     </property>
     <property>
         <name>dfs.namenode.secondary.http-address</name>
-        <value>master:50090</value>
+        <value>slave1:50090</value>
+        <description>指定运行 SecondaryNameNode 的机器 hostname 及 web-UI 端口</description>
     </property>
     <property>
         <name>dfs.replication</name>
@@ -404,13 +413,20 @@ stop-yarn.sh
 ```bash
 [bigdata@master ~]$ jps
 43206 NameNode
-43398 SecondaryNameNode
 43551 ResourceManager
 43950 Jps
 ```
 
 ```bash
 [bigdata@slave1 ~]$ jps
+32019 DataNode
+33398 SecondaryNameNode
+32658 NodeManager
+33267 Jps
+```
+
+```bash
+[bigdata@slave2 ~]$ jps
 32019 DataNode
 32658 NodeManager
 33267 Jps

@@ -11,6 +11,14 @@
 | slave2   | 192.168.125.172 | no     | yes          |
 | slave3   | 192.168.125.173 | no     | yes          |
 
+* 建议直接在 firewall 中配置这些机器之间的互访不做端口过滤. 使用 rich rule: 对指定的 IP 不做拦截. 例如要设置来自 192.168.1.1 的访问不做端口过滤, 命令如下
+
+```bash
+sudo firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.1' accept"
+```
+
+* 而对外开放的端口有: 16010(HBase web-UI)
+
 ## 1 前置
 
 安装 JDK 与 Hadoop(见[hadoop 分布式部署](../Hadoop/README.md#2_分布式部署))

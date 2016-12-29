@@ -13,13 +13,28 @@
 
 ## 1 Standalone
 
-Standalone 最为方便
+Standalone
 
 ## 2 Mesos
 
 见
 
 ## 3 YARN
+
+| IP            | Hostname |
+| ------------- | -------- |
+| 192.168.1.170 | master   |
+| 192.168.1.171 | slave1   |
+| 192.168.1.172 | slave2   |
+| 192.168.1.173 | slave3   |
+
+* 建议直接在 firewall 中配置这些机器之间的互访不做端口过滤. 使用 rich rule: 对指定的 IP 不做拦截. 例如要设置来自 192.168.1.1 的访问不做端口过滤, 命令如下
+
+```bash
+sudo firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.1' accept"
+```
+
+* 而对外开放的端口有: (Spark on YARN 没有需要单独配置的对外开放端口)
 
 Spark on YARN 的配置很简单, 只需要配置好 `YARN 集群`, 然后在一台机器上解压 Spark 包, 在提交 spark 程序时, 指定 master 参数为 yarn, deploy-mode 为 cluster 或 client.
 
@@ -49,7 +64,7 @@ start-dfs.sh
 start-yarn.sh
 ```
 
-### 5 SPARK
+### 5 在 Yarn 上运行 Spark 程序
 
 以 YARN-cluster 形式提交示例程序
 
