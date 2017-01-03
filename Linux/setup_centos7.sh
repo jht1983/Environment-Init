@@ -10,6 +10,10 @@ sudo yum autoremove
 
 #### 1 软件
 
+# 自定义命令别名
+echo "source ~/.ljc_alias" >> ~/.ljcrc
+echo "source ~/.ljcrc" >> ~/.bashrc
+
 # 终端提示符彩色显示
 echo 'export PS1="\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]"' >> ~/.bashrc
 #sudo echo 'export PS1="\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]"' >> /root/.bashrc
@@ -39,15 +43,7 @@ wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/mast
 
 # echo "zsh"
 sudo yum install -y zsh
-sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
-chsh -s /bin/zsh
-sudo yum install -y autojump
-mkdir -p ~/.oh-my-zsh/custom/plugins/incr
-wget -q http://mimosa-pudica.net/src/incr-0.2.zsh -P ~/.oh-my-zsh/custom/plugins/incr/ -O incr.plugin.zsh
-sed -i 's/plugins=(git)/plugins=(git autojump incr)/g' ~/.zshrc
-# 要是使用 vim 命令补全有问题 1. rm ~/.zcom* 2. exec zsh 3. 重启终端
-# 只要有提示 insecure directories, 运行 compaudit 找出 insecure directories, 然后去掉 组 的 写权限
-# sudo -s 提示 insecure directories, chown -R root ~/.oh-my-zsh; chmod -R 755 ~/.oh-my-zsh
+wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Zsh/setup && sh -x setup
 
 # 为知笔记
 
