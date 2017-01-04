@@ -21,7 +21,7 @@ sed -i '/plugins=(git)/a\\nHIST_STAMPS="yyyy-mm-dd"\nENABLE_CORRECTION="true"\nC
 sed -i '/source $ZSH\/oh-my-zsh.sh/a\\nsource ~/.ljcrc' ~/.zshrc
 sed -i 's/plugins=(git)/plugins=(autojump incr zsh-syntax-highlighting zsh-autosuggestions autoenv colored-man-pages colorize cp extract git history history-substring-search rsync screen ssh-agent sudo web-search)/g' ~/.zshrc
 wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Zsh/ljc.zsh-theme -P ~/.oh-my-zsh/theme
-sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ljc"' ~/.zshrc
+sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="ljc"/g' ~/.zshrc
 echo "alias -s html='vim'
 alias -s rb='vim'
 alias -s py='vim'

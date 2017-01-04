@@ -7,6 +7,10 @@
 sudo yum update
 sudo yum upgrade
 sudo yum autoremove
+wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm
+sudo rpm -ivh epel-release-7-8.noarch.rpm
+sudo yum repolist
+rm rpm -ivh epel-release-7-8.noarch.rpm
 
 #### 1 软件
 

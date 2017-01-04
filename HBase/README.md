@@ -170,7 +170,7 @@ hbase(main):001:0> create 'test', 'cf'
 * list: 列出所有表
 
 ```bash
-hbase(main):002:0> list 'test'
+hbase(main):002:0> list
 TABLE
 test
 1 row(s) in 0.0180 seconds
