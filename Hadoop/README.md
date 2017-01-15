@@ -111,6 +111,10 @@ sudo chown -R will:will $HADOOP_HOME
         <name>yarn.resourcemanager.hostname</name>
         <value>localhost</value>
     </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.class</name>
+        <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+    </property>
 </configuration>
 ```
 
@@ -191,7 +195,7 @@ stop-yarn.sh
 sudo firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.1' accept"
 ```
 
-* 而对外开放的端口有: master 机上的 8088(Yarn) 19888(JobHistory) 50070(HDFS NameNode), slave1 机上的 50090(HDFS SecondaryNameNode)
+* 而对外开放的端口有: master 机上的 8088 8042(Yarn) 19888(JobHistory) 50070(HDFS NameNode), slave1 机上的 50090(HDFS SecondaryNameNode)
 
 ### 2.1 前置
 
@@ -341,6 +345,10 @@ export JAVA_HOME=/usr/lib/jvm/java
         <name>yarn.resourcemanager.hostname</name>
         <value>master</value>
     </property>
+    <property>
+        <name>yarn.resourcemanager.scheduler.class</name>
+        <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+    </property>
 </configuration>
 ```
 
@@ -463,4 +471,56 @@ cd ./hadoop-maven-plugins
 mvn install
 cd ../** 你想构建的项目目录
 mvn eclipse:eclipse -DskipTests
+```
+
+## 附: Yarn 的资源调度管理
+
+* `$HADOOP_HOME/etc/hadoop/yarn-site.xml`
+
+```bash
+<configuration>
+    <property>
+        <name>yarn.resourcemanager.scheduler.class</name>
+        <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+    </property>
+</configuration>
+```
+
+* `$HADOOP_HOME/etc/hadoop/capacity-scheduler.xml`
+
+```bash
+<configuration>
+    <property>
+        <name>yarn.scheduler.capacity.root.queues</name>
+        <value>a,b,c</value>
+        <description>The queues at the this level (root is the root queue).
+        </description>
+    </property>
+    <property>
+        <name>yarn.scheduler.capacity.root.a.queues</name>
+        <value>a1,a2</value>
+        <description>The queues at the this level (root is the root queue).
+        </description>
+    </property>
+    <property>
+        <name>yarn.scheduler.capacity.root.b.queues</name>
+        <value>b1,b2,b3</value>
+        <description>The queues at the this level (root is the root queue).
+        </description>
+    </property>
+
+    <property>
+        <name>yarn.scheduler.capacity.root.a.capacity</name>
+        <value>20</value>
+        <description>root.a queue target capacity.</description>
+    </property>
+</configuration>
+```
+
+PS: 同级子队列 capacity 之和不得超过其父队列的 capacity.
+
+然后用如下命令启用
+
+```bash
+yarn rmadmin -refreshQueues
 ```

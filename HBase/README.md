@@ -17,7 +17,7 @@
 sudo firewall-cmd --permanent --add-rich-rule="rule family='ipv4' source address='192.168.1.1' accept"
 ```
 
-* 而对外开放的端口有: 16010(HBase web-UI)
+* 而对外开放的端口有: 16010 16030(HBase web-UI)
 
 ## 1 前置
 
@@ -80,13 +80,28 @@ export HBASE_MANAGES_ZK=false
     <!-- 因为我们用自己的 zookeeper, 所以不设置下面这几项 -->
     <!-- <property>
         <name>hbase.zookeeper.quorum</name>
-        <value>master,slave1,slave2,slave3</value>
+        <value>slave1,slave2,slave3</value>
         <description>zookeeper 集群列表</description>
     </property>
     <property>
         <name>hbase.zookeeper.property.dataDir</name>
-        <value>/home/bigdata/tmp/hbase-data</value>
+        <value>/home/bigdata/work/hbase-data</value>
         <description>对应 zookeeper/config/zoo.cfg 中的 dataDir</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.property.clientPort</name>
+        <value>2222</value>
+        <description>对应 zookeeper/config/zoo.cfg 中的 clientPort</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.peerport</name>
+        <value>2288</value>
+        <description>对应 zookeeper/config/zoo.cfg 中的 peerport</description>
+    </property>
+    <property>
+        <name>hbase.zookeeper.leaderport</name>
+        <value>3388</value>
+        <description>对应 zookeeper/config/zoo.cfg 中的 leaderport</description>
     </property> -->
 </configuration>
 ```
@@ -123,7 +138,7 @@ start-hbase.sh
 
 验证
 
-* web-UI: http://master:16010
+* web-UI: http://master:16010 http://slave:16030
 * 终端执行 `jps`, 显示如下
 
 master 机
