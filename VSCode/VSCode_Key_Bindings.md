@@ -11,26 +11,27 @@
 
 | Key | Value |
 | --- | ----- |
-| Ctrl + N/W/E                         | 新建/关闭/重新打开 `Tab` |
+| Ctrl + N/W/E                         | 新建/关闭/重新打开 `Editor` |
 | Ctrl + Shift + N/W                   | 新建/关闭 `窗口` |
-| Ctrl + 单击                          | 在新 Tab 组打开文件 |
-| Ctrl + Z/Y/A/O/S                     | Normal |
-| Ctrl + X/C/V/D                       | 无选中则对整行操作 |
+| Ctrl + Z/Y/A/S/O                     | Normal |
+| Ctrl + X/C/V                         | Normal, 无选中则对整行操作 |
+| Ctrl + D                             | 删除一行/选中区所在行 |
 | Ctrl + F/H                           | \*: 1 or 多个; ?: 1个; \*\*: 任意个; {}: 一组条件; []: range |
 | F2 / F11                             | 重命名/全屏 |
-| F3 / Shift + F3                      | `查找` 时, 选中上/下一个匹配项 |
+| F3 / F4                              | 选中文本 / `查找` / `全局查找` (Ctrl+Shift+F) 时, 上/下一个匹配项 |
+| F3 / F4                              | 左右切换 `Editor` |
 | Alt + 左/右                          | `焦点` 的前进/后退 |
 | Alt + 上/下                          | 上/下 `移行` |
-| Alt + 上/下                          | `查找` 时, 上/下一个搜索项 |
 | Shift + Alt + 上/下                  | 向上/下复制一行 |
 | Ctrl + 上/下                         | `屏幕` 向上/下移一行 |
+| Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
 
 ### 高效
 
 | Key | Value |
 | --- | ----- |
 | Ctrl + Shift + L                     | 同时 `选中` 所有匹配, 用于批量修改 (<=> 选中一个目标, 按 Ctrl + F2)(不跨文件) |
-| Alt + Enter                          | 在 Ctrl + F 中立刻选中所有的匹配结果 |
+| Alt + Enter                          | 在 Ctrl + F 中立刻 `选中` 所有的匹配结果 |
 | Alt + 单击                           | 添加 `光标` (多光标), 用于批量修改 |
 | Ctrl + Shift + F/H                   | 高级( `全局` )搜索/替换 |
 | Shift + Alt                          | 块 `选择` |
@@ -66,19 +67,18 @@
 | Key | Value |
 | --- | ----- |
 | Ctrl + B/J                           | `侧边栏` 开关/ `底部面板` 开关 |
-| Ctrl + Shift + E/F/G/D/X             | `侧边栏` 5 大功能(在 Bar 打开的情况下) |
-| Ctrl + Shift + U/M/Y                 | 输出面板, 错误面板, 调试控制台 |
+| Ctrl + Shift + E/F/G/D/X             | `侧边栏` 5 大功能 |
+| Ctrl + Shift + M/U/Y                 | `底部面板` 四个功能之前三: 错误面板, 输出面板, 调试控制台 |
+| Ctrl + \`                            | `底部面板` 四个功能之后一: 打开 `集成终端` |
 | Ctrl + Shift + C                     | 在此处打开 `外部终端` |
-| Ctrl + \`                            | 打开 `集成终端` |
-| Ctrl + K                             | 集成终端中的 `清屏` |
+| Ctrl + L                             | 集成终端中的 `清屏` |
 | Ctrl + M                             | 激活按 Table 键移动 `焦点` |
-| Ctrl + 0                             | `聚焦` 在 Bar |
-| Ctrl + \                             | 将当前 Tab 在新 Tab 组中打开 |
-| Ctrl + K 左/右                        | Tab 组左/右移动(不连续) |
-| Ctrl + 1 / 2 / 3                     | `Tab组` 左 / 中 / 右 切换 |
-| Ctrl + PgUp/PgDwn                    | `Tab` 左右切换 |
-| Ctrl + Shift + PgUp/PgDwn            | 将 `Tab` 向左右移动 |
-| Ctrl + Tab / Ctrl + Shift + Tab      | `Tab` 向前/后导航 |
+| Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
+| Ctrl + \                             | 将当前 Editor 在 `新 Editor 组` 中打开 |
+| Ctrl + K 左/右                       | `Editor 组` 向左/右移动(一次) |
+| Ctrl + 1 / 2 / 3                     | `Editor 组` 左 / 中 / 右 切换 |
+| F3 / F4                              | 左右切换 `Editor` |
+| Ctrl + Tab / Ctrl + Shift + Tab      | `Editor` 按浏览历史向前/后导航 |
 
 ### Debug & Tasks
 
@@ -102,14 +102,14 @@
 | Ctrl + Shift + V                     | 新建 `预览` 页(Markdown) |
 | Ctrl + K V                           | 打开侧边的 `预览` (Markdown) |
 
-### 用得少
+### Other
 
 | Key | Value |
 | --- | ----- |
 | Ctrl + Enter / Ctrl + Shift + Enter  | 当前行下/上边插入一行 |
 | Shift + Alt + 左/右                  | 收缩/扩大选择的部分 |
-| Ctrl + K Ctrl + I                    | 显示悬停 |
 | Ctrl + K Ctrl + X                    | 删除拖尾的空格 |
+| Ctrl + K Ctrl + I                    | 显示悬停 |
 | Ctrl + Shift + J                     | Toggle Search Details ??? |
 
 ### C/C++ Ext
@@ -120,7 +120,7 @@
 
 ## Part 2 Extension
 
-在用
+* 在用
 
 | ItemName | Introduction |
 | -------- | ------------ |
@@ -135,7 +135,7 @@
 | TSLint              | TSLint for Visual Studio Code |
 | vscode-icons        | Icons for Visual Studio Code |
 
-备选
+* 备选
 
 | ItemName | Introduction |
 | -------- | ------------ |

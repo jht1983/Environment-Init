@@ -9,6 +9,22 @@
                                      "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly" },
 { "key": "ctrl+shift+/",          "command": "editor.action.blockComment",
                                      "when": "editorTextFocus && !editorReadonly" },
-{ "key": "shift+alt+z",           "command": "workbench.action.toggleZenMode" }
+{ "key": "shift+alt+z",           "command": "workbench.action.toggleZenMode" },
+{ "key": "f3",                    "command": "editor.action.nextMatchFindAction",
+                                     "when": "editorHasSelection" },
+{ "key": "f4",                    "command": "editor.action.previousMatchFindAction",
+                                     "when": "editorHasSelection" },
+{ "key": "f3",                    "command": "editor.action.nextSelectionMatchFindAction",
+                                     "when": "editorHasSelection" },
+{ "key": "f4",                    "command": "editor.action.previousSelectionMatchFindAction",
+                                     "when": "editorHasSelection" },
+{ "key": "f3",                    "command": "search.action.focusNextSearchResult" ,
+                                     "when": "searchViewletVisible" },
+{ "key": "f4",                    "command": "search.action.focusPreviousSearchResult" ,
+                                     "when": "searchViewletVisible" },
+{ "key": "f3",                    "command": "workbench.action.previousEditor" ,
+                                     "when": "editorFocus && !editorHasSelection" },
+{ "key": "f4",                    "command": "workbench.action.nextEditor" ,
+                                     "when": "editorFocus && !editorHasSelection" }
 // 最后一个没有末尾逗号
 ]

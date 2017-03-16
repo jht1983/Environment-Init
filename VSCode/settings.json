@@ -3,11 +3,11 @@
 
 // 编辑器
 
+  // Insert snippets when their prefix matches. Works best when 'quickSuggestions' aren't enabled.
+  // "editor.tabCompletion": false,
+
   // 控制字体系列。
   // "editor.fontFamily": "Consolas, 'Courier New', monospace",
-
-  // 控制字体粗细。
-  // "editor.fontWeight": "normal",
 
   // 以像素为单位控制字号。
   "editor.fontSize": 16,
@@ -21,8 +21,23 @@
   // 按 "Tab" 时插入空格。该设置在 `editor.detectIndentation` 启用时根据文件内容进行重写。
   // "editor.insertSpaces": true,
 
-  // 控制在多少个字符后编辑器会自动换到下一行。将其设置为 0 则将打开视区宽度换行(自动换行)。将其设置为 -1 则将强制编辑器始终不换行。
-  "editor.wrappingColumn": 0,
+  // 当打开文件时，将基于文件内容检测 "editor.tabSize" 和 "editor.insertSpaces"。
+  // "editor.detectIndentation": true,
+
+  // 控制是否显示 minimap
+  "editor.minimap.enabled": true,
+
+  // Render the actual characters on a line (as opposed to color blocks)
+  "editor.minimap.renderCharacters": false,
+
+  // 控制是否应换行。换行依据为 min(editor.wrappingColumn, viewportWidthInColumns)。
+  "editor.wordWrap": "off",
+
+  // 控制编辑器是否应在键入后自动设置行的格式
+  // "editor.formatOnType": false,
+
+  // 控制编辑器是否应自动设置粘贴内容的格式。格式化程序必须可用并且能设置文档中某一范围的格式。
+  // "editor.formatOnPaste": false,
 
   // 通过使用鼠标滚轮同时按住 Ctrl 可缩放编辑器的字体
   "editor.mouseWheelZoom": true,
@@ -36,11 +51,20 @@
   // 控制编辑器是否应呈现缩进参考线
   "editor.renderIndentGuides": true,
 
+  // 控制编辑器应如何呈现当前行突出显示，可能为“无”、“装订线”、“线”和“全部”。
+  "editor.renderLineHighlight": "all",
+
+  // 在制表位后插入和删除空格
+  // "editor.useTabStops": true,
+
   // 删除尾随自动插入的空格
   // "editor.trimAutoWhitespace": true,
 
   // 即使在双击编辑器内容或按 Esc 键时，也要保持速览编辑器的打开状态。
   // "editor.stablePeek": false,
+
+  // Controls if the editor should allow to move selections via drag and drop.
+  "editor.dragAndDrop": true,
 
   // 控制差异编辑器是否将对前导空格或尾随空格的更改显示为差异
   "diffEditor.ignoreTrimWhitespace": false,
@@ -48,18 +72,47 @@
   // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
   // "editor.formatOnSave": false,
 
-
 // Emmet
 
 // 工作台
 
-  // 控制编辑器选项卡是否应具有可见的关闭按钮。
-  "workbench.editor.showTabCloseButton": false,
+  // 指定用在工作台中的颜色主题。
+  "workbench.colorTheme": "Default Light+",
+
+  // 指定用在工作台中的图标主题。
+  "workbench.iconTheme": "vscode-icons",
+
+  // When enabled, will show the Welcome page on startup.
+  "workbench.welcome.enabled": true,
 
 // 窗口
 
+  // 控制是否应在新窗口中打开文件。
+  // - default: 文件将在该文件的文件夹打开的窗口中打开，或在上一个活动窗口中打开，除非该文件通过平台或从查找程序(仅限 macOS)打开
+  // - on: 文件将在新窗口中打开
+  // - off: 文件将在该文件的文件夹打开的窗口中打开，或在上一个活动窗口中打开
+  // 注意，可能仍会存在忽略此设置的情况(例如当使用 -new-window 或 -reuse-window 命令行选项时)。
+  // "window.openFilesInNewWindow": "default",
+
+  // 控制文件夹应在新窗口中打开还是替换上一活动窗口。
+  // - default: 文件夹将在新窗口中打开，除非文件是从应用程序内选取的(例如通过“文件”菜单)
+  // - on: 文件夹将在新窗口中打开
+  // - off: 文件夹将替换上一活动窗口
+  // 注意，可能仍会存在忽略此设置的情况(例如当使用 -new-window 或 -reuse-window 命令行选项时)。
+  // "window.openFoldersInNewWindow": "default",
+
   // 控制重启后重新打开文件夹的方式。选择“none”表示永不重新打开文件夹，选择“one”表示重新打开最后使用的一个文件夹，或选择“all”表示打开上次会话的所有文件夹。
   "window.reopenFolders": "all",
+
+  // 基于活动编辑器控制窗口标题。基于上下文替换变量:
+  // ${activeEditorName}: 例如 myFile.txt
+  // ${activeFilePath}: 例如 /Users/Development/myProject/myFile.txt
+  // ${rootName}: 例如 myProject
+  // ${rootPath}: 例如 /Users/Development/myProject
+  // ${appName}: 例如 VS Code
+  // ${dirty}: 一个更新指示器，指示活动编辑器是否更新
+  // ${separator}: 一个条件分隔符("-")，仅在左右是具有值的变量时才显示
+  "window.title": "${rootName}${separator}${activeEditorLong}${dirty}",
 
 // 文件
 
@@ -94,11 +147,26 @@
 
   // 配置文件路径的 glob 模式以从文件监视排除。更改此设置要求重启。如果在启动时遇到 Code 消耗大量 CPU 时间，则可以排除大型文件夹以减少初始加载。
   // "files.watcherExclude": {
-  //   "**/.git/objects/**": true
+  //   "**/.git/objects/**": true,
+  //   "**/node_modules/**": true
   // },
 
   // 控制是否在重启后还原未保存文件。如果启用它，退出编辑器时将不会提示保存。
-  "files.hotExit": false,
+  "files.hotExit": "onExitAndWindowClose",
+
+// Zen 模式
+
+  // 控制打开 Zen Mode 是否也会将工作台置于全屏模式。
+  // "zenMode.fullScreen": true,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台选项卡。
+  "zenMode.hideTabs": false,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台底部的状态栏。
+  "zenMode.hideStatusBar": false,
+
+  // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
+  // "zenMode.restore": false,
 
 // 文件资源管理器
 
@@ -106,8 +174,8 @@
 
   // 配置 glob 模式以在搜索中排除文件和文件夹。从 files.exclude 设置中继承所有 glob 模式。
   // "search.exclude": {
-    // "**/node_modules": true,
-    // "**/bower_components": true
+  //   "**/node_modules": true,
+  //   "**/bower_components": true
   // },
 
   // 配置为在 Quick Open 文件结果中包括全局符号搜索的结果。
@@ -145,10 +213,13 @@
 
 // Markdown
 
-  // A list of URLs or local paths to CSS style sheets to use from the markdown preview. Relative paths are interpreted relative to the folder open in the explorer. If there is no open folder, they are interpreted relative to the location of the markdown file. All '\' need to be written as '\\'.
-  "markdown.styles": [],
+  // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "" 需写为 "\"。
+  // "markdown.styles": [],
 
-  // Controls the font size in pixels used in the markdown preview.
+  // 控制 Markdown 预览中使用的字体系列。
+  // "markdown.preview.fontFamily": "'Segoe WPC', 'Segoe UI', 'SFUIText-Light', 'HelveticaNeue-Light', sans-serif",
+
+  // 控制 Markdown 预览中使用的字号(以像素为单位)。
   "markdown.preview.fontSize": 16,
 
 // PHP
@@ -158,7 +229,7 @@
 // 扩展
 
   // 自动更新扩展
-  // "extensions.autoUpdate": false,
+  "extensions.autoUpdate": true,
 
 // 集成终端
 
@@ -169,13 +240,19 @@
   // "terminal.integrated.shellArgs.linux": [],
 
   // 终端在 Windows 上使用的 shell 的路径。使用随 Windows 一起提供的 shell 时(cmd、PowerShell 或 Ubuntu 上的 Bash)，相对 C:\Windows\System32，首选 C:\Windows\sysnative 以使用 64 位版本。
-  // "terminal.integrated.shell.windows": "C:\\Windows\\system32\\cmd.exe",
+  // "terminal.integrated.shell.windows": "C:\\Windows\\Sysnative\\WindowsPowerShell\\v1.0\\powershell.exe",
 
   // 在 Windows 终端上时使用的命令行参数。
   // "terminal.integrated.shellArgs.windows": [],
 
   // 控制终端游标是否闪烁。
   "terminal.integrated.cursorBlinking": true,
+
+  // 控制终端游标的样式。
+  "terminal.integrated.cursorStyle": "line",
+
+  // 控制终端保持在缓冲区的最大行数。
+  // "terminal.integrated.scrollback": 1000,
 
 // 外部终端
 
@@ -193,6 +270,37 @@
   // 此选项需重启才可生效。
   "telemetry.enableCrashReporter": false,
 
+// Git History configuration
+
+// 默认配置替代
+
+  // 针对 [makefile] 语言，配置替代编辑器设置。
+  // "[makefile]": {
+  //   "editor.insertSpaces": false
+  // },
+
+  // 针对 [markdown] 语言，配置替代编辑器设置。
+  // "[markdown]": {
+  //   "editor.wordWrap": "on",
+  //   "editor.quickSuggestions": false
+  // },
+
+// vscode-icons configuration
+
+// Java configuration
+
+  // Specifies the folder path to the JDK 8 used to launch the Java Language Server.
+  "java.home": "C:\\Program Files\\Java\\jdk1.8.0_91",
+
+  // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G` to bypass class verification and increase the heap size to 1GB
+  // "java.jdt.ls.vmargs": "-noverify -Xmx1G",
+
+// C/C++ Configuration
+
+// TSLint
+
+// Python Configuration
+
 // markdownlint configuration
 
   // markdownlint config object
@@ -203,19 +311,10 @@
     "MD013": false,
     "MD034": false,
     "MD036": false
-  },
+  }
 
-// Java configuration
+// ESLint
 
-  // Specifies the folder path to the JDK 8 used to launch the Java Language Server.
-  "java.home": "C:\\Program Files\\Java\\jdk1.8.0_91",
-
-  // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G` to bypass class verification and increase the heap size to 1GB
-  // "java.jdt.ls.vmargs": "-noverify -Xmx1G",
-
-// vscode-icons configuration
-
-  // If set to true the new version message won't be shown anymore.
-  "vsicons.dontShowNewVersionMessage": true
+// Beautify config
 
 }
