@@ -14,6 +14,14 @@ C:\Program Files\Java\jdk1.8.0_60
 ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 ```
 
+* `CLASSPATH`: java 加载类(class or lib)路径, 只有类在 classpath 中, java 才能找到(rt.jar 和在 jre/lib 与 jre/lib/ext 目录下的 jar 文件会被自动地搜索)
+
+```bash
+.
+```
+
+PS: `.` 表示当前路径, 如此配置即可. 今后有本地 class/jar 文件再添加即可. 添加 class 文件: `;c:\classdir`, 添加 jar 文件: `;c:\archieves\*`
+
 ## Linux
 
 ### 1 安装 JDK
@@ -25,6 +33,7 @@ C:\Program Files\Java\jdk1.8.0_60
 ```bash
 export JAVA_HOME=/usr/local/java/jdk1.8.0_102 ### 要改哦!
 export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=.
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 
