@@ -14,13 +14,6 @@ C:\Program Files\Java\jdk1.8.0_60
 ;%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin
 ```
 
-* `CLASSPATH`: java 加载类(class or lib)路径, 只有类在 classpath 中, java 才能找到
-
-```bash
-.;%JAVA_HOME%\bin;%JAVA_HOME%\lib
-(要加.表示当前路径)
-```
-
 ## Linux
 
 ### 1 安装 JDK
@@ -32,7 +25,6 @@ C:\Program Files\Java\jdk1.8.0_60
 ```bash
 export JAVA_HOME=/usr/local/java/jdk1.8.0_102 ### 要改哦!
 export JRE_HOME=$JAVA_HOME/jre
-export CLASSPATH=.:$JAVA_HOME/lib:$JRE_HOME/lib
 export PATH=$PATH:$JAVA_HOME/bin
 ```
 

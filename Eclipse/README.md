@@ -10,6 +10,7 @@
 * Window --> Web Browser --> chrome
 * New Server 注意 JRE 选本地的
 * maven 配置 installaton 为本地安装的 及 本地仓库
+* 关联 Java 源码: "window" -> "Preferences" -> "Java" -> "Installed JRES" -> 选择你的JRE -> 点边上的 "Edit..." -> 列表全选 -> 点击 Source Attachment -> 选择 JDK 目录下的 "src.zip" 文件
 
 ## 插件
 
