@@ -1,9 +1,9 @@
 // 将设置放入此文件中以覆盖默认设置
 {
 
-// 编辑器
+// 编辑器(23/59)
 
-  // Insert snippets when their prefix matches. Works best when 'quickSuggestions' aren't enabled.
+  // 当其前缀匹配时插入代码段。当 "quickSuggestions" 未启用时，效果最佳。
   // "editor.tabCompletion": false,
 
   // 控制字体系列。
@@ -27,11 +27,18 @@
   // 控制是否显示 minimap
   "editor.minimap.enabled": true,
 
-  // Render the actual characters on a line (as opposed to color blocks)
+  // 呈现某行上的实际字符(与颜色块相反)
   "editor.minimap.renderCharacters": false,
 
   // 控制是否应换行。换行依据为 min(editor.wrappingColumn, viewportWidthInColumns)。
   "editor.wordWrap": "off",
+
+  // 控制键入时是否应自动显示建议
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": false
+  },
 
   // 控制编辑器是否应在键入后自动设置行的格式
   // "editor.formatOnType": false,
@@ -63,7 +70,7 @@
   // 即使在双击编辑器内容或按 Esc 键时，也要保持速览编辑器的打开状态。
   // "editor.stablePeek": false,
 
-  // Controls if the editor should allow to move selections via drag and drop.
+  // 控制编辑器是否应该允许通过拖放移动所选项。
   "editor.dragAndDrop": true,
 
   // 控制差异编辑器是否将对前导空格或尾随空格的更改显示为差异
@@ -72,9 +79,9 @@
   // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
   // "editor.formatOnSave": false,
 
-// Emmet
+// Emmet(0/5)
 
-// 工作台
+// 工作台(4/18)
 
   // 指定用在工作台中的颜色主题。
   "workbench.colorTheme": "Default Light+",
@@ -82,10 +89,13 @@
   // 指定用在工作台中的图标主题。
   "workbench.iconTheme": "vscode-icons",
 
-  // When enabled, will show the Welcome page on startup.
+  // 控制文件被其他某些进程删除或重命名时是否应该自动关闭显示文件的编辑器。禁用此项会保持编辑器作为此类事件的脏文件打开。请注意，从应用程序内部进行删除操作会始终关闭编辑器，并且脏文件始终不会关闭以保存数据。
+  "workbench.editor.closeOnFileDelete": false,
+
+  // 启用后，将在启动时显示欢迎页。
   "workbench.welcome.enabled": true,
 
-// 窗口
+// 窗口(4/9)
 
   // 控制是否应在新窗口中打开文件。
   // - default: 文件将在该文件的文件夹打开的窗口中打开，或在上一个活动窗口中打开，除非该文件通过平台或从查找程序(仅限 macOS)打开
@@ -114,7 +124,7 @@
   // ${separator}: 一个条件分隔符("-")，仅在左右是具有值的变量时才显示
   "window.title": "${rootName}${separator}${activeEditorLong}${dirty}",
 
-// 文件
+// 文件(10/12)
 
   // 配置 glob 模式以排除文件和文件夹。
   // "files.exclude": {
@@ -154,7 +164,7 @@
   // 控制是否在重启后还原未保存文件。如果启用它，退出编辑器时将不会提示保存。
   "files.hotExit": "onExitAndWindowClose",
 
-// Zen 模式
+// Zen 模式(4/4)
 
   // 控制打开 Zen Mode 是否也会将工作台置于全屏模式。
   // "zenMode.fullScreen": true,
@@ -168,9 +178,9 @@
   // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
   // "zenMode.restore": false,
 
-// 文件资源管理器
+// 文件资源管理器(0/4)
 
-// 搜索
+// 搜索(2/4)
 
   // 配置 glob 模式以在搜索中排除文件和文件夹。从 files.exclude 设置中继承所有 glob 模式。
   // "search.exclude": {
@@ -181,37 +191,23 @@
   // 配置为在 Quick Open 文件结果中包括全局符号搜索的结果。
   // "search.quickOpen.includeSymbols": false,
 
-// 更新
+// 更新(0/1)
 
-// GIT
+// HTTP(0/3)
 
-  // 是否启用了 GIT
-  // "git.enabled": true,
+// CSS(0/21)
 
-  // 可执行 GIT 的路径
-  // "git.path": null,
+// SCSS(Sass)(0/20)
 
-  // 是否已启用自动刷新
-  // "git.autorefresh": true,
+// LESS(0/20)
 
-  // 是否启用了自动提取。
-  // "git.autofetch": true,
+// 调试(0/4)
 
-// HTTP
+// HTML(0/17)
 
-// CSS
+// JSON(0/4)
 
-// SCSS(Sass)
-
-// LESS
-
-// 调试
-
-// HTML
-
-// JSON
-
-// Markdown
+// Markdown(3/9)
 
   // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "" 需写为 "\"。
   // "markdown.styles": [],
@@ -222,16 +218,16 @@
   // 控制 Markdown 预览中使用的字号(以像素为单位)。
   "markdown.preview.fontSize": 16,
 
-// PHP
+// PHP(0/4)
 
-// TypeScript
+// TypeScript(0/36)
 
-// 扩展
+// 扩展(1/1)
 
   // 自动更新扩展
   "extensions.autoUpdate": true,
 
-// 集成终端
+// 集成终端(8/19)
 
   // 终端在 Linux 上使用的 shell 的路径。
   // "terminal.integrated.shell.linux": "sh",
@@ -254,14 +250,17 @@
   // 控制终端保持在缓冲区的最大行数。
   // "terminal.integrated.scrollback": 1000,
 
-// 外部终端
+  // 在存在活动终端会话的情况下，退出时是否要确认。
+  "terminal.integrated.confirmOnExit": true,
 
-// 问题预览
+// 外部终端(0/3)
+
+// 问题预览(1/1)
 
   // 控制问题预览是否应在打开文件时自动显示它们。
   // "problems.autoReveal": true,
 
-// 遥测
+// 遥测(2/2)
 
   // 启用要发送给 Microsoft 的使用情况数据和错误。
   "telemetry.enableTelemetry": false,
@@ -270,9 +269,9 @@
   // 此选项需重启才可生效。
   "telemetry.enableCrashReporter": false,
 
-// Git History configuration
+// ESLint(0/9)
 
-// 默认配置替代
+// 默认配置替代(2/5)
 
   // 针对 [makefile] 语言，配置替代编辑器设置。
   // "[makefile]": {
@@ -285,9 +284,23 @@
   //   "editor.quickSuggestions": false
   // },
 
-// vscode-icons configuration
+// GIT(4/7)
 
-// Java configuration
+  // 是否启用了 GIT
+  // "git.enabled": true,
+
+  // 可执行 GIT 的路径
+  // "git.path": null,
+
+  // 是否已启用自动刷新
+  // "git.autorefresh": true,
+
+  // 是否启用了自动提取。
+  // "git.autofetch": true,
+
+// vscode-icons configuration(0/15)
+
+// Java configuration(2/7)
 
   // Specifies the folder path to the JDK 8 used to launch the Java Language Server.
   "java.home": "C:\\Program Files\\Java\\jdk1.8.0_91",
@@ -295,13 +308,15 @@
   // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G` to bypass class verification and increase the heap size to 1GB
   // "java.jdt.ls.vmargs": "-noverify -Xmx1G",
 
-// C/C++ Configuration
+// C/C++ Configuration(0/9)
 
-// TSLint
+// TSLint(0/10)
 
-// Python Configuration
+// Python Configuration(0/72)
 
-// markdownlint configuration
+// Git History configuration(0/4)
+
+// markdownlint configuration(1/1)
 
   // markdownlint config object
   "markdownlint.config": {
@@ -313,8 +328,6 @@
     "MD036": false
   }
 
-// ESLint
-
-// Beautify config
+// Beautify config(0/2)
 
 }

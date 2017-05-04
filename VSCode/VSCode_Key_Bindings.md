@@ -140,6 +140,9 @@
 | ItemName | Introduction |
 | -------- | ------------ |
 | vscode-clang        | Completion and Diagnostic for C/C++/Objective-C using Clang |
+| Debug               | GDB, LLDB & Mago-MI Debugger support for VSCode |
+| clang-format        | Use Clang-Format in Visual Studio Code |
+| code-settings-sync  | Synchronize Settings, Snippets, Themes, File Icons, Launch, Keybindings, Workspaces and Extensions Across Multiple Machines Using Github Gist. |
 | vim                 | Vim 模拟 |
 | latex               | LaTeX - colorizer, grammar and snippets |
 | cmake               | CMake 语法支持 |
