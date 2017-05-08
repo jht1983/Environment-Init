@@ -60,8 +60,8 @@ MinGW 是让 Windows 用户可以用上 GNU 工具，比如 GCC。一般作为**
 
 Cygwin、MSYS/MSYS2 和 Git for Windows（Git bash） 里各有一套 Cygwin DLL 而且互不兼容。
 
-## 下载
+## 安装
 
 Cygwin：下最新版安装即可。
 
-MinGW*：MinGW、MSYS 年久失修，MinGW-w64 更新还可以，但打包不及时，推荐第三方打包版：MinGW Distro（目前最新最全）、MSYS2（内部打包了MinGW-w64，在 github 上）、TDM-GCC（好久没更了）
+MinGW*：MinGW、MSYS 年久失修，MinGW-w64 更新还可以，但打包不及时，推荐第三方打包版：**MinGW Distro**（目前最新最全）、MSYS2（内部打包了MinGW-w64，在 github 上）、TDM-GCC（好久没更了）

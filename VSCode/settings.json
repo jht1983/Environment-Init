@@ -164,7 +164,7 @@
   // 控制是否在重启后还原未保存文件。如果启用它，退出编辑器时将不会提示保存。
   "files.hotExit": "onExitAndWindowClose",
 
-// Zen 模式(4/4)
+// Zen 模式(5/5)
 
   // 控制打开 Zen Mode 是否也会将工作台置于全屏模式。
   // "zenMode.fullScreen": true,
@@ -174,6 +174,9 @@
 
   // 控制打开 Zen 模式是否也会隐藏工作台底部的状态栏。
   "zenMode.hideStatusBar": false,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台左侧的活动栏。
+  "zenMode.hideActivityBar": false,
 
   // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
   // "zenMode.restore": false,
@@ -201,26 +204,26 @@
 
 // LESS(0/20)
 
-// 调试(0/4)
+// 调试(0/5)
 
 // HTML(0/17)
 
 // JSON(0/4)
 
-// Markdown(3/9)
+// Markdown(3/11)
 
   // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "" 需写为 "\"。
   // "markdown.styles": [],
 
   // 控制 Markdown 预览中使用的字体系列。
-  // "markdown.preview.fontFamily": "'Segoe WPC', 'Segoe UI', 'SFUIText-Light', 'HelveticaNeue-Light', sans-serif",
+  // "markdown.preview.fontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe WPC', 'Segoe UI', 'HelveticaNeue-Light', 'Ubuntu', 'Droid Sans', sans-serif",
 
   // 控制 Markdown 预览中使用的字号(以像素为单位)。
   "markdown.preview.fontSize": 16,
 
 // PHP(0/4)
 
-// TypeScript(0/36)
+// TypeScript(0/41)
 
 // 扩展(1/1)
 
@@ -269,8 +272,6 @@
   // 此选项需重启才可生效。
   "telemetry.enableCrashReporter": false,
 
-// ESLint(0/9)
-
 // 默认配置替代(2/5)
 
   // 针对 [makefile] 语言，配置替代编辑器设置。
@@ -284,7 +285,13 @@
   //   "editor.quickSuggestions": false
   // },
 
-// GIT(4/7)
+// Beautify config(0/2)
+
+// C/C++ Configuration(0/11)
+
+// ESLint(0/9)
+
+// Git(4/9)
 
   // 是否启用了 GIT
   // "git.enabled": true,
@@ -298,7 +305,11 @@
   // 是否启用了自动提取。
   // "git.autofetch": true,
 
-// vscode-icons configuration(0/15)
+// Git History configuration(0/4)
+
+// Grunt(0/1)
+
+// Gulp(0/1)
 
 // Java configuration(2/7)
 
@@ -307,14 +318,6 @@
 
   // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G` to bypass class verification and increase the heap size to 1GB
   // "java.jdt.ls.vmargs": "-noverify -Xmx1G",
-
-// C/C++ Configuration(0/9)
-
-// TSLint(0/10)
-
-// Python Configuration(0/72)
-
-// Git History configuration(0/4)
 
 // markdownlint configuration(1/1)
 
@@ -326,8 +329,18 @@
     "MD013": false,
     "MD034": false,
     "MD036": false
+  },
+  "[cpp]": {
+    "editor.quickSuggestions": false
+  },
+  "[c]": {
+    "editor.quickSuggestions": false
   }
 
-// Beautify config(0/2)
+// Python Configuration(0/72)
+
+// TSLint(0/10)
+
+// vscode-图标设置(0/15)
 
 }

@@ -25,8 +25,8 @@ echo 'export PS1="\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]"' >>
 # .vimrc同理
 
 # 常用软件
-echo "installing 'git ssh cmake tree htop man-zh rar shutter'"
-sudo yum install -y git openssh cmake tree htop man-pages-zh rar shutter tmux
+echo "installing 'git ssh cmake tree htop man-zh rar shutter tmux mosh'"
+sudo yum install -y git openssh cmake tree htop man-pages-zh rar shutter tmux mosh
 
 # 配置 ssh
 /etc/init.d/ssh start       # 启动 ssh
