@@ -15,6 +15,8 @@ export CATALINA_HOME=/usr/local/apache-tomcat-7.0.65
 export PATH=$PATH:$CATALINA_HOME/bin
 ```
 
+`%CATALINA_HOME%\bin` for windows
+
 * 验证
 
 启动 Tomcat: Tomcat 可以通过执行以下命令之一启动:
