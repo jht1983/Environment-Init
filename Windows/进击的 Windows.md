@@ -21,7 +21,12 @@
     * 鼠标
 * 隐私
     * 后台应用
-* 文件夹设置
+* 文件浏览器 - 查看 选项卡
+    * 勾选: 复选 & 文件扩展名 & 隐藏
+    * 选项:
+        * 常规: 此电脑
+        * 查看: 勾选 登录时还原上一个文件夹
+* 将想要启动自动运行的程序放入系统 "启动" 文件夹: %APPDATA%Microsoft\Windows\Start Menu\Programs\Startup
 
 ## 2. Win8／10 离线安装 .net 3.5
 
@@ -108,7 +113,25 @@ wpm install Wox.Plugin.Macros
 
 ## 额外
 
-### 1. 关闭 Win10 自动更新
+### 1. 常用 环境变量 路径
+
+| 环境变量 | 路径 |
+| --- | --- |
+| %HOMEPATH% / %USERPROFILE%        | C:\Users\<用户名> |
+| %LOCALAPPDATA%                    | C:\Users\<用户名>\AppData\Local |
+| %TEMP% / %TMP%                    | C:\Users\<用户名>\AppData\Local\Temp |
+| %APPDATA%                         | C:\Users\<用户名>\AppData\Roaming |
+| %PUBLIC%                          | C:\Users\Public |
+| %HOMEDRIVE% / %SystemDrive%       | C:\ |
+| %ALLUSERSPROFILE% / %PROGRAMDATA% | C:\ProgramData |
+| %PROGRAMFILES%                    | C:\Program Files |
+| %COMMONPROGRAMFILES%              | C:\Program Files\Common\Files |
+| %PROGRAMFILES(X86)%               | C:\Program Files (x86) |
+| %COMMONPROGRAMFILES(x86)%         | C:\Program Files (x86)\Common\Files |
+| %WINDIR% / %SystemRoot%           | C:\Windows |
+| %COMSPEC%                         | C:\Windows\System32\cmd.exe |
+
+### 2. 关闭 Win10 自动更新
 
 1. 首先, 按Win+R调出运行, 输入"gpedit.msc"点击"确定", 调出"本地组策略编辑器".
 1. "计算机配置" --> "管理模板" --> "windows组件" --> "windows更新 ".
@@ -116,12 +139,10 @@ wpm install Wox.Plugin.Macros
 1. 选择"已禁用", 点击"确定".
 1. 关掉"本地组策略编辑器", 重启电脑.
 
-### 2. Windows 技巧 之 启用_Windows_Linux_子系统
+### 3. Windows 技巧 之 启用_Windows_Linux_子系统
 
 系统要求: Windows 10 Version 1607 以上 & 专业版以上
 
-1. 打开 控制面板 - 程序与功能 - 启用或关闭 Windows 功能
-1. 勾选 `适用于 Linux 的 Windows 子系统(Beta)` 并点击确定
 1. 进入 Windows 10 设置 - 更新与安全 - 针对开发人员 - 勾选 `开发人员模式` 并重启设备
-1. 打开管理员模式的命令提示符并输入 bash 回车, 然后输入 Y 下载 Ubuntu
-1. 下载完成后按提示创建 UNIX 默认用户名并输入密码(输入密码是不显示 * 的, 输入完成直接回车即可)
+1. 打开 控制面板 - 程序与功能 - 启用或关闭 Windows 功能, 勾选 `适用于 Linux 的 Windows 子系统(Beta)` 并点击确定
+1. 打开管理员模式的命令提示符并输入 bash 回车, 然后输入 Y 下载 Ubuntu, 下载完成后按提示创建 UNIX 默认<用户名>并输入密码(输入密码是不显示 * 的, 输入完成直接回车即可)

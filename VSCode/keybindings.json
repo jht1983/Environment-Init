@@ -1,32 +1,175 @@
 // 将键绑定放入此文件中以覆盖默认值
 [
-{ "key": "ctrl+d",                "command": "editor.action.deleteLines",
-                                     "when": "editorTextFocus && !editorReadonly" },
-{ "key": "ctrl+e",                "command": "workbench.action.reopenClosedEditor" },
-{ "key": "ctrl+l",                "command": "workbench.action.terminal.clear",
-                                     "when": "terminalFocus" },
-{ "key": "alt+/",                 "command": "editor.action.quickFix",
-                                     "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly" },
-{ "key": "ctrl+shift+v",          "command": "markdown.showPreviewToSide",
-                                     "when": "editorFocus" },
-{ "key": "ctrl+shift+/",          "command": "editor.action.blockComment",
-                                     "when": "editorTextFocus && !editorReadonly" },
-{ "key": "shift+alt+z",           "command": "workbench.action.toggleZenMode" },
-{ "key": "f3",                    "command": "editor.action.nextMatchFindAction",
-                                     "when": "editorHasSelection" },
-{ "key": "f4",                    "command": "editor.action.previousMatchFindAction",
-                                     "when": "editorHasSelection" },
-{ "key": "f3",                    "command": "editor.action.nextSelectionMatchFindAction",
-                                     "when": "editorHasSelection" },
-{ "key": "f4",                    "command": "editor.action.previousSelectionMatchFindAction",
-                                     "when": "editorHasSelection" },
-{ "key": "f3",                    "command": "search.action.focusNextSearchResult" ,
-                                     "when": "searchViewletVisible" },
-{ "key": "f4",                    "command": "search.action.focusPreviousSearchResult" ,
-                                     "when": "searchViewletVisible" },
-{ "key": "f3",                    "command": "workbench.action.previousEditor" ,
-                                     "when": "editorFocus && !editorHasSelection" },
-{ "key": "f4",                    "command": "workbench.action.nextEditor" ,
-                                     "when": "editorFocus && !editorHasSelection" }
-// 最后一个没有末尾逗号
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.deleteLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+k",
+        "command": "-editor.action.deleteLines",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+e",
+        "command": "workbench.action.reopenClosedEditor"
+    },
+    {
+        "key": "ctrl+shift+t",
+        "command": "-workbench.action.reopenClosedEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.terminal.clear",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "-workbench.action.terminal.clear",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "alt+/",
+        "command": "editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+.",
+        "command": "-editor.action.quickFix",
+        "when": "editorHasCodeActionsProvider && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "markdown.showPreviewToSide",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+k v",
+        "command": "-markdown.showPreviewToSide",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+/",
+        "command": "editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+a",
+        "command": "-editor.action.blockComment",
+        "when": "editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "shift+alt+z",
+        "command": "workbench.action.toggleZenMode"
+    },
+    {
+        "key": "ctrl+k z",
+        "command": "-workbench.action.toggleZenMode"
+    },
+    // 打开 ctrl+f 后, 选中 上/下一个 匹配
+    {
+        "key": "f3",
+        "command": "editor.action.nextMatchFindAction",
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "f3",
+        "command": "-editor.action.nextMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.previousMatchFindAction",
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "shift+f3",
+        "command": "-editor.action.previousMatchFindAction",
+        "when": "editorFocus"
+    },
+    // 根据 editor 中选中的文字, 选中 上/下一个 匹配
+    {
+        "key": "f3",
+        "command": "editor.action.nextSelectionMatchFindAction",
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+f3",
+        "command": "-editor.action.nextSelectionMatchFindAction",
+        "when": "editorFocus"
+    },
+    {
+        "key": "f4",
+        "command": "editor.action.previousSelectionMatchFindAction",
+        "when": "editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+f3",
+        "command": "-editor.action.previousSelectionMatchFindAction",
+        "when": "editorFocus"
+    },
+    // 在 ctrl+shift+f 中, 选中 上/下一个 匹配
+    {
+        "key": "f3",
+        "command": "search.action.focusNextSearchResult",
+        "when": "searchViewletVisible"
+    },
+    {
+        "key": "f4",
+        "command": "-search.action.focusNextSearchResult"
+    },
+    {
+        "key": "f4",
+        "command": "search.action.focusPreviousSearchResult",
+        "when": "searchViewletVisible"
+    },
+    {
+        "key": "shift+f4",
+        "command": "-search.action.focusPreviousSearchResult"
+    },
+    // 选中 上/下一个 editor
+    {
+        "key": "f3",
+        "command": "workbench.action.previousEditor",
+        "when": "editorFocus && !editorHasSelection"
+    },
+    {
+        "key": "ctrl+pageup",
+        "command": "-workbench.action.previousEditor"
+    },
+    {
+        "key": "f4",
+        "command": "workbench.action.nextEditor",
+        "when": "editorFocus && !editorHasSelection"
+    },
+    {
+        "key": "ctrl+pagedown",
+        "command": "-workbench.action.nextEditor"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "search.action.focusActiveEditor",
+        "when": "searchInputBoxFocus && searchViewletVisible && !editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "workbench.action.findInFiles",
+        "when": "!searchInputBoxFocus && !editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "workbench.view.search",
+        "when": "!searchViewletVisible && !editorHasSelection"
+    },
+    {
+        "key": "ctrl+shift+f",
+        "command": "editor.action.formatSelection",
+        "when": "editorHasDocumentSelectionFormattingProvider && editorHasSelection && editorTextFocus && !editorReadonly"
+    },
+    {
+        "key": "ctrl+k ctrl+f",
+        "command": "-editor.action.formatSelection",
+        "when": "editorHasDocumentSelectionFormattingProvider && editorHasSelection && editorTextFocus && !editorReadonly"
+    }
+    // 最后一个没有末尾逗号
 ]
