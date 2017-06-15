@@ -7,6 +7,8 @@
 **Ctrl + P : 操作模式, 再输"?", 可以看见`所有可进行的操作`**  
 **Ctrl + Shift + P / F1 : 命令模式(显示所有命令 & 快捷键) <=> Ctrl + P 进入操作模式, 再输">"**
 
+以下是我的快捷键, 有许多是我自定义的, 需要配合[我的自定义快捷键文件](keybindings.json)使用.
+
 ### 通用
 
 | Key | Value |
@@ -20,35 +22,41 @@
 | F2 / F11                             | 重命名/全屏 |
 | F3 / F4                              | 选中文本 / `查找` / `全局查找` (Ctrl+Shift+F) 时, 上/下一个匹配项 |
 | F3 / F4                              | 左右切换 `Editor` |
-| Alt + 左/右                          | `焦点` 的前进/后退 |
-| Alt + 上/下                          | 上/下 `移行` |
-| Shift + Alt + 上/下                  | 向上/下复制一行 |
-| Ctrl + 上/下                         | `屏幕` 向上/下移一行 |
-| Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
+| Alt + ←/→                            | `焦点` 的前进/后退 |
+| Alt + ↑/ ↓                           | 上/下 `移行` |
+| Shift + Alt + ↑/↓                    | 向上/下复制一行 |
+| Ctrl + ↑/↓                           | `屏幕` 向上/下滚动一行 |
+| Ctrl + Home / End                    | 滚动到顶部/底部 |
+| Ctrl + Enter / Ctrl + Shift + Enter  | 当前行下/上面插入一行 |
+| Alt + Z                              | 切换折行 |
 
 ### 高效
 
 | Key | Value |
 | --- | ----- |
+| Shift + Alt + ←/→                    | 收缩/扩大选择的部分 |
+| Ctrl + I                             | 选择当前行 |
+| Shift + Alt                          | 块 `选择` |
 | Ctrl + Shift + L                     | 同时 `选中` 所有匹配, 用于批量修改 (<=> 选中一个目标, 按 Ctrl + F2)(不跨文件) |
 | Alt + Enter                          | 在 Ctrl + F 中立刻 `选中` 所有的匹配结果(正则匹配用上一条不行) |
 | Alt + 单击                           | 添加 `光标` (多光标), 用于批量修改 |
-| Ctrl + Shift + F/H                   | 高级( `全局` )搜索/替换 |
-| Shift + Alt                          | 块 `选择` |
-| Shift + Alt + F                      | 代码 `格式化` |
-| Ctrl+K Ctrl+F                        | 格式化选择区域 |
-| Alt + /                              | 显示修复信息 |
-| Ctrl + Space                         | 触发 `建议` |
-| Ctrl + Shift + Space                 | 触发参数 `提示` |
-| Ctrl + /                             | 触发行 `注释` (== Ctrl+K Ctrl+C & Ctrl+K Ctrl+U) |
+| Ctrl + K Ctrl + X                    | 删除拖尾的空格 |
+| --------------------                 | ------------------------------------------------------------------------ |
+| Ctrl + Shift + F/H                   | 高级( `全局` )搜索(编辑区无选择时)/替换 |
+| Ctrl + Shift + F                     | 选择区域代码 `格式化`(编辑区有选择时) |
+| Ctrl + .                             | 显示修复信息(quick fix) |
+| Alt + /                              | 触发 `建议` or 参数 `提示`|
+| Ctrl + /                             | 触发行 `注释` |
 | Ctrl + Shift + /                     | 触发块 `注释` |
 | Ctrl + [ / ]                         | 减少/增加 `缩进` |
 | Ctrl + Shift + [ / ]                 | `折叠` /展开 |
 | Ctrl + Shift + \                     | 匹配 `括号` 的跳转 |
+| --------------------                 | ------------------------------------------------------------------------ |
 | F12                                  | 转到 `定义` (只有一个的时候) |
 | Alt + F12                            | 预览 `定义` (不跳过去) |
 | Ctrl + K F12                         | 在侧边打开 `定义` |
 | Shift + F12                          | 查看 `引用` |
+| --------------------                 | ------------------------------------------------------------------------ |
 | Shift + Alt + Z                      | Zen 模式 |
 
 ### Quick Box
@@ -73,10 +81,13 @@
 | Ctrl + Shift + C                     | 在此处打开 `外部终端` |
 | Ctrl + L                             | 集成终端中的 `清屏` |
 | Ctrl + M                             | 激活按 Table 键移动 `焦点` |
+| -------------------------------      | ---------------------------------------------------- |
+| Shift + Alt + 1                      | 切换 Editor 组布局(水平/竖直) |
 | Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
-| Ctrl + \                             | 将当前 Editor 在 `新 Editor 组` 中打开 |
-| Ctrl + K 左/右                       | `Editor 组` 向左/右移动(一次) |
+| Ctrl + \                             | 将当前 Editor 在 `新 Editor 组` 中打开(拆分编辑器) |
 | Ctrl + 1 / 2 / 3                     | `Editor 组` 左 / 中 / 右 切换 |
+| Ctrl + K ←/→                         | `Editor 组` 向左/右移动(一次) |
+| Ctrl + Shift + PgUp / PgDown         | `Editor` 向左/右移动(一次) |
 | F3 / F4                              | 左右切换 `Editor` |
 | Ctrl + Tab / Ctrl + Shift + Tab      | `Editor` 按浏览历史向前/后导航 |
 
@@ -92,6 +103,7 @@
 | F9                                   | 触发设 `断点` |
 | F10 / Shift + F10                    | `单步` 跳过 / `单步` 后退 |
 | F11 / Shift + F11                    | `单步` 进入 / `单步`跳出 |
+| Ctrl + K Ctrl + I                    | 显示悬停 |
 | Ctrl + Shift + B                     | 运行生成任务 |
 | Shift + Enter                        | 在调试控制台中多行输入 |
 
@@ -102,15 +114,9 @@
 | Ctrl + Shift + V                     | 新建 `预览` 页(Markdown) |
 | Ctrl + K V                           | 打开侧边的 `预览` (Markdown) |
 
-### Other
+### Emmet
 
-| Key | Value |
-| --- | ----- |
-| Ctrl + Enter / Ctrl + Shift + Enter  | 当前行下/上边插入一行 |
-| Shift + Alt + 左/右                  | 收缩/扩大选择的部分 |
-| Ctrl + K Ctrl + X                    | 删除拖尾的空格 |
-| Ctrl + K Ctrl + I                    | 显示悬停 |
-| Ctrl + Shift + J                     | Toggle Search Details ??? |
+https://docs.emmet.io/cheat-sheet/
 
 ### C/C++ Ext
 
@@ -134,6 +140,7 @@
 | Python              | Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, Data Science (with Jupyter), PySpark and more. |
 | TSLint              | TSLint for Visual Studio Code |
 | vscode-icons        | Icons for Visual Studio Code |
+| vscode-todo         | Lists todo |
 
 * 备选
 
@@ -149,5 +156,4 @@
 | xml                 | XML Formatting, XQuery, and XPath Tools for Visual Studio Code |
 | Markdown PDF        | convert Markdown file to pdf, html, png or jpeg file. |
 | markdown-toc        | Generate TOC (table of contents) of headlines from parsed markdown file |
-| vscode-todo         | Lists todo |
 | Align               | align text like the atom-alignment package |

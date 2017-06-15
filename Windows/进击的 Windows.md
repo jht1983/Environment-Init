@@ -26,7 +26,7 @@
     * 选项:
         * 常规: 此电脑
         * 查看: 勾选 登录时还原上一个文件夹
-* 将想要启动自动运行的程序放入系统 "启动" 文件夹: %APPDATA%Microsoft\Windows\Start Menu\Programs\Startup
+* 将想要启动自动运行的程序放入系统 "启动" 文件夹: %APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup
 
 ## 2. Win8／10 离线安装 .net 3.5
 
@@ -96,10 +96,12 @@ wpm install Wox.Plugin.Macros
 
 1. 最大结果数：7 & 失去焦点时自动隐藏 & 全屏下忽略热键
 1. 插件配置
+    1. 程序：添加 自定义的 links 文件夹
     1. 网页搜索
         1. google URL 改为：https://www.google.com.hk/search?q={q}
         1. wiki URL 改为 https://zh.wikipedia.org/wiki/{q}
         1. 添加 知乎 https://www.zhihu.com/search?type=content&q={q}
+    1. 命令行：取消替换 Win+R
     1. Weather.Open: 触发关键词改为 weather
 1. 主题
     1. BlurBlack
