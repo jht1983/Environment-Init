@@ -8,7 +8,7 @@
 * Java --> Editor --> Content Assist .asdfghjklzxcvbnmqwertyuiopASDFGHJKLZXCVBNMQWERTYUIOP
 * Java --> Editor --> Sava Actions --> 勾选 Perform the selected actions on sava & Organize imports
 * 关联 Java 源码: Java -> Installed JRES -> 选择你的 JRE -> 点边上的 Edit -> 列表全选 -> Source Attachment -> 选择 JDK 目录下的 src.zip 文件
-* maven 配置 installaton 为本地安装的 及 本地仓库
+* maven 配置 installaton 为本地安装的 及 全局设置 or 用户设置(见[maven](../maven/README.md)) 以修改本地仓库位置
 * Remote Systems --> 全选 false
 * New Server: Server --> Runtime Environments --> Add 注意 JRE 选本地的
 * Window --> Web Browser --> chrome

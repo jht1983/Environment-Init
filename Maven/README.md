@@ -26,3 +26,9 @@ Java home: C:\Program Files\Java\jdk1.8.0_91\jre
 Default locale: zh_CN, platform encoding: GBK
 OS name: "windows 10", version: "10.0", arch: "amd64", family: "dos"
 ```
+
+另外：建议配置 maven 本地仓库位置到 非 C 盘，这样重装时不会丢失仓库。修改 %M2_HOME%\conf\settings.xml
+
+```xml
+<localRepository>D:\repository</localRepository>
+```

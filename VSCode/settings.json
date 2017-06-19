@@ -7,8 +7,17 @@
   // "editor.tabCompletion": false,
 
   // 控制字体系列。
-  // "editor.fontFamily": "Inziu Iosevka SC, YaHei Consolas Hybrid, Consolas, 'Courier New', monospace",
-  "editor.fontFamily": "Consolas, YaHei Consolas Hybrid, 'Courier New', monospace",
+  // "editor.fontFamily": "Consolas, 思源黑体",
+  // "editor.fontFamily": "Consolas, Microsoft YaHei",
+  "editor.fontFamily": "Source Code Pro, 思源黑体",
+  // "editor.fontFamily": "Source Code Pro, Microsoft YaHei",
+  // "editor.fontFamily": "DejaVu Sans Mono, 思源黑体",
+  // "editor.fontFamily": "DejaVu Sans Mono, Microsoft YaHei",
+  // "editor.fontFamily": "Inconsolata, 思源黑体",
+  // "editor.fontFamily": "Inconsolata, Microsoft YaHei",
+  // "editor.fontFamily": "Monaco, 思源黑体",
+  // "editor.fontFamily": "Monaco, Microsoft YaHei",
+  // "editor.fontFamily": "Inziu Iosevka SC",
 
   // 以像素为单位控制字号。
   "editor.fontSize": 16,

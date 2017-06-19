@@ -17,7 +17,7 @@ ctrl-p，呼出命令行，输入
 
 插件安装好后，打开 C 项目，选中调试栏的齿轮设置，在弹出的下拉列表里选择 debug，会自动生成一分 launch.json, 但是还不能直接用的，需要改改。
 
-```
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -39,7 +39,7 @@ ctrl-p，呼出命令行，输入
 
 会生成编译后的 hello 文件，要调试的话就把 gdb 的 targe 指向这个文件，需要修改如下:
 
-```
+```json
 {
     "version": "0.2.0",
     "configurations": [
@@ -67,7 +67,7 @@ vscode 支持定义预处理任务，ctrl+shift-p, 输入
 
 会自动生成一分 tasks.json，里面有许多例子。咱们就只改改第一个就好，其他的先删掉。
 
-```
+```json
 // Available variables which can be used inside of strings.
 // ${workspaceRoot}: the root folder of the team        # /home/jacean/workspace/C/
 // ${file}: the current opened file                     # /home/jacean/workspace/C/hello.c
@@ -95,7 +95,7 @@ vscode 支持定义预处理任务，ctrl+shift-p, 输入
 那么，那些变量对应的依次就是代码里 #之后的, 是项目空间路径，文件名，文件去除前缀，文件扩展名，文件所在目录，最后一个是衍生进程的目录 (不太清楚).
 这是预执行，那就是要执行那句编译命令了，所以修改如下
 
-```
+```json
 {
     "version": "0.1.0",
     "command": "gcc",
@@ -125,20 +125,20 @@ vscode 支持定义预处理任务，ctrl+shift-p, 输入
 
 这时候就需要那几个替换变量，把需要改变的用变量来替换。修改后如下:
 
-```
+```json
 //launch.json
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Debug",
-			"type": "gdb",
-			"request": "launch",
-			"target": "${file}.o",
-			"cwd": "${workspaceRoot}",
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "gdb",
+            "request": "launch",
+            "target": "${file}.o",
+            "cwd": "${workspaceRoot}",
             "preLaunchTask": "gcc"
-		}
-	]
+        }
+    ]
 }
 
 //tasks.json
@@ -174,7 +174,6 @@ vscode 支持定义预处理任务，ctrl+shift-p, 输入
 1. 如果 gcc 后面的参数没有 - g，那就不会生成可以调试的文件了，一定要有，否则 F5 会报错的。详情请参阅 gcc 命令。
 
    > Debug adapter process has terminated unexpectedly
-
 
 1. 最坑爹的，坑了我大半天时间的，就是权限问题。我的 vscode 文件夹在 / opt / 下，所以即使是配置好了其他的，调试也是报错
 
