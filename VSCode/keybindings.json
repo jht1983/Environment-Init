@@ -170,7 +170,7 @@
         "key": "f4",
         "command": "-search.action.focusNextSearchResult"
     },
-    // 其它 上/下一个 editor
+    // 无选中 & 没打开 ctrl+f / ctrl+shift+f 时, 上/下一个 editor
     {
         "key": "f3",
         "command": "workbench.action.previousEditor",
@@ -188,6 +188,27 @@
     {
         "key": "ctrl+pagedown",
         "command": "-workbench.action.nextEditor"
+    },
+    // 差异编辑器中, 导航 上/下一个 差异
+    {
+        "key": "f4",
+        "command": "editor.action.diffReview.next",
+        "when": "isInDiffEditor"
+    },
+    {
+        "key": "f7",
+        "command": "-editor.action.diffReview.next",
+        "when": "isInDiffEditor"
+    },
+    {
+        "key": "f3",
+        "command": "editor.action.diffReview.prev",
+        "when": "isInDiffEditor"
+    },
+    {
+        "key": "shift+f7",
+        "command": "-editor.action.diffReview.prev",
+        "when": "isInDiffEditor"
     },
     // 给高级搜索快捷键(ctrl+shift+f)添加 !editorHasSelection 激活条件, 给代码格式化创造使用条件
     {
@@ -240,6 +261,81 @@
         "key": "shift+alt+f",
         "command": "-editor.action.formatDocument",
         "when": "editorHasDocumentFormattingProvider && editorTextFocus && !editorReadonly"
+    },
+    // 触发 集成终端 Ctrl+ ` -> Ctrl + Alt + T
+    {
+        "key": "ctrl+alt+t",
+        "command": "workbench.action.terminal.toggleTerminal"
+    },
+    {
+        "key": "ctrl+oem_3",
+        "command": "-workbench.action.terminal.toggleTerminal"
+    },
+    // 将最近文件切换 Ctrl+ Tab -> Ctrl + `
+    {
+        "key": "ctrl+oem_3",
+        "command": "workbench.action.openNextRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.openNextRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+oem_3",
+        "command": "workbench.action.quickOpenNavigateNextInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "-workbench.action.quickOpenNavigateNextInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+oem_3",
+        "command": "workbench.action.openPreviousRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "-workbench.action.openPreviousRecentlyUsedEditorInGroup"
+    },
+    {
+        "key": "ctrl+shift+oem_3",
+        "command": "workbench.action.quickOpenNavigatePreviousInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "-workbench.action.quickOpenNavigatePreviousInEditorPicker",
+        "when": "inEditorsPicker && inQuickOpen"
+    },
+    // 将最近工作空间切换 Ctrl+ R -> Ctrl + Tab
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.openRecent"
+    },
+    {
+        "key": "ctrl+tab",
+        "command": "workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+        "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    {
+        "key": "ctrl+r",
+        "command": "-workbench.action.quickOpenNavigateNextInRecentFilesPicker",
+        "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    {
+        "key": "ctrl+shift+tab",
+        "command": "workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
+        "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    {
+        "key": "ctrl+shift+r",
+        "command": "-workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
+        "when": "inQuickOpen && inRecentFilesPicker"
     }
     // 最后一个没有末尾逗号
 ]
