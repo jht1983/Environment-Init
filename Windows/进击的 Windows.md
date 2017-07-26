@@ -10,7 +10,7 @@
 * 个性化
     * 颜色
     * 开始
-    * 任务栏
+    * 标题栏
 * 账户
     * 登录选项
     * 同步
@@ -207,6 +207,8 @@ PS: 可以同时改默认值(右键标题栏 --> 默认值)
 * Text: Font: Consolas 14, Locate: zh_CN, CharacterSet: UTF-8
 * Windows: Size: 70 25
 * `$ git config --global core.quotepath false` 使 git 命令输出中的中文正确显示
+
+配置 ssh: ssh-keygen -t rsa -P '' -f ~/.ssh/id_rsa; cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
 
 ## 8. 软件
 
