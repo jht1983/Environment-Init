@@ -107,8 +107,6 @@
   // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
   // "editor.formatOnSave": false,
 
-// Emmet(0/6)
-
 // 工作台(5/18)
 
   // 控制边栏的位置。它可显示在工作台的左侧或右侧。
@@ -124,7 +122,7 @@
   "workbench.editor.closeOnFileDelete": false,
 
   // 控制在未能恢复上一会话的信息的情况下，启动时显示的编辑器。选择“none”表示启动时不打开编辑器，“welcomePage”表示打开欢迎页面（默认），“newUntitledFile”表示打开新的无标题文档（仅当未打开文件夹时）。
-  // "workbench.startupEditor": "welcomePage",
+  "workbench.startupEditor": "none",
 
   // 指定用在工作台中的颜色主题。
   "workbench.colorTheme": "Default Light+",
@@ -161,7 +159,7 @@
   // ${separator}: 一个条件分隔符("-")，仅在左右是具有值的变量时才显示
   "window.title": "${rootName}${separator}${activeEditorLong}${dirty}",
 
-  // Control the visibility of the menu bar. A setting of 'toggle' means that the menu bar is hidden and a single press of the Alt key will show it. By default, the menu bar will be visible, unless the window is full screen.
+  // 控制菜单栏的可见性。“切换”设置表示隐藏菜单栏，按一次 Alt 键则将显示此菜单栏。默认情况下，除非窗口为全屏，否则菜单栏可见。
   "window.menuBarVisibility": "toggle",
 
 // 文件(10/12)
@@ -223,7 +221,10 @@
   // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
   // "zenMode.restore": false,
 
-// 文件资源管理器(0/4)
+// 文件资源管理器(1/5)
+
+  // 控制文件和目录在资源管理器中的排列方式。
+  // "explorer.sortOrder": "default",
 
 // 搜索(2/4)
 
@@ -254,7 +255,7 @@
 
 // Markdown(3/11)
 
-  // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "" 需写为 "\"。
+  // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "\" 需写为 "\\"。
   // "markdown.styles": [],
 
   // 控制 Markdown 预览中使用的字体系列。
@@ -265,7 +266,7 @@
 
 // PHP(0/4)
 
-// TypeScript(0/45)
+// TypeScript(0/47)
 
 // 扩展(0/2)
 
@@ -308,7 +309,19 @@
   // 在存在活动终端会话的情况下，退出时是否要确认。
   "terminal.integrated.confirmOnExit": true,
 
-// 外部终端(0/3)
+  // 要添加到 VS Code 进程中的带有环境变量的对象，其会被 Linux 终端使用。
+  // "terminal.integrated.env.linux": {},
+
+  // 要添加到 VS Code 进程中的带有环境变量的对象，其会被 Windows 终端使用。
+  // "terminal.integrated.env.windows": {},
+
+// 外部终端(2/4)
+
+  // 自定义要启动的终端类型。
+  "terminal.explorerKind": "external",
+
+  // 自定义要在 Windows 上运行的终端。
+  // "terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
 
 // 问题预览(1/1)
 
@@ -324,8 +337,6 @@
   // 此选项需重启才可生效。
   "telemetry.enableCrashReporter": false,
 
-// 合并冲突(0/2)
-
 // 默认配置替代(2/5)
 
   // 针对 [makefile] 语言，配置替代编辑器设置。
@@ -339,13 +350,7 @@
   //   "editor.quickSuggestions": false
   // },
 
-// Emmet configuration(0/2)
-
-// Beautify config(0/2)
-
-// C/C++ Configuration(0/11)
-
-// ESLint(0/9)
+// 合并冲突(0/2)
 
 // Git(4/11)
 
@@ -360,14 +365,6 @@
 
   // 是否启用了自动提取。
   // "git.autofetch": true,
-
-// Git History configuration(0/4)
-
-// Grunt(0/1)
-
-// Gulp(0/1)
-
-// Jake(0/1)
 
 // Java configuration(2/7)
 
@@ -391,14 +388,11 @@
     // 为了方便写博客
     "MD002": false,
     "MD041": false
-  }
+  },
 
-// Npm(0/1)
+// vscode-icons 设置
 
-// Python Configuration(0/72)
-
-// TSLint(0/10)
-
-// vscode-图标设置(0/15)
+  // 如果设置成 true，关于新的版本消息将不再显示
+  "vsicons.dontShowNewVersionMessage": true
 
 }

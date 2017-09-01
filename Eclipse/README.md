@@ -17,5 +17,6 @@
 
 1. Subclipse 1.10.xx 用于 svn for eclipse
 1. Spring IDE 用于 Spring 开发
-1. dev-tools 用于 java web 项目热 republish
 1. Eclipse Color Theme 用于更改 Eclipse 配色方案：http://www.eclipsecolorthemes.org/
+1. jrebal
+1. dev-tools 用于 java web 项目热 republish
