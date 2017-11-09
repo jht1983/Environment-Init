@@ -1,6 +1,4 @@
-# VSCode
-
-## Part 1 Key Binding
+# VSCode Key Binding
 
 **官方快捷键: <https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf>**
 
@@ -9,7 +7,7 @@
 
 以下是我的快捷键, 有许多是我自定义的, 需要配合[我的自定义快捷键文件](keybindings.json)使用.
 
-### 通用
+## 通用
 
 | Key | Value |
 | --- | ----- |
@@ -25,13 +23,14 @@
 | F3 / F4                              | 差异编辑器中, 导航 上/下一个 差异 |
 | Alt + ←/→                            | `焦点` 的前进/后退 |
 | Alt + ↑/ ↓                           | 上/下 `移行` |
+| Alt + ↑/ ↓                           | 在查找(Editor 全局 终端)中使用, 可以切换上/下一个查找词 |
 | Shift + Alt + ↑/↓                    | 向上/下复制一行 |
 | Ctrl + ↑/↓                           | `屏幕` 向上/下滚动一行 |
 | Ctrl + Home / End                    | 滚动到顶部/底部 |
 | Ctrl + Enter / Ctrl + Shift + Enter  | 当前行下/上面插入一行 |
 | Alt + Z                              | 切换折行 |
 
-### 高效
+## 高效
 
 | Key | Value |
 | --- | ----- |
@@ -42,25 +41,25 @@
 | Alt + Enter                          | 在 Ctrl + F 中立刻 `选中` 所有的匹配结果(正则匹配用上一条不行) |
 | Alt + 单击                           | 添加 `光标` (多光标), 用于批量修改 |
 | Ctrl + K Ctrl + X                    | 删除拖尾的空格 |
-| --------------------                 | ------------------------------------------------------------------------ |
+| --------------------                 | -------------------- |
 | Ctrl + Shift + F/H                   | 高级( `全局` )搜索(编辑区无选择时)/替换 |
 | Ctrl + Shift + F                     | 选择区域代码 `格式化`(编辑区有选择时) |
-| Ctrl + .                             | 显示修复信息(quick fix) |
-| Alt + /                              | 触发 `建议` or 参数 `提示`|
+| *Ctrl + .                             | 显示修复信息(quick fix) |
+| *Alt + /                              | 触发 `建议` or 参数 `提示`|
 | Ctrl + /                             | 触发行 `注释` |
 | Ctrl + Shift + /                     | 触发块 `注释` |
 | Ctrl + [ / ]                         | 减少/增加 `缩进` |
 | Ctrl + Shift + [ / ]                 | `折叠` /展开 |
 | Ctrl + Shift + \                     | 匹配 `括号` 的跳转 |
-| --------------------                 | ------------------------------------------------------------------------ |
+| --------------------                 | -------------------- |
 | F12                                  | 转到 `定义` (只有一个的时候) |
 | Alt + F12                            | 预览 `定义` (不跳过去) |
 | Ctrl + K F12                         | 在侧边打开 `定义` |
 | Shift + F12                          | 查看 `引用` |
-| --------------------                 | ------------------------------------------------------------------------ |
+| --------------------                 | -------------------- |
 | Shift + Alt + Z                      | Zen 模式 |
 
-### Quick Box
+## Quick Box
 
 | Key | Value |
 | --- | ----- |
@@ -71,18 +70,18 @@
 | Ctrl + Shift + O                     | `转到` 符号(本文件) <=> **Ctrl + P 进入操作模式, 再输"@"或"@:"** |
 | Ctrl + Q                             | View Picker |
 
-### 界面 相关
+## 界面 相关
 
 | Key | Value |
 | --- | ----- |
 | Ctrl + B/J                           | `侧边栏` 开关/ `底部面板` 开关 |
 | Ctrl + Shift + E/F/G/D/X             | `侧边栏` 5 大功能 |
 | Ctrl + Shift + M/U/Y                 | `底部面板` 四个功能之前三: 错误面板, 输出面板, 调试控制台 |
-| Ctrl + \`                            | `底部面板` 四个功能之后一: 打开 `集成终端` |
+| Ctrl + Alt + T                       | `底部面板` 四个功能之后一: 打开 `集成终端` |
 | Ctrl + Shift + C                     | 在此处打开 `外部终端` |
 | Ctrl + L                             | 集成终端中的 `清屏` |
 | Ctrl + M                             | 激活按 Table 键移动 `焦点` |
-| -------------------------------      | ---------------------------------------------------- |
+| -------------------------------      |  |
 | Shift + Alt + 1                      | 切换 Editor 组布局(水平/竖直) |
 | Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
 | Ctrl + \                             | 将当前 Editor 在 `新 Editor 组` 中打开(拆分编辑器) |
@@ -90,9 +89,9 @@
 | Ctrl + K ←/→                         | `Editor 组` 向左/右移动(一次) |
 | Ctrl + Shift + PgUp / PgDown         | `Editor` 向左/右移动(一次) |
 | F3 / F4                              | 左右切换 `Editor` |
-| Ctrl + Tab / Ctrl + Shift + Tab      | `Editor` 按浏览历史向前/后导航 |
+| Ctrl + \` / Ctrl + Shift + \`        | `Editor` 按浏览历史向前/后导航 |
 
-### Debug & Tasks
+## Debug & Tasks
 
 | Key | Value |
 | --- | ----- |
@@ -108,53 +107,23 @@
 | Ctrl + Shift + B                     | 运行生成任务 |
 | Shift + Enter                        | 在调试控制台中多行输入 |
 
-### Markdown 相关
+## Markdown 相关
 
 | Key | Value |
 | --- | ----- |
 | Ctrl + Shift + V                     | 新建 `预览` 页(Markdown) |
 | Ctrl + K V                           | 打开侧边的 `预览` (Markdown) |
 
-### Emmet
+## Emmet
 
 https://docs.emmet.io/cheat-sheet/
 
-### C/C++ Ext
+## C/C++ Ext
 
 | Key | Value |
 | --- | ----- |
 | F4                                   | 切换.c\.h文件 |
 
-## Part 2 Extension
+## 更多技巧
 
-* 在用
-
-| ItemName | Introduction |
-| -------- | ------------ |
-| beautify            | Beautify javascript, JSON, CSS, Sass, and HTML in Visual Studio Code. |
-| C/C++               | Complete C/C++ language support including code-editing and debugging. |
-| Debugger for Chrome | Debug your JavaScript code in the Chrome browser, or any other target that supports the Chrome Debugger protocol. |
-| ESLint              | Integrates ESLint into VS Code. |
-| Git History         | View git log, file or line History |
-| Language Support for Java(TM) by Red Hat | Language Support for Java(TM) for Visual Studio Code provided by Red Hat |
-| markdownlint        | Markdown linting and style checking for Visual Studio Code |
-| Python              | Linting, Debugging (multi-threaded, remote), Intellisense, code formatting, refactoring, unit tests, snippets, Data Science (with Jupyter), PySpark and more. |
-| TSLint              | TSLint for Visual Studio Code |
-| vscode-icons        | Icons for Visual Studio Code |
-| vscode-todo         | Lists todo |
-
-* 备选
-
-| ItemName | Introduction |
-| -------- | ------------ |
-| vscode-clang        | Completion and Diagnostic for C/C++/Objective-C using Clang |
-| Debug               | GDB, LLDB & Mago-MI Debugger support for VSCode |
-| clang-format        | Use Clang-Format in Visual Studio Code |
-| code-settings-sync  | Synchronize Settings, Snippets, Themes, File Icons, Launch, Keybindings, Workspaces and Extensions Across Multiple Machines Using Github Gist. |
-| vim                 | Vim 模拟 |
-| latex               | LaTeX - colorizer, grammar and snippets |
-| cmake               | CMake 语法支持 |
-| xml                 | XML Formatting, XQuery, and XPath Tools for Visual Studio Code |
-| Markdown PDF        | convert Markdown file to pdf, html, png or jpeg file. |
-| markdown-toc        | Generate TOC (table of contents) of headlines from parsed markdown file |
-| Align               | align text like the atom-alignment package |
+https://code.visualstudio.com/docs/getstarted/tips-and-tricks

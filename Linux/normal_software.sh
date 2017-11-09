@@ -15,6 +15,7 @@
 | 翻译          | 有道词典（支持屏幕取词） |
 | 各种解码器     | ffmpeg sudoyum install ffmpeg-libs gstreamer-ffmpeg libmatroska xvidcore libdvdread libdvdnav |
 | 其他          | wine ss-qt5 |
+| 截图 | hotshots |
 
 # 为知笔记
 #sudo add-apt-repository ppa:wiznote-team
@@ -24,5 +25,5 @@
 Libreoffice 中文语言包
 yum install -y libreoffice-langpack-zh-Hans*
 
-yum-axelget 是 EPEL 提供的一个 yum 插件 大大提高了软件的下载速度
-yum -y install yum-axelget
+ntfs-3g
+xfce4-whiskermenu
