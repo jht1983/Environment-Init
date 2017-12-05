@@ -1,10 +1,10 @@
 #!/bin/bash
 
-#sudo apt-get install xclip
+#sudo apt install xclip
 #sudo easy_install -ZU autopep8
 cd ~
 echo "Ljc 正在为您安装配套程序" > Ljc
-sudo apt-get install vim-gtk ctags cscope astyle git subversion
+sudo apt install vim-gtk vim-doc vim-scripts ctags cscope astyle git subversion
 
 # backup
 rm -rf ~/vim_ljc ~/.vim_old

@@ -1,0 +1,24 @@
+[global_config]
+  inactive_color_offset = 0.7
+[keybindings]
+[layouts]
+  [[default]]
+    [[[child1]]]
+      parent = window0
+      profile = default
+      type = Terminal
+    [[[window0]]]
+      parent = ""
+      size = 925, 570
+      type = Window
+[plugins]
+[profiles]
+  [[default]]
+    background_darkness = 0.7
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    cursor_shape = ibeam
+    font = Noto Sans Mono CJK SC 12
+    scrollback_infinite = True
+    show_titlebar = False
+    use_system_font = False

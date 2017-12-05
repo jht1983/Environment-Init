@@ -37,6 +37,9 @@
   // 当打开文件时，将基于文件内容检测 "editor.tabSize" 和 "editor.insertSpaces"。
   // "editor.detectIndentation": true,
 
+  // 控制编辑器是否在滚动时使用动画
+  "editor.smoothScrolling": true,
+
   // 控制是否显示 minimap
   // "editor.minimap.enabled": true,
 
@@ -107,22 +110,22 @@
   // 保存时设置文件的格式。格式化程序必须可用，不能自动保存文件，并且不能关闭编辑器。
   // "editor.formatOnSave": false,
 
-// 工作台(5/18)
+// 工作台(7/22)
+
+  // 控制是否在再次打开命令面板时恢复上一次的输入内容。
+  "workbench.commandPalette.preserveInput": true,
+
+  // 控制 Quick Open 是否应在失去焦点时自动关闭。
+  "workbench.quickOpen.closeOnFocusLost": false,
 
   // 控制边栏的位置。它可显示在工作台的左侧或右侧。
   "workbench.sideBar.location": "right",
 
-  // 控制命令面板中保留最近使用命令的数量。设置为 0 则禁用命令历史记录。
-  "workbench.commandPalette.history": 50,
-
-  // 控制是否在再次打开命令面板时恢复上一次的输入内容。启动了上一条就不用启动这一条
-  // "workbench.commandPalette.preserveInput": true,
+  // 控制面板的位置。它可显示在工作台的底部或右侧。
+  "workbench.panel.location": "bottom",
 
   // 控制文件被其他某些进程删除或重命名时是否应该自动关闭显示文件的编辑器。禁用此项会保持编辑器作为此类事件的脏文件打开。请注意，从应用程序内部进行删除操作会始终关闭编辑器，并且脏文件始终不会关闭以保存数据。
   "workbench.editor.closeOnFileDelete": false,
-
-  // 控制在未能恢复上一会话的信息的情况下，启动时显示的编辑器。选择“none”表示启动时不打开编辑器，“welcomePage”表示打开欢迎页面（默认），“newUntitledFile”表示打开新的无标题文档（仅当未打开文件夹时）。
-  "workbench.startupEditor": "none",
 
   // 指定用在工作台中的颜色主题。
   "workbench.colorTheme": "Default Light+",
@@ -130,7 +133,7 @@
   // 指定用在工作台中的图标主题。
   "workbench.iconTheme": "vscode-icons",
 
-// 窗口(4/9)
+// 窗口(5/11)
 
   // 控制是否应在新窗口中打开文件。
   // - default: 文件将在该文件的文件夹打开的窗口中打开，或在上一个活动窗口中打开，除非该文件通过平台或从查找程序(仅限 macOS)打开
@@ -149,22 +152,42 @@
   // 控制重启后重新打开窗口的方式。选择“none”则永远在启动时打开一个空窗口；选择“one”则重新打开最后使用的窗口；选择“folders”则重新打开所有你曾打开的文件夹；或选择“all”则重新打开上次会话的所有窗口。
   "window.restoreWindows": "all",
 
-  // 基于活动编辑器控制窗口标题。基于上下文替换变量:
-  // ${activeEditorName}: 例如 myFile.txt
-  // ${activeFilePath}: 例如 /Users/Development/myProject/myFile.txt
-  // ${rootName}: 例如 myProject
-  // ${rootPath}: 例如 /Users/Development/myProject
-  // ${appName}: 例如 VS Code
-  // ${dirty}: 一个更新指示器，指示活动编辑器是否更新
-  // ${separator}: 一个条件分隔符("-")，仅在左右是具有值的变量时才显示
+  // 根据活动编辑器控制窗口标题。变量基于上下文进行替换:
+  // ${activeEditorShort}: 文件名 (如 myFile.txt)
+  // ${activeEditorMedium}: 相对于工作区文件夹的文件路径 (如 myFolder/myFile.txt)
+  // ${activeEditorLong}: 文件的完整路径 (如 /Users/Development/myProject/myFolder/myFile.txt)
+  // ${folderName}: 文件所在工作区文件夹名称 (如 myFolder)
+  // ${folderPath}: 文件所在工作区文件夹路径 (如 /Users/Development/myFolder)
+  // ${rootName}: 工作区名称 (如 myFolder 或 myWorkspace)
+  // ${rootPath}: 工作区路径 (如 /Users/Development/myWorkspace)
+  // ${appName}: 如 VS Code
+  // ${dirty}: 活动编辑器有更新时显示的更新指示器
+  // ${separator}: 仅在被有值变量包围时显示的分隔符 (" - ")
   "window.title": "${rootName}${separator}${activeEditorLong}${dirty}",
 
   // 控制菜单栏的可见性。“切换”设置表示隐藏菜单栏，按一次 Alt 键则将显示此菜单栏。默认情况下，除非窗口为全屏，否则菜单栏可见。
   "window.menuBarVisibility": "toggle",
 
-// 文件(10/12)
+// Zen 模式(5/5)
 
-  // 配置 glob 模式以排除文件和文件夹。
+  // 控制打开 Zen Mode 是否也会将工作台置于全屏模式。
+  // "zenMode.fullScreen": true,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台选项卡。
+  "zenMode.hideTabs": false,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台底部的状态栏。
+  "zenMode.hideStatusBar": false,
+
+  // 控制打开 Zen 模式是否也会隐藏工作台左侧的活动栏。
+  "zenMode.hideActivityBar": false,
+
+  // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
+  // "zenMode.restore": false,
+
+// 文件(11/14)
+
+  // 配置 glob 模式以在搜索中排除文件和文件夹。例如，文件资源管理器根据此设置决定文件或文件夹的显示和隐藏。
   // "files.exclude": {
   //   "**/.git": true,
   //   "**/.svn": true,
@@ -176,11 +199,14 @@
   // 配置语言的文件关联(如: "*.extension": "html")。这些关联的优先级高于已安装语言的默认关联。
   // "files.associations": {},
 
-  // 读取和编写文件时将使用的默认字符集编码。
+  // 读取和编写文件时使用的默认字符集编码。也可以根据语言配置此设置。
   // "files.encoding": "utf8",
 
-  // 默认行尾字符。
-  // "files.eol": "\r\n",
+  // 如果启用，会在打开文件时尝试猜测字符集编码。也可以根据语言配置此设置。
+  "files.autoGuessEncoding": true,
+
+  // 默认行尾字符。使用 \n 表示 LF，\r\n 表示 CRLF。
+  "files.eol": "\n",
 
   // 启用后，将在保存文件时剪裁尾随空格。
   // "files.trimTrailingWhitespace": false,
@@ -204,29 +230,12 @@
   // 控制是否在重启后还原未保存文件。如果启用它，退出编辑器时将不会提示保存。
   "files.hotExit": "onExitAndWindowClose",
 
-// Zen 模式(5/5)
-
-  // 控制打开 Zen Mode 是否也会将工作台置于全屏模式。
-  // "zenMode.fullScreen": true,
-
-  // 控制打开 Zen 模式是否也会隐藏工作台选项卡。
-  "zenMode.hideTabs": false,
-
-  // 控制打开 Zen 模式是否也会隐藏工作台底部的状态栏。
-  "zenMode.hideStatusBar": false,
-
-  // 控制打开 Zen 模式是否也会隐藏工作台左侧的活动栏。
-  "zenMode.hideActivityBar": false,
-
-  // 控制如果某窗口已退出 zen 模式，是否应还原到 zen 模式。
-  // "zenMode.restore": false,
-
-// 文件资源管理器(1/5)
+// 文件资源管理器(1/9)
 
   // 控制文件和目录在资源管理器中的排列方式。
   // "explorer.sortOrder": "default",
 
-// 搜索(2/4)
+// 搜索(1/6)
 
   // 配置 glob 模式以在搜索中排除文件和文件夹。从 files.exclude 设置中继承所有 glob 模式。
   // "search.exclude": {
@@ -234,26 +243,15 @@
   //   "**/bower_components": true
   // },
 
-  // 配置为在 Quick Open 文件结果中包括全局符号搜索的结果。
-  // "search.quickOpen.includeSymbols": false,
+// HTTP(0/3)
 
 // 更新(0/1)
 
-// HTTP(0/3)
+// HTML(0/18)
 
-// CSS(0/21)
+// JSON(0/3)
 
-// SCSS(Sass)(0/20)
-
-// LESS(0/20)
-
-// 调试(0/6)
-
-// HTML(0/17)
-
-// JSON(0/4)
-
-// Markdown(3/11)
+// Markdown(3/12)
 
   // 要在 Markdown 预览中使用的 CSS 样式表的 URL 或本地路径列表。相对路径被解释为相对于资源管理器中打开的文件夹。如果没有任何打开的文件夹，则会被解释为相对于 Markdown 文件的位置。所有的 "\" 需写为 "\\"。
   // "markdown.styles": [],
@@ -266,11 +264,27 @@
 
 // PHP(0/4)
 
-// TypeScript(0/47)
+// TypeScript(0/51)
+
+// 调试(0/6)
+
+// CSS(0/20)
+
+// LESS(0/19)
+
+// SCSS(Sass)(0/19)
 
 // 扩展(0/2)
 
-// 集成终端(8/19)
+// 外部终端(2/4)
+
+  // 自定义要启动的终端类型。
+  "terminal.explorerKind": "external",
+  
+  // 自定义要在 Windows 上运行的终端。
+  // "terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
+
+// 集成终端(12/21)
 
   // 终端在 Linux 上使用的 shell 的路径。
   // "terminal.integrated.shell.linux": "sh",
@@ -315,15 +329,10 @@
   // 要添加到 VS Code 进程中的带有环境变量的对象，其会被 Windows 终端使用。
   // "terminal.integrated.env.windows": {},
 
-// 外部终端(2/4)
+// 问题预览(2/2)
 
-  // 自定义要启动的终端类型。
-  "terminal.explorerKind": "external",
-
-  // 自定义要在 Windows 上运行的终端。
-  // "terminal.external.windowsExec": "C:\\Program Files\\Git\\bin\\bash.exe",
-
-// 问题预览(1/1)
+  // 显示关于文件与文件夹的错误与警告。
+  "problems.decorations.enabled": true,
 
   // 控制问题预览是否应在打开文件时自动显示它们。
   // "problems.autoReveal": true,
@@ -337,7 +346,9 @@
   // 此选项需重启才可生效。
   "telemetry.enableCrashReporter": false,
 
-// 默认配置替代(2/5)
+// 合并冲突(0/2)
+
+// 默认配置替代(2/6)
 
   // 针对 [makefile] 语言，配置替代编辑器设置。
   // "[makefile]": {
@@ -350,9 +361,7 @@
   //   "editor.quickSuggestions": false
   // },
 
-// 合并冲突(0/2)
-
-// Git(4/11)
+// Git(6/13)
 
   // 是否启用了 GIT
   // "git.enabled": true,
@@ -366,13 +375,29 @@
   // 是否启用了自动提取。
   // "git.autofetch": true,
 
-// Java configuration(2/7)
+  // 启用使用 GPG 签名的提交
+  // "git.enableCommitSigning": false,
+
+  // Controls if Git contributes colors and badges to the explorer and the open editors view.
+  // "git.decorations.enabled": true,
+
+// Java Debugger Configuration(0/1)
+
+  // 
+  "java.debug.logLevel": "warn",
+
+// vscode-icons 设置(1/19)
+
+  // 如果设置成 true，关于新的版本消息将不再显示
+  "vsicons.dontShowNewVersionMessage": true,
+
+// Java configuration(2/12)
 
   // Specifies the folder path to the JDK 8 used to launch the Java Language Server.
-  "java.home": null,
+  // "java.home": null,
 
-  // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G` to bypass class verification and increase the heap size to 1GB
-  // "java.jdt.ls.vmargs": "-noverify -Xmx1G",
+  // Specifies extra VM arguments used to launch the Java Language Server. Eg. use `-noverify -Xmx1G  -XX:+UseG1GC -XX:+UseStringDeduplication` to bypass class verification, increase the heap size to 1GB and enable String deduplication with the G1 Garbage collector
+  // "java.jdt.ls.vmargs": "-noverify -Xmx1G -XX:+UseG1GC -XX:+UseStringDeduplication",
 
 // markdownlint configuration(1/1)
 
@@ -388,11 +413,6 @@
     // 为了方便写博客
     "MD002": false,
     "MD041": false
-  },
-
-// vscode-icons 设置
-
-  // 如果设置成 true，关于新的版本消息将不再显示
-  "vsicons.dontShowNewVersionMessage": true
+  }
 
 }

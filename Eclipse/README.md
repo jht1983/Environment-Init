@@ -11,12 +11,22 @@
 * maven 配置 installaton 为本地安装的 及 全局设置 or 用户设置(见[maven](../maven/README.md)) 以修改本地仓库位置
 * Remote Systems --> 全选 false
 * New Server: Server --> Runtime Environments --> Add 注意 JRE 选本地的
-* Window --> Web Browser --> chrome
+* Window --> Web Browser --> chrome (Java EE 视图)
 
 ## 插件
 
-1. Subclipse 1.10.xx 用于 svn for eclipse
-1. Spring IDE 用于 Spring 开发
-1. Eclipse Color Theme 用于更改 Eclipse 配色方案：http://www.eclipsecolorthemes.org/
-1. jrebal
-1. dev-tools 用于 java web 项目热 republish
+1. 项目热部署: [JRebel](https://marketplace.eclipse.org/content/jrebel-eclipse )
+
+    登录 https://my.jrebel.com/login 即可拿到注册码
+
+    ```txt
+    VfwdOHYIylqZEW5ec3cc0MwSixnWswLTm82hp1Nm1mNZjw+TU0cNSMMDJiDq+Yk0cR0hTOimz6eOC+Q11ggXvo7/voomiKTC8nbSeNY+zytmMBY/Wk0CarO4Es6MZvXsYOOpkg==
+    ```
+
+1. Spring 开发: [Spring Tools](https://marketplace.eclipse.org/content/spring-tools-aka-spring-ide-and-spring-tool-suite#group-external-install-button)
+
+    Eclipse + Spring Tools = STS, 不如单独下一个 STS
+
+1. SVN 支持: [Subclipse(推荐)](https://marketplace.eclipse.org/content/subclipse) or [Subversive](https://marketplace.eclipse.org/content/subversive-svn-team-provider)
+
+    Subclipse 是 SVN 官方的 eclipse 插件。而Subversive 则是 eclipse 官方的 SVN 插件
