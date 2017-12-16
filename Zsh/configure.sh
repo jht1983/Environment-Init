@@ -4,10 +4,7 @@ function MYECHO(){
 }
 
 function usage(){
-  MYECHO "usage: ./setup.sh 1 for CentOS 7"
-  # MYECHO "usage: ./setup.sh 2 for Fedora 27"
-  # MYECHO "usage: ./setup.sh 3 for Ubuntu 16.04"
-  MYECHO "usage: ./setup.sh 4 for Debian 9"
+  MYECHO "usage: ./setup.sh for CentOS 7 & Debian 9"
   exit 1
 }
 
@@ -29,13 +26,32 @@ function CheckYes(){
 }
 
 # init
-if [ $# != 1 ]; then usage;
-elif [ $1 = 1 ]; then __PKG__="sudo yum";     ## for CentOS 7
-# elif [ $1 = 2 ]; then __PKG__="sudo dnf";     ## for Fedora 27    本脚本不再维护此方案
-# elif [ $1 = 3 ]; then __PKG__="sudo apt";     ## for Ubuntu 16.04 本脚本不再维护此方案
-elif [ $1 = 4 ]; then __PKG__="sudo apt";     ## for Debian 9
-else usages;
-fi
+source /etc/os-release
+
+case "$ID $VERSION_ID" in
+'centos 7')
+    __CASE__=1
+    __PKG__="sudo yum"
+    ;;
+'fedora 27')    # 本脚本不再维护此方案
+    __CASE__=2
+    __PKG__="sudo dnf"
+    ;;
+'ubuntu 16.04') # 本脚本不再维护此方案
+    __CASE__=3
+    __PKG__="sudo apt"
+    ;;
+'debian 9')
+    __CASE__=4
+    __PKG__="sudo apt"
+    ;;
+*)
+    MYECHO "本机的系统不受支持"
+    usage
+    ;;
+esac
+
+__CUR__=$(cd `dirname $0`; pwd)
 
 MYECHO "# ---------- 配置 zshrc ---------- #"
 
@@ -71,9 +87,9 @@ sed -i '/source $ZSH\/oh-my-zsh.sh/a\\nsource ~/.ljcrc' ~/.zshrc
 # 插件
 # PS：incr 很酷炫，就是年久失修，有点不稳定 如在终端输入 echo $'hello world\x21' 终端会关闭？
 # PS2：autoenv 插件在 centos 下有问题, 先禁掉
-if [ $1 = 1 ]; then                         ## for CentOS 7
+if [ $__CASE__ = 1 ]; then
   sed -i 's/^  git$/  autojump colored-man-pages colorize cp extract git history history-substring-search mosh rsync screen ssh-agent sudo web-search zsh-autosuggestions incr zsh-syntax-highlighting/g' ~/.zshrc
-elif [ $1 = 4 ]; then                         ## for Debian 9
+elif [ $__CASE__ = 4 ]; then
   sed -i 's/^  git$/  autoenv autojump colored-man-pages colorize cp extract git history history-substring-search mosh rsync screen ssh-agent sudo web-search zsh-autosuggestions incr zsh-syntax-highlighting/g' ~/.zshrc
 fi
 

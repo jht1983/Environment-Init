@@ -4,10 +4,7 @@ function MYECHO(){
 }
 
 function usage(){
-  MYECHO "usage: ./setup.sh 1 for CentOS 7"
-  # MYECHO "usage: ./setup.sh 2 for Fedora 27"
-  # MYECHO "usage: ./setup.sh 3 for Ubuntu 16.04"
-  MYECHO "usage: ./setup.sh 4 for Debian 9"
+  MYECHO "usage: ./setup.sh for CentOS 7 & Debian 9"
   exit 1
 }
 
@@ -29,13 +26,32 @@ function CheckYes(){
 }
 
 # init
-if [ $# != 1 ]; then usage;
-elif [ $1 = 1 ]; then __PKG__="sudo yum";     ## for CentOS 7
-# elif [ $1 = 2 ]; then __PKG__="sudo dnf";     ## for Fedora 27    本脚本不再维护此方案
-# elif [ $1 = 3 ]; then __PKG__="sudo apt";     ## for Ubuntu 16.04 本脚本不再维护此方案
-elif [ $1 = 4 ]; then __PKG__="sudo apt";     ## for Debian 9
-else usages;
-fi
+source /etc/os-release
+
+case "$ID $VERSION_ID" in
+'debian 9')
+    __CASE__=4
+    __PKG__="sudo apt"
+    ;;
+'centos 7')
+    __CASE__=1
+    __PKG__="sudo yum"
+    ;;
+'ubuntu 16.04') # 本脚本不再维护此方案
+    __CASE__=3
+    __PKG__="sudo apt"
+    ;;
+'fedora 27')    # 本脚本不再维护此方案
+    __CASE__=2
+    __PKG__="sudo dnf"
+    ;;
+*)
+    MYECHO "本机的系统不受支持"
+    usage
+    ;;
+esac
+
+__CUR__=$(cd `dirname $0`; pwd)
 
 MYECHO "# ---------- Starting install zsh ---------- #"
 

@@ -1,0 +1,65 @@
+#!/bin/bash
+function MYECHO(){
+  echo -e "\033[44;37m$1\033[0m"
+}
+
+function usage(){
+  MYECHO "usage: ./runvnc <operation> <Display num> <Geometry>"
+  MYECHO "operation: start stop restart"
+}
+
+# init
+source /etc/os-release
+
+case "$ID $VERSION_ID" in
+'centos 7')
+    __CASE__=1
+    __PKG__="sudo yum"
+    ;;
+'debian 9')
+    __CASE__=4
+    __PKG__="sudo apt"
+    ;;
+*)
+    MYECHO "本机的系统不受支持"
+    usage
+    exit 1
+    ;;
+esac
+
+__CUR__=$(cd `dirname $0`; pwd)
+
+DISPLAY="1"
+GEOMETRY="1440x900"
+
+if [ $# -lt 1 -o $# -gt 3 ]; then
+  usage
+  exit 1
+elif [ $# -eq 3 ]; then
+  GEOMETRY=$3
+  DISPLAY=$2
+elif [ $# -eq 2 ]; then
+  DISPLAY=$2
+fi
+
+case "$1" in
+start)
+  if [ $__CASE__ = 1 ]; then
+    vncserver -depth 24 -geometry ${GEOMETRY} :${DISPLAY}
+  elif [ $__CASE__ = 4 ]; then
+    vncserver -localhost no -depth 24 -geometry ${GEOMETRY} :${DISPLAY}
+  fi
+  ;;
+stop)
+  vncserver -kill :${DISPLAY}
+  ;;
+restart)
+  $0 stop $2
+  $0 start $2
+  ;;
+*)
+  MYECHO "错误的操作"
+  usage
+  exit 1
+  ;;
+esac

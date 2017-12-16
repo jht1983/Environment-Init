@@ -20,6 +20,9 @@
 #sudo apt-get update
 #sudo apt-get install -y wiznote
 
+# MYECHO "protocol-buffer"
+# $__PKG__ install -y protobuf-compiler
+
 Libreoffice 中文语言包
 yum install -y libreoffice-langpack-zh-Hans*
 
@@ -29,3 +32,4 @@ yum install -y libreoffice-langpack-zh-Hans*
 Mendeley: 一个跨平台的文献管理软件
 Foxit Reader: 福昕PDF阅读器
 f.lux: 过滤屏幕蓝光，保护眼睛
+GIMP – 强大的开源图像编辑工具

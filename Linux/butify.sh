@@ -4,11 +4,7 @@ function MYECHO(){
 }
 
 function usage(){
-  MYECHO "usage: ./butify.sh 1 for CentOS 7"
-  # MYECHO "usage: ./butify.sh 2 for Fedora 27"
-  # MYECHO "usage: ./butify.sh 3 for Ubuntu 16.04"
-  MYECHO "usage: ./butify.sh 4 for Debian 9"
-  exit 1
+  MYECHO "usage: ./butify.sh for CentOS 7 & Debian 9"
 }
 
 function CheckYes(){
@@ -29,13 +25,31 @@ function CheckYes(){
 }
 
 # init
-if [ $# != 1 ]; then usage;
-elif [ $1 = 1 ]; then __PKG__="sudo yum";     ## for CentOS 7
-# elif [ $1 = 2 ]; then __PKG__="sudo dnf";     ## for Fedora 27    本脚本不再维护此方案
-# elif [ $1 = 3 ]; then __PKG__="sudo apt";     ## for Ubuntu 16.04 本脚本不再维护此方案
-elif [ $1 = 4 ]; then __PKG__="sudo apt";     ## for Debian 9
-else usages;
-fi
+source /etc/os-release
+
+case "$ID $VERSION_ID" in
+'centos 7')
+    __CASE__=1
+    __PKG__="sudo yum"
+    ;;
+'fedora 27')    # 本脚本不再维护此方案
+    __CASE__=2
+    __PKG__="sudo dnf"
+    ;;
+'ubuntu 16.04') # 本脚本不再维护此方案
+    __CASE__=3
+    __PKG__="sudo apt"
+    ;;
+'debian 9')
+    __CASE__=4
+    __PKG__="sudo apt"
+    ;;
+*)
+    MYECHO "本机的系统不受支持"
+    usage
+    exit 1
+    ;;
+esac
 
 __CUR__=$(cd `dirname $0`; pwd)
 
@@ -49,9 +63,9 @@ MYECHO "# ------------ 1 主题 ------------ #"
 
 MYECHO "# -------- 1.0 Adapta -------- #"
 # https://github.com/adapta-project/adapta-gtk-theme
-if [ $1 = 1 ]; then                           ## for CentOS 7 编译要求的包不同！
+if [ $__CASE__ = 1 ]; then # CentOS 7 编译要求的包不同！
   $__PKG__ install -y autoconf automake inkscape sassc libglib2.0-dev libsass0 libxml2-utils pkg-config parallel gdk-pixbuf2-devel
-elif [ $1 = 4 ]; then                         ## for Debian 9
+elif [ $__CASE__ = 4 ]; then
   $__PKG__ install -y autoconf automake inkscape sassc libgdk-pixbuf2.0-dev libglib2.0-dev libsass0 libxml2-utils pkg-config parallel
 fi
 # git clone https://github.com/adapta-project/adapta-gtk-theme.git
@@ -116,16 +130,16 @@ MYECHO "# ------------ 3 字体加强 ------------ #"
 # PS3: 特定程序的字体要单独改 浏览器 编辑器
 
 MYECHO "# ----- 3.0 Noto sans, Noto serif, Noto mono ----- #"
-if [ $1 = 1 ]; then                           ## for CentOS 7
+if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y google-noto-cjk-fonts
-elif [ $1 = 4 ]; then                         ## for Debian 9 自带
+elif [ $__CASE__ = 4 ]; then # Debian 9 自带
   MYECHO "nothing 1"
 fi
 
 MYECHO "# -------- 3.1 Source Sans Pro -------- #"
-if [ $1 = 1 ]; then                           ## for CentOS 7
+if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y adobe-source-code-pro-fonts
-elif [ $1 = 4 ]; then                         ## for Debian 9 手动安装
+elif [ $__CASE__ = 4 ]; then # Debian 9 手动安装
   tar xzf Souce\ Code\ Pro.tar.gz
   sudo cp -r ./Souce\ Code\ Pro/ /usr/share/fonts
   cd /usr/share/fonts/Souce\ Code\ Pro/
@@ -143,10 +157,10 @@ fi
 MYECHO "# ------------ 4 面板 ------------ #"
 
 MYECHO "# -------- 4.0 面板插件 -------- #"
-if [ $1 = 1 ]; then                           ## for CentOS 7
+if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y xfce4-whiskermenu-plugin xfce4-battery-plugin xfce4-clipman-plugin xfce4-datetime-plugin xfce4-netload-plugin xfce4-wavelan-plugin xfce4-screenshooter-plugin
   # $__PKG__ install -y xfce4-timer-plugin # 并没有
-elif [ $1 = 4 ]; then                         ## for Debian 9 自带这几个
+elif [ $__CASE__ = 4 ]; then # Debian 9 自带这几个
   MYECHO "nothing 2"
 fi
 
@@ -273,9 +287,9 @@ mv terminator ~/.config/terminator
 MYECHO "# ------- 5.4 配置 桌面 ------- #"
 
 rm -rf ~/.config/xfce4
-if [ $1 = 1 ]; then                           ## for CentOS 7
+if [ $__CASE__ = 1 ]; then
   mv xfce4-centos7 ~/.config/xfce4
-elif [ $1 = 4 ]; then                         ## for Debian 9
+elif [ $__CASE__ = 4 ]; then
   mv xfce4-debian ~/.config/xfce4
 fi
 sudo reboot
