@@ -62,17 +62,17 @@ if [ $__CASE__ = 1 ]; then
 
   # 7 修改 远程桌面显示配置文件 然后重启服务
   echo "#!/bin/bash
-  unset SESSION_MANAGER
-  unset DBUS_SESSION_BUS_ADDRESS
-  [ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-  [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-  xsetroot -solid grey
-  vncconfig -iconic &
-  startxfce4 &      # xfce
-  # gnome-session & # GNOME desktop
-  # startkde &      # kde desktop
-  # twm &           # Text interface
-  # exec /usr/bin/fluxbox" > ~/.vnc/xstartup
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+startxfce4 &      # xfce
+# gnome-session & # GNOME desktop
+# startkde &      # kde desktop
+# twm &           # Text interface
+# exec /usr/bin/fluxbox" > ~/.vnc/xstartup
   sudo systemctl stop vncserver@:$1.service
 
   # 8 设置 防火墙
@@ -91,16 +91,16 @@ elif [ $__CASE__ = 4 ]; then
 
   # 3 修改 远程桌面显示配置文件
   echo "#!/bin/bash
-  unset SESSION_MANAGER
-  unset DBUS_SESSION_BUS_ADDRESS
-  [ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
-  [ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
-  xsetroot -solid grey
-  vncconfig -iconic &
-  startxfce4 &      # xfce
-  # gnome-session & # GNOME desktop
-  # startkde &      # kde desktop
-  # twm &           # Text interface
-  # exec /usr/bin/fluxbox" > ~/.vnc/xstartup
+unset SESSION_MANAGER
+unset DBUS_SESSION_BUS_ADDRESS
+[ -x /etc/vnc/xstartup ] && exec /etc/vnc/xstartup
+[ -r $HOME/.Xresources ] && xrdb $HOME/.Xresources
+xsetroot -solid grey
+vncconfig -iconic &
+startxfce4 &      # xfce
+# gnome-session & # GNOME desktop
+# startkde &      # kde desktop
+# twm &           # Text interface
+# exec /usr/bin/fluxbox" > ~/.vnc/xstartup
 
 fi

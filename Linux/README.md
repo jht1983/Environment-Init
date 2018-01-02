@@ -83,7 +83,7 @@ Xfce 比 LXDE 重一点点, 美观许多
 * 修改运行级别 `systemctl isolate graphical.target`, 初始化桌面: 选 XFce
 * (虚拟机: 关机+设置共享文件夹+开机/)重启, 删除旧内核 `sudo yum remove kernel -y`
 * 运行脚本 ./butify.sh
-* 自动重启, 删 `桌面` 文件夹, 设置默认终端模拟器
+* 自动重启, 删 `桌面` 文件夹, 设置默认终端模拟器 terminator
 * 根据 configure.sh 进行最后的配置
 
 ### Debian 9
@@ -100,7 +100,7 @@ Xfce 比 LXDE 重一点点, 美观许多
 * su root
 * 编辑 /etc/apt/sources.list, 移除 cd-rom 源 `vi /etc/apt/sources.list`
 * 安装 sudo: apt install sudo + vi /etc/sudoers + `<username> ALL=(ALL) ALL` + :wq! 强制保存
-* (虚拟机: 安 vmware tools+关机+设置共享文件夹+开机/)重启 + 改 网络适配器
+* (虚拟机: 安 vmware tools+关机+设置共享文件夹+改网络适配器+开机/)重启
 * <
 * 拷入脚本, 运行脚本 ./setup.sh 然后 ./butify.sh
 * 自动重启 删 `桌面` 文件夹

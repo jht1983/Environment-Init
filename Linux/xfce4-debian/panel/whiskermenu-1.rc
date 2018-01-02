@@ -1,4 +1,4 @@
-favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-mail-reader.desktop,exo-web-browser.desktop
+favorites=exo-terminal-emulator.desktop,exo-file-manager.desktop,exo-web-browser.desktop,code.desktop
 recent=code.desktop,xfce4-taskmanager.desktop,exo-terminal-emulator.desktop
 button-title=Start
 button-icon=xfce4-whiskermenu

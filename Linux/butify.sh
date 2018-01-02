@@ -71,7 +71,7 @@ fi
 # git clone https://github.com/adapta-project/adapta-gtk-theme.git
 tar xzf adapta-gtk-theme.tar.gz
 cd adapta-gtk-theme
-./autogen.sh
+./autogen.sh --enable-parallel --enable-chrome
 make
 sudo make install
 cd $__CUR__

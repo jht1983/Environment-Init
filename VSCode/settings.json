@@ -115,17 +115,17 @@
   // 控制是否在再次打开命令面板时恢复上一次的输入内容。
   "workbench.commandPalette.preserveInput": true,
 
+  // 控制文件被其他某些进程删除或重命名时是否应该自动关闭显示文件的编辑器。禁用此项会保持编辑器作为此类事件的脏文件打开。请注意，从应用程序内部进行删除操作会始终关闭编辑器，并且脏文件始终不会关闭以保存数据。
+  "workbench.editor.closeOnFileDelete": false,
+
+  // 控制编辑器选项卡的大小。若设置为 "fit"，选项卡将总是足够大，能够完全显示编辑器标签。若设置为 "shrink"，将在不能一次全部显示所有选项卡时，允许选项卡缩小。
+  "workbench.editor.tabSizing": "shrink",
+
   // 控制 Quick Open 是否应在失去焦点时自动关闭。
   "workbench.quickOpen.closeOnFocusLost": false,
 
   // 控制边栏的位置。它可显示在工作台的左侧或右侧。
   "workbench.sideBar.location": "right",
-
-  // 控制面板的位置。它可显示在工作台的底部或右侧。
-  "workbench.panel.location": "bottom",
-
-  // 控制文件被其他某些进程删除或重命名时是否应该自动关闭显示文件的编辑器。禁用此项会保持编辑器作为此类事件的脏文件打开。请注意，从应用程序内部进行删除操作会始终关闭编辑器，并且脏文件始终不会关闭以保存数据。
-  "workbench.editor.closeOnFileDelete": false,
 
   // 指定用在工作台中的颜色主题。
   "workbench.colorTheme": "Default Light+",

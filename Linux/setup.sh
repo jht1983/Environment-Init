@@ -222,7 +222,7 @@ fi
 
 ### 3.4 GUI 软件
 MYECHO "installing GUI 软件"
-$__PKG__ install -y terminator meld
+$__PKG__ install -y terminator meld redshift-gtk
 
 MYECHO "#-------------- Part 4 设置 --------------#"
 
@@ -230,7 +230,7 @@ MYECHO "#-------------- Part 4 设置 --------------#"
 
 ### 4.2 终端提示符彩色显示
 echo 'export PS1="\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]"' >> ~/.bashrc
-sudo echo 'export PS1="\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]"' >> /root/.bashrc
+sudo sh -c 'echo "export PS1=\"\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\[\e[0m\]\"" >> /root/.bashrc'
 # 想改哪个用户的提示符, 就放到那个用户的 ~/.bashrc 中, 尽量不要动全局变量, 如 /etc/profile、/etc/bash.bashrc, 同时 ~/.bashrc 是最后读取的, 不会被 overwrite
 # .vimrc同理
 

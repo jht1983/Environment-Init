@@ -68,7 +68,7 @@ chmod 755 /home/$(whoami)/X/Program/Script/*
 ## 2 配置开机启动脚本
 if [ $__CASE__ = 1 ]; then
 sudo sh -c "echo \"#!/bin/bash
-#chkconfig:2345 80 90
+#chkconfig:2345 80 30
 #description:ljc_init
 
 /home/$(whoami)/X/Program/Script/ljc_init.sh\" > /etc/init.d/ljc_init.sh"
@@ -91,47 +91,30 @@ fi
 
 ## 3 配置 共享文件夹 for CentOS7
 if [ $__CASE__ = 1 ]; then
-  sudo mkdir /mnt/hgfs
-  echo 'sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other' >> /home/$(whoami)/X/Program/Script/ljc_init.sh
-  sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other
+  CheckYes "不配置 共享文件夹?(y/n 默认不配置):"
+  if [ $? = 0 ]; then
+    sudo mkdir /mnt/hgfs
+    echo 'sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other' >> /home/$(whoami)/X/Program/Script/ljc_init.sh
+    sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other
+  fi
 fi
 
-## 4 连接虚拟磁盘
+## 4 挂载磁盘 & 虚拟磁盘
 # 安装 nbd 模块 for CentOS7
 if [ $__CASE__ = 1 ]; then
   sudo mv nbd.ko1 /lib/modules/$(uname -r)/kernel/drivers/block/nbd.ko
   sudo depmod -a
 fi
+# 安装 qemu for Debian9
+if [ $__CASE__ = 4 ]; then
+  sudo apt install -y qemu-utils qemu-block-extra
+fi
 # 开机加载 nbd 模块
 sudo sh -c "echo 'nbd' > /etc/modules-load.d/nbd.conf"
 sudo sh -c "echo 'options nbd max_part=16' > /etc/modprobe.d/nbd.conf"
+sudo modprobe nbd max_part=16
+# 设置挂载点
+sudo mkdir -p /media/will/{Data,NTFS,X}
 
 ## 5 检测 ssh 无密码登录, 并输一遍 yes
 ssh localhost
-
-## 6 配置 vnc
-curl -sLf https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/VNC/setup.sh | bash -s -- 1
-
-## 7 配置 zsh
-curl -sLf https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Zsh/setup.sh | bash
-curl -sLf https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Zsh/configure.sh | bash
-
-## 8 配置 vim
-# echo "installing 'Vim Customized by Ljc'"     # 作为主力 终端界面的 编辑器, 保证适用简洁高效
-# $__PKG__ install -y vim ctags cscope astyle
-# # install vimdoc@cn from vimcdoc.sourceforge.net
-# # git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-# wget -q https://raw.githubusercontent.com/Will-Grindelwald/Environment-Init/master/Vim/setup && sh -x setup
-
-# mkdir -p ~/.local/share/fonts
-# mv fonts/* ~/.local/share/fonts
-# rm -rf fonts
-# curl -sLf https://spacevim.org/install.sh | bash
-
-## 9 配置 VSCode
-
-## 10 配置 Java
-# 还是手动安装 Java 吧
-# $__PKG__ install -y java-1.8.0-openjdk java-1.8.0-openjdk-src java-1.8.0-openjdk-javadoc java-1.8.0-openjdk-devel
-
-## 11 配置 git 的 ssh keys 与 gpg keys
