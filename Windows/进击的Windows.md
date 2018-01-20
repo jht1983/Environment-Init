@@ -189,7 +189,21 @@ Windows Registry Editor Version 5.00
 
 PS：不过该方法只是隐藏了 OneDrive 图标, OneDrive 其实并没有卸载, 你在文件资源管理器地址栏中输入 onedrive, 回车即可打开 OneDrive；或者你用 Cortana 小娜搜索 onedrive 也可以打开。以后想要重新显示 OneDrive 图标的话, 只需把数值数据重新修改回 1 即可。
 
-### 4. Windows 技巧 之 启用_Windows_Linux_子系统
+### 4. 安装.net 3.5
+
+1. 挂载 Win8／10 的 ISO
+1. 命令提示符(管理员)  输入如下命令:
+
+    ```cmd
+    # 对于 Win8:
+    dism.exe /online /enable-feature /featurename:NetFX3 /Source:F:\sources\sxs
+    # 对于 Win10:
+    Dism /online /enable-feature /featurename:NetFX3 /All /Source:F:\sources\sxs /LimitAccess
+    ```
+
+注意: 这里的盘符 F 是加载 ISO 的虚拟光驱盘符, 视情况而定.
+
+### 5. Windows 技巧 之 启用_Windows_Linux_子系统
 
 系统要求: Windows 10 Version 1709 以上 & 专业版以上
 

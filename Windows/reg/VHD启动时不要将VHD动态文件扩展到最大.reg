@@ -1,0 +1,10 @@
+Windows Registry Editor Version 5.00
+
+;>. VHD系统启动时, 阻止动态扩展VHD扩展到完整大小 (Prevent the VHD from expanding to its full size)
+; 该优化对固定VHD硬盘文件大小的系统不起作用.
+; MS 技术文档:
+;   http://technet.microsoft.com/en-us/library/gg318055(v=ws.10).aspx
+; 值为1时, 允许动态扩展 VHD 扩展到完整大小 (默认)
+; 值为4时, 阻止动态扩展 VHD 扩展到完整大小
+[HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\FsDepends\Parameters]
+"VirtualDiskExpandOnMount"=dword:00000004
