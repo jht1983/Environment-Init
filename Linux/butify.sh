@@ -89,6 +89,8 @@ $__PKG__ install -y numix-gtk-theme
 # https://github.com/anmoljagetia/Flatabulous 在 Xfce 上兼容不好
 # only for Ubuntu 安装方法见 github
 
+# 还有这个不错(仅用于gnome) https://github.com/nana-4/materia-theme
+
 MYECHO "# ------------ 2 图标 ------------ #"
 
 # 安装方法: sudo cp -r 到 /usr/share/icons 即可

@@ -336,6 +336,27 @@
         "key": "ctrl+shift+r",
         "command": "-workbench.action.quickOpenNavigatePreviousInRecentFilesPicker",
         "when": "inQuickOpen && inRecentFilesPicker"
+    },
+    // 集成终端下的命令追踪：滚动到上一个命令开头、滚动到下一个命令开头、选择上一个命令及输出、选择下一个命令及输出
+    {
+        "key": "ctrl+up",
+        "command": "workbench.action.terminal.scrollToPreviousCommand",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "workbench.action.terminal.scrollToNextCommand",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+up",
+        "command": "workbench.action.terminal.selectToPreviousCommand",
+        "when": "terminalFocus"
+    },
+    {
+        "key": "ctrl+shift+down",
+        "command": "workbench.action.terminal.selectToNextCommand",
+        "when": "terminalFocus"
     }
     // 最后一个没有末尾逗号
 ]

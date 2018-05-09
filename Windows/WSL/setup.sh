@@ -191,6 +191,42 @@ $__PKG__ install -y autoconf automake
 
 MYECHO "#--------------- Part 3 桌面 --------------#"
 
+### 3.1 for Xfce
+if [ $__CASE__ != 4 ]; then # 非 Debian
+  CheckYes "install Xfce?(y/n):"
+  if [ $? = 1 ]; then
+    MYECHO "installing Xfce"
+    if [ $__CASE__ = 1 ]; then
+      # CentOS 7 最小安装 安装 Xfce, 没有中文字体, 太麻烦, 先安 GNOME
+      $__PKG__ groupinstall -y "GNOME Desktop"
+      $__PKG__ groupinstall -y "Graphical Administration Tools"
+      $__PKG__ groupinstall -y Xfce
+      $__PKG__ install -y xfce4-notifyd
+    elif [ $__CASE__ = 2 ]; then
+      $__PKG__ install -y @xfce-desktop-environment
+    elif [ $__CASE__ = 3 ]; then
+      $__PKG__ install -y xfce4
+    fi
+  fi
+fi
+
+if [ $__CASE__ = 1 -o $__CASE__ = 2 -o $__CASE__ = 4 ]; then
+  # $__PKG__ install -y xfce4-whiskermenu
+  MYECHO "nothing 4"
+elif [ $__CASE__ = 3 ]; then
+  MYECHO "nothing 5"
+fi
+
+### 3.2 for LXDE
+# MYECHO "nothing 6"
+
+### 3.3 for Ubuntu GNOME
+# $__PKG__ install -y gnome-tweak-tool
+
+### 3.4 GUI 软件
+MYECHO "installing GUI 软件"
+$__PKG__ install -y terminator meld redshift-gtk
+
 MYECHO "#-------------- Part 4 设置 --------------#"
 
 ### 4.1 改主机名 `hostnamectl set-hostname LJC`

@@ -62,3 +62,19 @@ sudo service ssh --full-restart
 默认系统中提示音非常烦人，可以通过配置 $HOME/.inputrc 去除
 
 echo "set bell-style none" > $HOME/.inputrc
+
+
+
+
+
+例如我的 Python 在 Windows 的环境路径在 C:\Users\kevin\AppData\Local\Programs\Python\Python36\
+
+那么在 Linux 里执行以下命令加进来即可。
+
+export PATH=$PATH:/mnt/c/Users/kevin/AppData/Local/Programs/Python/Python36
+当给你需要执行 Windows 上的 Python 时，可以使用以下命令
+
+python.exe file_name.py
+官方也对这部分内容进行了详细的解释。
+
+因此如果你安装了 Visual Studio Code 那么也可以直接在 Linux 的 Bash 里使用 code . 的方式直接打开目录进行编辑。

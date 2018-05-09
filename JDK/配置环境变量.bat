@@ -1,4 +1,5 @@
 @echo off
+echo зЂВс JDK
 md "%temp%\regeditTemp"
 cd /d "%temp%\regeditTemp"
 reg query "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v path >> path.txt
@@ -7,4 +8,5 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v p
 )
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v JAVA_HOME /d "C:\Program Files\Java\jdk1.8.0_60" /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\Environment" /v CLASSPATH /d "." /f
-exit
+cd /d "%temp%"
+rd /s /q "%temp%\regeditTemp"

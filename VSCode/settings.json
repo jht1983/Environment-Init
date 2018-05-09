@@ -135,6 +135,9 @@
   // 指定用在工作台中的图标主题。
   "workbench.iconTheme": "vscode-icons",
 
+  // 控制工作台中的树控件是否支持水平滚动。
+  "workbench.tree.horizontalScrolling": true,
+
 // 窗口(5/11)
 
   // 控制是否应在新窗口中打开文件。
@@ -266,7 +269,10 @@
 
 // PHP(0/4)
 
-// TypeScript(0/51)
+// TypeScript(1/56)
+
+  // 启用或禁用语法折叠标记。
+  "typescript.experimental.syntaxFolding": true,
 
 // 调试(0/6)
 
@@ -288,6 +294,9 @@
 
 // 集成终端(12/21)
 
+  // 控制终端在点击右键时进行的操作，可选值为 "default"、 "copyPaste" 和 "selectWord"。选择 "default" 将显示上下文菜单；选择 "copyPaste" 将在有选择内容时进行复制，其他时候进行粘贴；选择 "selectWord" 终端将选择光标下的字并显示上下文菜单。
+  "terminal.integrated.rightClickBehavior": "default",
+
   // 终端在 Linux 上使用的 shell 的路径。
   // "terminal.integrated.shell.linux": "sh",
 
@@ -306,9 +315,6 @@
 
   // 在 Windows 终端上时使用的命令行参数。
   // "terminal.integrated.shellArgs.windows": [],
-
-  // 设置后，在终端内右键单击时，这将阻止显示上下文菜单，相反，它将在有选项时进行复制，并且在没有选项时进行粘贴。
-  "terminal.integrated.rightClickCopyPaste": false,
 
   // 控制终端的字号(以像素为单位)。
   // "terminal.integrated.fontSize": 14,
