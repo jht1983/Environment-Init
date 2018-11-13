@@ -60,10 +60,10 @@ echo "source ~/.ljc_alias" >> ~/.ljcrc
 echo "source ~/.ljcrc" >> ~/.bashrc
 
 MYECHO "#----------- Part 1 配置环境变量 --------------#"
-echo 'export PATH=$PATH:/home/$(whoami)/X/Program/Script' >> ~/.ljcrc
+echo 'export PATH=$PATH:/home/$(whoami)/X/bin' >> ~/.ljcrc
 mkdir -p /home/$(whoami)/X/{Program,project,workspace}
-mv Script /home/$(whoami)/X/Program
-chmod 755 /home/$(whoami)/X/Program/Script/*
+mv bin /home/$(whoami)/X
+chmod 755 /home/$(whoami)/X/bin/*
 
 MYECHO "#----------- Part 2 配置开机启动脚本 -----------#"
 if [ $__CASE__ = 1 ]; then
@@ -71,7 +71,7 @@ sudo sh -c "echo \"#!/bin/bash
 #chkconfig:2345 80 30
 #description:ljc_init
 
-/home/$(whoami)/X/Program/Script/ljc_init.sh\" > /etc/init.d/ljc_init.sh"
+/home/$(whoami)/X/bin/ljc_init.sh\" > /etc/init.d/ljc_init.sh"
 elif [ $__CASE__ = 3 -o $__CASE__ = 4 ]; then
 sudo sh -c "echo \"#!/bin/bash
 ### BEGIN INIT INFO
@@ -79,7 +79,7 @@ sudo sh -c "echo \"#!/bin/bash
 # Default-Stop:      0 1 6
 ### END INIT INFO
 
-/home/$(whoami)/X/Program/Script/ljc_init.sh\" > /etc/init.d/ljc_init.sh"
+/home/$(whoami)/X/bin/ljc_init.sh\" > /etc/init.d/ljc_init.sh"
 fi
 sudo chmod 755 /etc/init.d/ljc_init.sh
 
@@ -94,7 +94,7 @@ if [ $__CASE__ = 1 ]; then
   CheckYes "配置 共享文件夹 for 虚拟 linux?(y/n):"
   if [ $? = 1 ]; then
     sudo mkdir /mnt/hgfs
-    echo 'sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other' >> /home/$(whoami)/X/Program/Script/ljc_init.sh
+    echo 'sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other' >> /home/$(whoami)/X/bin/ljc_init.sh
     sudo vmhgfs-fuse .host:/ /mnt/hgfs -o subtype=vmhgfs-fuse,allow_other
   fi
 fi

@@ -319,4 +319,24 @@ fi
 
 if [ $__CASE__ = 3 ]; then
   MYECHO "ubuntu 1804 须手动使用 gnome-tweak-tool 改变壁纸、主题、字体、电池百分比、时钟日历"
+  mkdir ~/Picture/Wallpapers
+  mv Desktop.jpg ~/Picture/Wallpapers
+
+  #  设置
+  #    区域和语言  设置 语言
+  #    通用辅助功能 大号文本 光标大小
+  #    电源       不自动挂起 电源按钮功能
+  #    日期时间    自动设置时区
+  #    键盘       快捷键
+  #
+  #  优化
+  #    外观   主题 Adapta, 光标 DMZ-Black, 图标 Flat-Remix, 背景&锁屏
+  #    字体   noto sans cjk sc Regular
+  #    工作区  工作区包括附加显示器
+  #    开机启动程序 redshift vera。。。
+  #    扩展    。。。
+  #    电源   笔记本盖子关闭时 不挂起
+  #    窗口   标题栏按钮 左？
+  #    顶栏   电池 百分比, 始终 +日期&秒&周数
+
 fi

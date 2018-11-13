@@ -43,20 +43,12 @@ __CUR__=$(cd `dirname $0`; pwd)
 
 MYECHO "# ----------------- 配置 小米 办公 开发使用的工具 ----------------- #"
 
-mioffice wifi
-vpn
-relay
-浏览器 代理
-xiaomi 邮箱
-xiaomi 办公打印机
-phabricator
-
-
-MYECHO "# ------------ 1 主题 ------------ #"
-
-MYECHO "# ------------ 2 字体加强 ------------ #"
-
-MYECHO "# ------------ 3 面板 ------------ #"
-
-MYECHO "# ------------ 4 设置 ------------ #"
-
+mioffice wifi https://wiki.n.miui.com/pages/viewpage.action?pageId=59146091
+vpn           https://v.mioffice.cn
+relay         https://wiki.n.miui.com/pages/viewpage.action?pageId=39626128
+浏览器 代理      http://infra.d.xiaomi.net/spark/userDoc/configure-web-proxy.html
+xiaomi 邮箱     https://wiki.n.miui.com/pages/viewpage.action?pageId=58474335
+xiaomi 办公打印机 https://wiki.n.miui.com/pages/viewpage.action?pageId=97006141&preview=%2F97006141%2F97006033%2F%E3%80%90%E6%89%93%E5%8D%B0%E6%9C%BA%E3%80%91%E6%89%93%E5%8D%B0%E6%9C%BA%E8%BF%9E%E6%8E%A5%E6%95%99%E7%A8%8B--Canon.pdf
+phabricator     https://wiki.n.miui.com/pages/viewpage.action?pageId=3608126
+SonarLint       https://wiki.n.miui.com/pages/viewpage.action?pageId=36339754
+小米的代码规范    从git@git.n.xiaomi.com:xiaomi-commons/coding-standard.git检出coding standard文件，导入到编辑器中。（注意intellij导入checkstyle的jar包直接走file->import settings导入）。
