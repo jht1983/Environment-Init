@@ -4,7 +4,7 @@ function MYECHO(){
 }
 
 function usage(){
-  MYECHO "usage: ./butify.sh for CentOS 7 & Debian 9"
+  MYECHO "usage: ./butify.sh for CentOS 7 & Debian 9 & ubuntu 18.04"
 }
 
 function CheckYes(){
@@ -14,7 +14,7 @@ function CheckYes(){
     echo -n "$1"
     read -t 5 in
     case $in in
-    Yes|yes|Y|y|"") condition=1 ;;
+    Yes|yes|Y|y) condition=1 ;;
     No|no|N|n) condition=0 ;;
     *) ;;
     esac
@@ -36,7 +36,7 @@ case "$ID $VERSION_ID" in
     __CASE__=2
     __PKG__="sudo dnf"
     ;;
-'ubuntu 16.04') # 本脚本不再维护此方案
+'ubuntu 18.04')
     __CASE__=3
     __PKG__="sudo apt"
     ;;
@@ -61,10 +61,16 @@ MYECHO "# ------------ 1 主题 ------------ #"
 # 外观主题选择: Adapta(低分屏选 Adapta-Eta)
 # 窗口管理器主题: numix
 
+if [ $__CASE__ = 3 ]; then
+  gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
+fi
+
 MYECHO "# -------- 1.0 Adapta -------- #"
 # https://github.com/adapta-project/adapta-gtk-theme
 if [ $__CASE__ = 1 ]; then # CentOS 7 编译要求的包不同！
   $__PKG__ install -y autoconf automake inkscape sassc libglib2.0-dev libsass0 libxml2-utils pkg-config parallel gdk-pixbuf2-devel
+elif [ $__CASE__ = 3 ]; then
+  $__PKG__ install -y inkscape libgdk-pixbuf2.0-dev libglib2.0-dev libxml2-utils pkg-config sassc parallel
 elif [ $__CASE__ = 4 ]; then
   $__PKG__ install -y autoconf automake inkscape sassc libgdk-pixbuf2.0-dev libglib2.0-dev libsass0 libxml2-utils pkg-config parallel
 fi
@@ -134,6 +140,8 @@ MYECHO "# ------------ 3 字体加强 ------------ #"
 MYECHO "# ----- 3.0 Noto sans, Noto serif, Noto mono ----- #"
 if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y google-noto-cjk-fonts
+elif [ $__CASE__ = 3 ]; then # ubuntu 18.04 安装完扩展包就有了
+  MYECHO "nothing 1"
 elif [ $__CASE__ = 4 ]; then # Debian 9 自带
   MYECHO "nothing 1"
 fi
@@ -141,7 +149,7 @@ fi
 MYECHO "# -------- 3.1 Source Sans Pro -------- #"
 if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y adobe-source-code-pro-fonts
-elif [ $__CASE__ = 4 ]; then # Debian 9 手动安装
+elif [ $__CASE__ = 3 -o $__CASE__ = 4 ]; then # Ubuntu 1804、Debian 9 手动安装
   tar xzf Souce\ Code\ Pro.tar.gz
   sudo cp -r ./Souce\ Code\ Pro/ /usr/share/fonts
   cd /usr/share/fonts/Souce\ Code\ Pro/
@@ -244,28 +252,38 @@ MYECHO "# ------------ 5 设置 ------------ #"
 
 MYECHO "# ------- 5.1 改英文目录名 ------- #"
 
-sed -e 's/桌面/Desktop/g' \
-  -e 's/下载/Downloads/g' \
-  -e 's/模板/Templates/g' \
-  -e 's/公共/Public/g' \
-  -e 's/文档/Documents/g' \
-  -e 's/音乐/Music/g' \
-  -e 's/图片/Pictures/g' \
-  -e 's/视频/Videos/g' \
-  -i ~/.config/user-dirs.dirs
-mv ~/桌面 ~/Desktop
-mv ~/下载 ~/Downloads
-mv ~/模板 ~/Templates
-mv ~/公共 ~/Public
-mv ~/文档 ~/Documents
-mv ~/音乐 ~/Music
-mv ~/图片 ~/Pictures
-mv ~/视频 ~/Videos
-# 注销后生效 还要删除一个 `桌面` 文件夹
+if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
+  sed -e 's/桌面/Desktop/g' \
+    -e 's/下载/Downloads/g' \
+    -e 's/模板/Templates/g' \
+    -e 's/公共/Public/g' \
+    -e 's/文档/Documents/g' \
+    -e 's/音乐/Music/g' \
+    -e 's/图片/Pictures/g' \
+    -e 's/视频/Videos/g' \
+    -i ~/.config/user-dirs.dirs
+  mv ~/桌面 ~/Desktop
+  mv ~/下载 ~/Downloads
+  mv ~/模板 ~/Templates
+  mv ~/公共 ~/Public
+  mv ~/文档 ~/Documents
+  mv ~/音乐 ~/Music
+  mv ~/图片 ~/Pictures
+  mv ~/视频 ~/Videos
+  # 注销后生效 还要删除一个 `桌面` 文件夹
+elif [ $__CASE__ = 3 ]; then   # for ubuntu 18.04
+  export LANG=en_US
+  xdg-user-dirs-gtk-update # 在弹出的窗口中询问是否将目录转化为英文路径, 同意并关闭.
+  export LANG=zh_CN
+fi
+
+# Ubuntu 另有方法
 
 MYECHO "# ------- 5.2 改壁纸 ------- #"
 
-mv Desktop.jpg .config/
+if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
+  mv Desktop.jpg .config/
+fi
 
 MYECHO "# ---- 5.3 配置 终端模拟器 ---- #"
 
@@ -288,11 +306,17 @@ mv terminator ~/.config/terminator
 
 MYECHO "# ------- 5.4 配置 桌面 ------- #"
 
-rm -rf ~/.config/xfce4
-if [ $__CASE__ = 1 ]; then
-  mv xfce4-centos7 ~/.config/xfce4
-elif [ $__CASE__ = 4 ]; then
-  mv xfce4-debian ~/.config/xfce4
+if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
+  rm -rf ~/.config/xfce4
+  if [ $__CASE__ = 1 ]; then
+    mv xfce4-centos7 ~/.config/xfce4
+  elif [ $__CASE__ = 4 ]; then
+    mv xfce4-debian ~/.config/xfce4
+  fi
+  sudo reboot
+  # 若失败, 再次替换 ~/.config/xfce4 迅速重启
 fi
-sudo reboot
-# 若失败, 再次替换 ~/.config/xfce4 迅速重启
+
+if [ $__CASE__ = 3 ]; then
+  MYECHO "ubuntu 1804 须手动使用 gnome-tweak-tool 改变壁纸、主题、字体、电池百分比、时钟日历"
+fi

@@ -60,13 +60,13 @@ Xfce 比 LXDE 重一点点, 美观许多
 
     配置网络 更新系统 安装软件 虽有个性化但基本是通用的
 
-* butify.sh
-
-    美化: 主题 图标 字体 壁纸 xfce面板 终端模拟器 系统配置 仅是根据本人的审美而来
-
 * configure.sh
 
     基本上是本人的个性化配置
+
+* butify.sh
+
+    美化: 主题 图标 字体 壁纸 xfce面板 终端模拟器 系统配置 仅是根据本人的审美而来
 
 ## 4 安装流程
 
@@ -128,6 +128,15 @@ Xfce 比 LXDE 重一点点, 美观许多
 * 运行脚本 ./butify.sh
 * 自动重启 删 `桌面` 文件夹
 * 根据 configure.sh 进行最后的配置
+
+### Ubuntu 18.04
+
+1. sudo passwd root
+2. ./setup.sh
+3. ./configure.sh
+4. 根据 ./butify.sh 美化
+5. 根据 ./手动.md 配置
+6. 根据 xiaomi.sh 配置
 
 ### Ubuntu/Xubuntu/Lubuntu 16.04
 

@@ -77,15 +77,14 @@
 | --- | ----- |
 | Ctrl + B/J                           | `侧边栏` 开关/ `底部面板` 开关 |
 | Ctrl + Shift + E/F/G/D/X             | `侧边栏` 5 大功能 |
-| Ctrl + Shift + M/U/Y                 | `底部面板` 四个功能之前三: 错误面板, 输出面板, 调试控制台 |
-| Ctrl + Alt + T                       | `底部面板` 四个功能之后一: 打开 `集成终端` |
+| Ctrl + Shift + M/O/Y/T               | `底部面板` 四个功能: 错误面板, 输出面板, 调试控制台, 集成终端 |
 | Ctrl + Shift + C                     | 在此处打开 `外部终端` |
 | Ctrl + M                             | 激活按 Table 键移动 `焦点` |
 | -------------------------------      |  |
 | Shift + Alt + 1                      | 切换 Editor 组布局(水平/竖直) |
 | Ctrl + 单击                          | 在 `新 Editor 组` 打开文件 |
 | Ctrl + \                             | 将当前 Editor 在 `新 Editor 组` 中打开(拆分编辑器) |
-| Ctrl + 1 / 2 / 3                     | `Editor 组` 左 / 中 / 右 切换 |
+| Ctrl + 1 / 2 / 3 / 4                 | `Editor 组` 间 焦点切换 |
 | Ctrl + K ←/→                         | `Editor 组` 向左/右移动(一次) |
 | Ctrl + Shift + PgUp / PgDown         | `Editor` 向左/右移动(一次) |
 | F3 / F4                              | 左右切换 `Editor` |

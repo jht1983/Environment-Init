@@ -35,3 +35,7 @@ Chrome 强制 http 定向到 https
 
 * 输入 webcache.googleusercontent.com, 即可强制 `Google 快照` 以 HTTPS 方式打开.
 * 输入 google.com, 即可强制 `Google` 以 HTTPS 方式打开(包括 Google Scholar).
+
+### 2)安装 非 Chrome Store 插件
+
+Chrome 浏览器打开 chrome://flags，找到(Ctrl+F)#extensions-on-chrome-urls 那一选项，然后改为 Enable，重启以后就可以在扩展程序页面拖进 crx 扩展来安装。该方法支持所有平台的 Chrome 浏览器！

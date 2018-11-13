@@ -15,7 +15,7 @@
 
 ## 插件
 
-1. 项目热部署: [JRebel](https://marketplace.eclipse.org/content/jrebel-eclipse )
+1. 项目热部署: [JRebel](https://marketplace.eclipse.org/content/jrebel-eclipse)
 
     登录 https://my.jrebel.com/login 即可拿到注册码
 

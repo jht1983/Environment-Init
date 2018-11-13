@@ -4,8 +4,8 @@ function MYECHO(){
 }
 
 function usage(){
-  MYECHO "usage: ./setup.sh for debian 9 & centos 7"
-  MYECHO "supports of ubuntu 16.04 & fedora 27 are deprecated"
+  MYECHO "usage: ./setup.sh for debian 9 & centos 7 & ubuntu 18.04"
+  MYECHO "supports of fedora 27 are deprecated"
 }
 
 function CheckYes(){
@@ -15,7 +15,7 @@ function CheckYes(){
     echo -n "$1"
     read -t 5 in
     case $in in
-    Yes|yes|Y|y|"") condition=1 ;;
+    Yes|yes|Y|y) condition=1 ;;
     No|no|N|n) condition=0 ;;
     *) ;;
     esac
@@ -37,7 +37,7 @@ case "$ID $VERSION_ID" in
     __CASE__=2
     __PKG__="sudo dnf"
     ;;
-'ubuntu 16.04') # 本脚本不再维护此方案
+'ubuntu 18.04')
     __CASE__=3
     __PKG__="sudo apt"
     ;;
@@ -60,17 +60,19 @@ MYECHO "#------------- Part 0 网络配置 -------------#"
 # sudo sh -c "echo '' >> /etc/sysconfig/network-scripts/ifcfg-eth0"
 
 ### 0.2 DNS: 清华/Google 的 IPV6 DNS & 114 的 IPV4 DNS
-if [ $__CASE__ = 1 -o $__CASE__ = 2 -o $__CASE__ = 4 ]; then
-  sudo sh -c "sed -i '/^\[main\]$/a\dns=none' /etc/NetworkManager/NetworkManager.conf"
-  sudo systemctl restart NetworkManager.service
-  sleep 10s                                   ## 等待 NetworkManager 重启完成
-  sudo rm -rf /etc/resolv.conf
-  sudo sh -c "cat ./Net/dns > /etc/resolv.conf"
-elif [ $__CASE__ = 3 ]; then
-  sudo sh -c "cat ./Net/dns > /etc/resolvconf/resolv.conf.d/base"
-  sudo resolvconf -u
+CheckYes "是否配置清华/Google 的 IPV6 DNS & 114 的 IPV4 DNS?(y/n):"
+if [ $? = 1 ]; then
+  if [ $__CASE__ = 1 -o $__CASE__ = 2 -o $__CASE__ = 4 ]; then
+    sudo sh -c "sed -i '/^\[main\]$/a\dns=none' /etc/NetworkManager/NetworkManager.conf"
+    sudo systemctl restart NetworkManager.service
+    sleep 10s                                   ## 等待 NetworkManager 重启完成
+    sudo rm -rf /etc/resolv.conf
+    sudo sh -c "cat ./Net/dns > /etc/resolv.conf"
+  elif [ $__CASE__ = 3 ]; then
+    sudo sh -c "cat ./Net/dns > /etc/resolvconf/resolv.conf.d/base"
+    sudo resolvconf -u
+  fi
 fi
-
 ### 0.3 hosts 科学上网
 # ./Net/ChangeHosts.sh
 
@@ -109,10 +111,10 @@ elif [ $__CASE__ = 4 ]; then
 fi
 
 ### 1.2 切换镜像源
-# 使用中科大的官方镜像源
+# 使用中科大的官方镜像源(IPv6)/aliyun(IPV4)
 # https://mirrors.tuna.tsinghua.edu.cn/
 # https://lug.ustc.edu.cn/wiki/lug/services/mirrors
-CheckYes "是否切换中科大镜像源?(y/n):"
+CheckYes "是否切换中科大镜像源(IPv6)/aliyun源(IPV4)?(y/n):"
 if [ $? = 1 ]; then
   if [ $__CASE__ = 1 ]; then
     MYECHO "installing mirror repository for CentOS 7"
@@ -132,9 +134,9 @@ if [ $? = 1 ]; then
     sudo cp ./NewSource/fedora-ustc.repo /etc/yum.repos.d/fedora.repo
     sudo cp ./NewSource/fedora-updates-ustc.repo /etc/yum.repos.d/fedora-updates.repo
   elif [ $__CASE__ = 3 ]; then
-    MYECHO "installing mirror repository for Ubuntu 16.04"
+    MYECHO "installing mirror repository for Ubuntu 18.04"
     sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
-    sudo cp ./NewSource/ubuntu-sources-ustc.list /etc/apt/sources.list
+    sudo cp ./NewSource/ubuntu-sources-ustc.1804.list /etc/apt/sources.list
   elif [ $__CASE__ = 4 ]; then
     MYECHO "installing mirror repository for Debian 9"
     sudo mv /etc/apt/sources.list /etc/apt/sources.list.bak
@@ -162,7 +164,7 @@ if [ $__CASE__ = 1 ]; then
 elif [ $__CASE__ = 2 ]; then
   $__PKG__ install -y https://dl.folkswithhats.org/fedora/$(rpm -E %fedora)/RPMS/folkswithhats-release.noarch.rpm # 会安装 fedy(中国人常用软件 的 软件中心)
 elif [ $__CASE__ = 3 ]; then
-  $__PKG__ install -y ubuntu-restricted-extras
+  $__PKG__ install -y ubuntu-restricted-extras dconf-editor
 elif [ $__CASE__ = 4 ]; then
   MYECHO "nothing 3"
 fi
@@ -188,7 +190,7 @@ $__PKG__ install -y autoconf automake
 
 MYECHO "#--------------- Part 3 桌面 --------------#"
 
-### 3.1 for Xfce
+### 3.1 Xfce or gnome
 if [ $__CASE__ != 4 ]; then # 非 Debian
   CheckYes "install Xfce?(y/n):"
   if [ $? = 1 ]; then
@@ -204,23 +206,22 @@ if [ $__CASE__ != 4 ]; then # 非 Debian
     elif [ $__CASE__ = 3 ]; then
       $__PKG__ install -y xfce4
     fi
+    $__PKG__ install -y xfce4-whiskermenu
   fi
 fi
 
-if [ $__CASE__ = 1 -o $__CASE__ = 2 -o $__CASE__ = 4 ]; then
-  # $__PKG__ install -y xfce4-whiskermenu
-  MYECHO "nothing 4"
-elif [ $__CASE__ = 3 ]; then
-  MYECHO "nothing 5"
+if [ $__CASE__ = 3 ]; then   # ubuntu 1804 gnome
+  CheckYes "use gnome?(y/n):"
+  if [ $? = 1 ]; then
+    MYECHO "installing gnome 优化软件"
+    $__PKG__ install -y gnome-tweak-tool gnome-shell-extensions chrome-gnome-shell gtk2-engines-pixbuf libxml2-utils
+  fi
 fi
 
 ### 3.2 for LXDE
-# MYECHO "nothing 6"
+# MYECHO "nothing 4"
 
-### 3.3 for Ubuntu GNOME
-# $__PKG__ install -y gnome-tweak-tool
-
-### 3.4 GUI 软件
+### 3.3 GUI 软件
 MYECHO "installing GUI 软件"
 $__PKG__ install -y terminator meld redshift-gtk
 
@@ -235,7 +236,7 @@ sudo sh -c 'echo "export PS1=\"\[\e[32;1m\][\u@\h:\[\e[34;1m\]\w\[\e[32;1m\]]$>\
 # .vimrc同理
 
 ### 4.3 配置 ssh
-if [ $__CASE__ = 2 -o $__CASE__ = 3 ]; then ## 启动 ssh for Fedora 27 & Ubuntu 16.04
+if [ $__CASE__ = 2 -o $__CASE__ = 3 ]; then ## 启动 ssh for Fedora 27 & Ubuntu 18.04
   sudo systemctl enable sshd
   sudo systemctl start sshd
 fi
