@@ -136,7 +136,6 @@ Xfce 比 LXDE 重一点点, 美观许多
 3. ./configure.sh
 4. 根据 ./butify.sh 美化
 5. 根据 ./手动.md 配置
-6. 根据 xiaomi.sh 配置
 
 ### Ubuntu/Xubuntu/Lubuntu 16.04
 

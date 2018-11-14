@@ -214,7 +214,7 @@ if [ $__CASE__ = 3 ]; then   # ubuntu 1804 gnome
   CheckYes "use gnome?(y/n):"
   if [ $? = 1 ]; then
     MYECHO "installing gnome 优化软件"
-    $__PKG__ install -y gnome-tweak-tool gnome-shell-extensions chrome-gnome-shell gtk2-engines-pixbuf libxml2-utils
+    $__PKG__ install -y gnome-tweak-tool chrome-gnome-shell gtk2-engines-pixbuf libxml2-utils
   fi
 fi
 

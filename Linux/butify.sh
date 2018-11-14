@@ -182,6 +182,66 @@ fi
 
 MYECHO "# ------------ 5 设置 ------------ #"
 
+MYECHO "# ------- 5.1 改英文目录名 ------- #"
+
+if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
+  sed -e 's/桌面/Desktop/g' \
+    -e 's/下载/Downloads/g' \
+    -e 's/模板/Templates/g' \
+    -e 's/公共/Public/g' \
+    -e 's/文档/Documents/g' \
+    -e 's/音乐/Music/g' \
+    -e 's/图片/Pictures/g' \
+    -e 's/视频/Videos/g' \
+    -i ~/.config/user-dirs.dirs
+  mv ~/桌面 ~/Desktop
+  mv ~/下载 ~/Downloads
+  mv ~/模板 ~/Templates
+  mv ~/公共 ~/Public
+  mv ~/文档 ~/Documents
+  mv ~/音乐 ~/Music
+  mv ~/图片 ~/Pictures
+  mv ~/视频 ~/Videos
+  # 注销后生效 还要删除一个 `桌面` 文件夹
+elif [ $__CASE__ = 3 ]; then   # for ubuntu 18.04
+  export LANG=en_US
+  xdg-user-dirs-gtk-update # 在弹出的窗口中询问是否将目录转化为英文路径, 同意并关闭.
+  export LANG=zh_CN
+fi
+
+# Ubuntu 另有方法
+
+MYECHO "# ------- 5.2 改壁纸 ------- #"
+
+if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
+  mv Desktop.jpg .config/
+elif [ $__CASE__ = 3 ]; then
+  mkdir ~/Picture/Wallpapers
+  mv Desktop.jpg ~/Picture/Wallpapers
+fi
+
+MYECHO "# ---- 5.3 配置 终端模拟器 ---- #"
+
+# 1. ubuntu
+# 1.1 未验证?安装 dconf-tools 找到 /org/gnome/desktop/applications/terminal 修改
+# exec terminator
+# exec-arg -e
+# 1.2 ubuntu 自带快捷键 Ctrl+Alt+T
+# 2. Centos7 Gnome
+# 2.1 未验证?安装 gconf-editor 找到 /desktop/gnome/applications/terminal 修改
+# exec terminator
+# exec-arg -e
+# 2.2 设置 -> 键盘 滑到最下面 添加 `名称 Terminal 命令 terminator 快捷键 Ctrl+Alt+T`
+# 3. Centos7 Xfce / Xubuntu
+# 3.1 设置 -> 首选应用程序 -> 实用程序 -> 终端模拟器 设为 其它 terminator
+# 3.2 设置 -> 键盘 -> 应用程序快捷键 添加 `命令 terminator 快捷键 Ctrl+Alt+T`
+
+# 拷入配置文件
+mv terminator ~/.config/terminator
+
+MYECHO "# ------- 5.4 配置 桌面 ------- #"
+
+# for xfce4
 # PS: 所有设置都保存在 ~/.config/ 下, 可以将配置文件保存以重复设置
 #
 # 窗口管理器
@@ -250,62 +310,6 @@ MYECHO "# ------------ 5 设置 ------------ #"
 # | 窗口截图   | xfce4-screenshooter -w             | Alt+Print |
 # | 矩形截图   | xfce4-screenshooter -r             | Shift+Print |
 
-MYECHO "# ------- 5.1 改英文目录名 ------- #"
-
-if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
-  sed -e 's/桌面/Desktop/g' \
-    -e 's/下载/Downloads/g' \
-    -e 's/模板/Templates/g' \
-    -e 's/公共/Public/g' \
-    -e 's/文档/Documents/g' \
-    -e 's/音乐/Music/g' \
-    -e 's/图片/Pictures/g' \
-    -e 's/视频/Videos/g' \
-    -i ~/.config/user-dirs.dirs
-  mv ~/桌面 ~/Desktop
-  mv ~/下载 ~/Downloads
-  mv ~/模板 ~/Templates
-  mv ~/公共 ~/Public
-  mv ~/文档 ~/Documents
-  mv ~/音乐 ~/Music
-  mv ~/图片 ~/Pictures
-  mv ~/视频 ~/Videos
-  # 注销后生效 还要删除一个 `桌面` 文件夹
-elif [ $__CASE__ = 3 ]; then   # for ubuntu 18.04
-  export LANG=en_US
-  xdg-user-dirs-gtk-update # 在弹出的窗口中询问是否将目录转化为英文路径, 同意并关闭.
-  export LANG=zh_CN
-fi
-
-# Ubuntu 另有方法
-
-MYECHO "# ------- 5.2 改壁纸 ------- #"
-
-if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
-  mv Desktop.jpg .config/
-fi
-
-MYECHO "# ---- 5.3 配置 终端模拟器 ---- #"
-
-# 1. ubuntu
-# 1.1 未验证?安装 dconf-tools 找到 /org/gnome/desktop/applications/terminal 修改
-# exec terminator
-# exec-arg -e
-# 1.2 ubuntu 自带快捷键 Ctrl+Alt+T
-# 2. Centos7 Gnome
-# 2.1 未验证?安装 gconf-editor 找到 /desktop/gnome/applications/terminal 修改
-# exec terminator
-# exec-arg -e
-# 2.2 设置 -> 键盘 滑到最下面 添加 `名称 Terminal 命令 terminator 快捷键 Ctrl+Alt+T`
-# 3. Centos7 Xfce / Xubuntu
-# 3.1 设置 -> 首选应用程序 -> 实用程序 -> 终端模拟器 设为 其它 terminator
-# 3.2 设置 -> 键盘 -> 应用程序快捷键 添加 `命令 terminator 快捷键 Ctrl+Alt+T`
-
-# 拷入配置文件
-mv terminator ~/.config/terminator
-
-MYECHO "# ------- 5.4 配置 桌面 ------- #"
-
 if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
   rm -rf ~/.config/xfce4
   if [ $__CASE__ = 1 ]; then
@@ -319,8 +323,6 @@ fi
 
 if [ $__CASE__ = 3 ]; then
   MYECHO "ubuntu 1804 须手动使用 gnome-tweak-tool 改变壁纸、主题、字体、电池百分比、时钟日历"
-  mkdir ~/Picture/Wallpapers
-  mv Desktop.jpg ~/Picture/Wallpapers
 
   #  设置
   #    区域和语言  设置 语言
