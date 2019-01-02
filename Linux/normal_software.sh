@@ -17,8 +17,8 @@
 
 # 为知笔记
 #sudo add-apt-repository ppa:wiznote-team
-#sudo apt-get update
-#sudo apt-get install -y wiznote
+#sudo apt update
+#sudo apt install -y wiznote
 
 # MYECHO "protocol-buffer"
 # $__PKG__ install -y protobuf-compiler

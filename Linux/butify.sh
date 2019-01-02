@@ -128,9 +128,9 @@ MYECHO "# ------------ 3 字体加强 ------------ #"
 # Step 2 将字体文件夹中的文件权限改为 755, 使非 root 用户可以使用 `sudo chmod 755 *`
 # Step 3 在字体文件夹目录下, 依次执行下列命令
 # ```
-# sudo mkfontscale # 如果提示 mkfontscale: command not found，则需要安装 apt-get install ttf-mscorefonts-installer
+# sudo mkfontscale # 如果提示 mkfontscale: command not found，则需要安装 apt install ttf-mscorefonts-installer
 # sudo mkfontdir
-# sudo fc-cache -fv # 如果提示 fc-cache: command not found，则需要安装 apt-get install fontconfig
+# sudo fc-cache -fv # 如果提示 fc-cache: command not found，则需要安装 apt install fontconfig
 # ```
 
 # PS1: 字体大小 & DPI 很重要
@@ -166,10 +166,13 @@ fi
 
 MYECHO "# ------------ 4 面板 ------------ #"
 
-MYECHO "# -------- 4.0 面板插件 -------- #"
+MYECHO "# -------- 4.0 桌面插件 -------- #"
 if [ $__CASE__ = 1 ]; then
   $__PKG__ install -y xfce4-whiskermenu-plugin xfce4-battery-plugin xfce4-clipman-plugin xfce4-datetime-plugin xfce4-netload-plugin xfce4-wavelan-plugin xfce4-screenshooter-plugin
   # $__PKG__ install -y xfce4-timer-plugin # 并没有
+elif [ $__CASE__ = 3 ]; then # for ubuntu 1804(gnome 3.28)
+  mkdir -p ~/.local/share/gnome-shell/extensions
+  tar -xzf gnome-extensions.tar.gz -C ~/.local/share/gnome-shell/extensions
 elif [ $__CASE__ = 4 ]; then # Debian 9 自带这几个
   MYECHO "nothing 2"
 fi
@@ -216,28 +219,9 @@ MYECHO "# ------- 5.2 改壁纸 ------- #"
 if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
   mv Desktop.jpg .config/
 elif [ $__CASE__ = 3 ]; then
-  mkdir ~/Picture/Wallpapers
+  mkdir -p ~/Picture/Wallpapers
   mv Desktop.jpg ~/Picture/Wallpapers
 fi
-
-MYECHO "# ---- 5.3 配置 终端模拟器 ---- #"
-
-# 1. ubuntu
-# 1.1 未验证?安装 dconf-tools 找到 /org/gnome/desktop/applications/terminal 修改
-# exec terminator
-# exec-arg -e
-# 1.2 ubuntu 自带快捷键 Ctrl+Alt+T
-# 2. Centos7 Gnome
-# 2.1 未验证?安装 gconf-editor 找到 /desktop/gnome/applications/terminal 修改
-# exec terminator
-# exec-arg -e
-# 2.2 设置 -> 键盘 滑到最下面 添加 `名称 Terminal 命令 terminator 快捷键 Ctrl+Alt+T`
-# 3. Centos7 Xfce / Xubuntu
-# 3.1 设置 -> 首选应用程序 -> 实用程序 -> 终端模拟器 设为 其它 terminator
-# 3.2 设置 -> 键盘 -> 应用程序快捷键 添加 `命令 terminator 快捷键 Ctrl+Alt+T`
-
-# 拷入配置文件
-mv terminator ~/.config/terminator
 
 MYECHO "# ------- 5.4 配置 桌面 ------- #"
 
@@ -321,24 +305,50 @@ if [ $__CASE__ = 1 -o $__CASE__ = 4 ]; then # CentOS 7 Debian 9
   # 若失败, 再次替换 ~/.config/xfce4 迅速重启
 fi
 
+# for ubuntu 1804(gnome 3.28)
+# 设置
+#   区域和语言  设置 语言
+#   通用辅助功能 大号文本 光标大小
+#   电源       不自动挂起 电源按钮功能
+#   日期时间    自动设置时区
+#   键盘       快捷键
+#
+# 优化
+#   外观   主题 Adapta, 光标 DMZ-Black, 图标 Flat-Remix, 背景&锁屏
+#   字体   noto sans cjk sc Regular
+#   工作区  工作区包括附加显示器
+#   开机启动程序 redshift vera。。。
+#   扩展    。。。
+#   电源   笔记本盖子关闭时 不挂起
+#   窗口   标题栏按钮 左？
+#   顶栏   电池 百分比, 始终 +日期&秒&周数
+
 if [ $__CASE__ = 3 ]; then
   MYECHO "ubuntu 1804 须手动使用 gnome-tweak-tool 改变壁纸、主题、字体、电池百分比、时钟日历"
-
-  #  设置
-  #    区域和语言  设置 语言
-  #    通用辅助功能 大号文本 光标大小
-  #    电源       不自动挂起 电源按钮功能
-  #    日期时间    自动设置时区
-  #    键盘       快捷键
-  #
-  #  优化
-  #    外观   主题 Adapta, 光标 DMZ-Black, 图标 Flat-Remix, 背景&锁屏
-  #    字体   noto sans cjk sc Regular
-  #    工作区  工作区包括附加显示器
-  #    开机启动程序 redshift vera。。。
-  #    扩展    。。。
-  #    电源   笔记本盖子关闭时 不挂起
-  #    窗口   标题栏按钮 左？
-  #    顶栏   电池 百分比, 始终 +日期&秒&周数
-
 fi
+
+MYECHO "# ----- 6 配置 第三方软件 ----- #"
+
+MYECHO "# ---- 6.1 配置 终端模拟器 ---- #"
+
+# 1. ubuntu
+# 1.1 未验证?安装 dconf-tools 找到 /org/gnome/desktop/applications/terminal 修改
+# exec terminator
+# exec-arg -e
+# 1.2 ubuntu 自带快捷键 Ctrl+Alt+T
+# 2. Centos7 Gnome
+# 2.1 未验证?安装 gconf-editor 找到 /desktop/gnome/applications/terminal 修改
+# exec terminator
+# exec-arg -e
+# 2.2 设置 -> 键盘 滑到最下面 添加 `名称 Terminal 命令 terminator 快捷键 Ctrl+Alt+T`
+# 3. Centos7 Xfce / Xubuntu
+# 3.1 设置 -> 首选应用程序 -> 实用程序 -> 终端模拟器 设为 其它 terminator
+# 3.2 设置 -> 键盘 -> 应用程序快捷键 添加 `命令 terminator 快捷键 Ctrl+Alt+T`
+
+# 拷入配置文件
+mv terminator ~/.config/terminator
+
+MYECHO "# ---- 6.2 配置 redshift ---- #"
+
+# 拷入配置文件
+mv redshift.conf ~/.config/redshift.conf
